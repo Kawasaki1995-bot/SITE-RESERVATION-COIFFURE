@@ -1,0 +1,25 @@
+{
+  "name": "cut-and-go-backend",
+  "version": "1.0.0",
+  "description": "API Express pour le projet Cut&Go",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "cut-and-go",
+    "express",
+    "mysql"
+  ],
+  "author": "Equipe Cut&Go",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mysql2": "^3.22.4"
+  }
+}
