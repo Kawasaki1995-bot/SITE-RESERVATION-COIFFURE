@@ -438,6 +438,104 @@ Chaque entree doit expliquer :
 - Tester les routes avec Postman ou Thunder Client.
 - Continuer ensuite avec la structure frontend.
 
+### 29/05/2026 - Renforcement du support de presentation
+
+#### Decisions prises
+
+- Le fichier `docs/presentation-technique.md` devient un document vivant du projet.
+- Il doit etre alimente a chaque avancee importante, en plus du journal de bord.
+- Les directives IA rappellent maintenant de le consulter et de le mettre a jour.
+
+#### Fichiers crees ou modifies
+
+- `docs/presentation-technique.md` : ajout d'un mode d'emploi, de sections detaillees et d'un modele de mise a jour.
+- `DIRECTIVES_IA.md` : ajout du document de presentation technique dans les fichiers a consulter et creation d'une regle de suivi.
+- `journaldebord.md` : ajout de cette entree de suivi.
+
+#### Travail realise
+
+- Detail de l'avancement technique actuel : cadrage, base de donnees, backend, authentification, roles, recherche, gestion salon, reservation, annulation, statistiques et corrections d'audit.
+- Ajout de phrases simples pour expliquer chaque partie a l'oral.
+- Ajout d'un modele a reutiliser pour les prochaines fonctionnalites.
+
+#### Problemes rencontres
+
+- Aucun probleme bloquant.
+
+#### Prochaines actions conseillees
+
+- Maintenir `docs/presentation-technique.md` a chaque nouvelle fonctionnalite.
+- Continuer avec les tests backend avant de passer au frontend.
+
+### 29/05/2026 - Finalisation backend MVP
+
+#### Decisions prises
+
+- Les routes horaires et creneaux sont considerees comme terminees pour le MVP.
+- Les validations restent simples et locales aux controllers pour garder le backend lisible.
+- Un script `npm run check` est ajoute pour verifier rapidement la syntaxe du backend.
+
+#### Fichiers crees ou modifies
+
+- `backend/controllers/horaires.controller.js` : validation des jours, doublons et heures.
+- `backend/controllers/reservations.controller.js` : validation du filtre `date` pour les reservations salon.
+- `backend/controllers/salons.controller.js` : correction des filtres numeriques valant `0`.
+- `backend/package.json` : ajout du script `check`.
+- `docs/routes-api.md` : correction d'un titre en double.
+- `TODO_PROJET.md` : validation de la tache horaires et creneaux.
+
+#### Travail realise
+
+- Finalisation des routes salon pour les horaires et creneaux.
+- Verification syntaxique du backend avec `npm run check`.
+
+#### Problemes rencontres
+
+- Les tests fonctionnels avec une vraie base MySQL restent a faire localement.
+
+#### Prochaines actions conseillees
+
+- Executer `database/schema.sql` puis `database/seed.sql` dans MySQL.
+- Tester les endpoints principaux avec Postman ou Thunder Client.
+
+### 29/05/2026 - Tests backend avec MariaDB et Thunder Client
+
+#### Decisions prises
+
+- MariaDB est utilisee en local pour tester le backend avec une vraie base.
+- DBeaver sert a executer `schema.sql`, `seed.sql` et verifier les tables.
+- Thunder Client sert a tester les endpoints HTTP depuis VS Code.
+- Un utilisateur MariaDB dedie au projet est prefere a `root` pour eviter les problemes d'authentification.
+
+#### Tests effectues
+
+- `GET /api/health` : API accessible.
+- `GET /api/salons` : connexion backend/base validee et salons recuperes.
+- `POST /api/auth/login` : connexion client validee avec le compte de test `alice.client@cutandgo.test`.
+- `GET /api/auth/me` : route protegee validee avec le header `Authorization: Bearer token`.
+- `POST /api/reservations` : creation d'une reservation client validee.
+
+#### Difficultes rencontrees
+
+- Dans le navigateur et Thunder Client, la methode `GET` ne doit pas etre tapee dans l'URL. L'URL doit commencer directement par `http://`.
+- Le backend doit etre lance depuis le dossier `backend`, sinon `npm run dev` n'est pas trouve.
+- MariaDB retournait l'erreur `unknown plugin auth_gssapi_client`, car l'utilisateur utilise par Node n'etait pas compatible avec `mysql2`.
+- La solution a ete de creer un utilisateur `cutgo_user` avec un mot de passe et les droits sur la base `cut_and_go`.
+- Le token JWT a d'abord ete confondu avec `JWT_SECRET`. Le `JWT_SECRET` reste dans `.env`, tandis que le token a utiliser dans Thunder Client est celui renvoye par `/api/auth/login`.
+- Le header d'authentification doit etre separe en deux champs dans Thunder Client : `Authorization` puis `Bearer token`.
+
+#### Points de vigilance
+
+- Ne pas partager le contenu reel de `JWT_SECRET`.
+- Apres chaque modification de `.env`, il faut redemarrer le serveur Node.
+- Pour les routes protegees, il faut utiliser le token JWT renvoye par la connexion, pas la cle secrete du serveur.
+
+#### Prochaines actions conseillees
+
+- Tester aussi l'annulation d'une reservation.
+- Tester les routes salon avec un compte salon.
+- Passer ensuite a la creation du frontend.
+
 ---
 
 _Ce journal de bord evoluera au fur et a mesure de l'avancement du projet._

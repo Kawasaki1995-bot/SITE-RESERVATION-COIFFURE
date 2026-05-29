@@ -43,10 +43,10 @@ Cette todo suit l'ordre de travail souhaite : conception, backend, frontend, pui
 - [x] Creer les routes publiques de recherche salons.
 - [x] Creer les routes de fiche salon.
 - [x] Creer les routes salon pour les prestations.
-- [ ] Creer les routes salon pour les horaires et creneaux.
+- [x] Creer les routes salon pour les horaires et creneaux.
 - [x] Creer les routes client pour les reservations.
 - [x] Ajouter la regle d'annulation 24 heures avant.
-- [ ] Tester les routes avec Postman ou Thunder Client.
+- [x] Tester les routes avec Postman ou Thunder Client.
 - [x] Documenter les endpoints API.
 
 ## Phase 3 - Frontend

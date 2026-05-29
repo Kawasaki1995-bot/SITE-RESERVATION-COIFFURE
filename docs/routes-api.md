@@ -299,8 +299,6 @@ Desactive une prestation du salon connecte.
 }
 ```
 
-## 5. Creneaux
-
 ## 5. Horaires d'ouverture
 
 ### GET /salons/:id/horaires

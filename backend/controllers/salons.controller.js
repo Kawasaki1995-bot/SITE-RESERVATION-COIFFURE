@@ -35,7 +35,7 @@ async function listSalons(req, res, next) {
       params.push(`%${ville}%`);
     }
 
-    if (noteMin) {
+    if (noteMin !== undefined) {
       sql += ' AND s.note >= ?';
       params.push(parsedNoteMin);
     }
@@ -47,7 +47,7 @@ async function listSalons(req, res, next) {
 
     sql += ' GROUP BY s.id, s.nom, s.ville, s.adresse, s.note';
 
-    if (prixMax) {
+    if (prixMax !== undefined) {
       sql += ' HAVING prix_min <= ?';
       params.push(parsedPrixMax);
     }

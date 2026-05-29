@@ -1,5 +1,15 @@
 const pool = require('../config/db');
 
+function isValidDate(value) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    return false;
+  }
+
+  const date = new Date(`${value}T00:00:00`);
+
+  return !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === value;
+}
+
 async function getSalonIdForUser(userId) {
   const [salons] = await pool.execute(
     'SELECT id FROM salons WHERE user_id = ?',
@@ -220,6 +230,13 @@ async function listSalonReservations(req, res, next) {
     `;
 
     if (req.query.date) {
+      if (!isValidDate(req.query.date)) {
+        return res.status(400).json({
+          success: false,
+          message: 'Date invalide'
+        });
+      }
+
       sql += ' AND c.date_creneau = ?';
       params.push(req.query.date);
     }

@@ -122,6 +122,7 @@ Avant de proposer du code, lire si possible :
 - `brief.md`
 - `wwindex.md`
 - `journaldebord`
+- `docs/presentation-technique.md`
 
 ## 10. Suivi quotidien
 
@@ -143,6 +144,20 @@ Chaque entree quotidienne doit expliquer clairement :
 
 Le journal de bord sert de journal de progression pour le dossier de projet et la soutenance DWWM.
 
-## 11. Principe principal
+## 11. Presentation technique
+
+Le fichier `docs/presentation-technique.md` doit etre alimente a chaque avancee importante du projet.
+
+Il doit expliquer :
+
+- ce qui a ete fait ;
+- pourquoi les choix techniques ont ete faits ;
+- quels fichiers sont concernes ;
+- quelles regles metier sont appliquees ;
+- comment presenter simplement la fonctionnalite a l'oral.
+
+Ce fichier sert a preparer les explications devant un groupe, un formateur ou un jury.
+
+## 12. Principe principal
 
 Le projet doit etre complet, comprehensible et defendable devant un jury DWWM. Il vaut mieux livrer un MVP stable, securise et bien documente qu'une plateforme trop large avec des fonctionnalites inachevees.

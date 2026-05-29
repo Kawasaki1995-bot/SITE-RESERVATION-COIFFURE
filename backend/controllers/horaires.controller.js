@@ -1,5 +1,18 @@
 const pool = require('../config/db');
 
+function isValidDay(value) {
+  return Number.isInteger(value) && value >= 1 && value <= 7;
+}
+
+function isValidTime(value) {
+  return /^([01]\d|2[0-3]):[0-5]\d(:[0-5]\d)?$/.test(value);
+}
+
+function toSeconds(value) {
+  const [hours, minutes, seconds = '0'] = value.split(':');
+  return Number(hours) * 3600 + Number(minutes) * 60 + Number(seconds);
+}
+
 async function getSalonIdForUser(userId) {
   const [salons] = await pool.execute(
     'SELECT id FROM salons WHERE user_id = ?',
@@ -47,20 +60,44 @@ async function updateMyHoraires(req, res, next) {
       });
     }
 
-    for (const horaire of horaires) {
-      const { jour_semaine, heure_ouverture, heure_fermeture, ferme } = horaire;
+    const jours = new Set();
 
-      if (!jour_semaine || jour_semaine < 1 || jour_semaine > 7) {
+    for (const horaire of horaires) {
+      const jourSemaine = Number(horaire.jour_semaine);
+      const ferme = horaire.ferme === true;
+      const { heure_ouverture, heure_fermeture } = horaire;
+
+      if (!isValidDay(jourSemaine)) {
         return res.status(400).json({
           success: false,
           message: 'Jour de semaine invalide'
         });
       }
 
-      if (!ferme && (!heure_ouverture || !heure_fermeture)) {
+      if (jours.has(jourSemaine)) {
         return res.status(400).json({
           success: false,
-          message: 'Heures obligatoires pour un jour ouvert'
+          message: 'Jour de semaine en double'
+        });
+      }
+
+      jours.add(jourSemaine);
+
+      if (ferme) {
+        continue;
+      }
+
+      if (!heure_ouverture || !heure_fermeture || !isValidTime(heure_ouverture) || !isValidTime(heure_fermeture)) {
+        return res.status(400).json({
+          success: false,
+          message: 'Heures invalides pour un jour ouvert'
+        });
+      }
+
+      if (toSeconds(heure_ouverture) >= toSeconds(heure_fermeture)) {
+        return res.status(400).json({
+          success: false,
+          message: 'Heure de fermeture invalide'
         });
       }
     }
@@ -83,7 +120,7 @@ async function updateMyHoraires(req, res, next) {
             ferme = VALUES(ferme)`,
           [
             salonId,
-            horaire.jour_semaine,
+            Number(horaire.jour_semaine),
             ferme ? null : horaire.heure_ouverture,
             ferme ? null : horaire.heure_fermeture,
             ferme
