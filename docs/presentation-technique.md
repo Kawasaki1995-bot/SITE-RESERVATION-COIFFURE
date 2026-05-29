@@ -8,6 +8,17 @@ Il doit etre mis a jour a chaque avancee importante du projet, au meme titre que
 
 Ce fichier est un document vivant.
 
+Il sert maintenant a deux usages :
+
+- **fiche de revision** : revoir rapidement les notions, les choix techniques, les routes importantes et les phrases a dire a l'oral ;
+- **support de presentation technique detaillee** : expliquer ce qui a ete fait, pourquoi ces choix ont ete faits et comment les differentes parties du projet fonctionnent ensemble.
+
+Pour reviser efficacement :
+
+- lire d'abord les sections **0.1**, **0.2**, **0.3** et **0.4** ;
+- ensuite relire les sections techniques detaillees a partir de la section **3** ;
+- finir avec les questions possibles en section **15**.
+
 A chaque nouvelle etape du projet, il faut l'alimenter avec :
 
 - les nouvelles fonctionnalites developpees ;
@@ -31,6 +42,168 @@ Quand une fonctionnalite est terminee, il faut pouvoir repondre a ces questions 
 - Quelle technologie est utilisee ?
 - Quelle regle metier est appliquee ?
 - Comment expliquer cette partie simplement a quelqu'un qui ne connait pas le code ?
+
+### 0.1 Fiche de revision express
+
+Cette partie sert a reviser rapidement avant une presentation ou une evaluation.
+
+#### Idee principale du projet
+
+Cut&Go est une application web de reservation pour salons de coiffure. Elle permet a un client de rechercher un salon, consulter ses prestations, reserver un creneau, puis gerer ses rendez-vous. Elle permet aussi a un salon de gerer ses informations, ses prestations, ses horaires, ses creneaux et ses reservations.
+
+#### Stack technique a retenir
+
+| Partie          | Technologie        | Role                                         |
+| --------------- | ------------------ | -------------------------------------------- |
+| Frontend        | HTML5              | structure des pages                          |
+| Frontend        | CSS3               | design et responsive                         |
+| Frontend        | JavaScript Vanilla | interaction, DOM, appels API avec `fetch`    |
+| Backend         | Node.js            | execution JavaScript cote serveur            |
+| Backend         | Express.js         | creation de l'API REST                       |
+| Base de donnees | MySQL / MariaDB    | stockage relationnel                         |
+| Securite        | bcrypt             | hashage des mots de passe                    |
+| Securite        | JWT                | authentification des routes protegees        |
+| Config          | dotenv             | variables d'environnement                    |
+| Connexion DB    | mysql2             | requetes SQL preparees et pool de connexions |
+| Navigateur/API  | cors               | autoriser le frontend a appeler le backend   |
+
+#### Architecture a retenir
+
+```text
+frontend -> API Express -> controllers -> MySQL/MariaDB
+```
+
+Dans le backend :
+
+```text
+route -> middleware -> controller -> requete SQL -> reponse JSON
+```
+
+#### Tables principales
+
+| Table                | Role                             |
+| -------------------- | -------------------------------- |
+| `users`              | comptes client, salon et admin   |
+| `salons`             | informations des salons          |
+| `prestations`        | services proposes par les salons |
+| `horaires_ouverture` | horaires par jour                |
+| `creneaux`           | disponibilites reservables       |
+| `reservations`       | rendez-vous des clients          |
+
+#### Routes importantes
+
+| Route                           | Methode | Role                                        |
+| ------------------------------- | ------- | ------------------------------------------- |
+| `/api/health`                   | GET     | verifier que l'API fonctionne               |
+| `/api/auth/register`            | POST    | creer un compte                             |
+| `/api/auth/login`               | POST    | connecter un utilisateur et recevoir un JWT |
+| `/api/auth/me`                  | GET     | recuperer l'utilisateur connecte            |
+| `/api/salons`                   | GET     | rechercher des salons                       |
+| `/api/salons/:id`               | GET     | consulter une fiche salon                   |
+| `/api/salons/:id/prestations`   | GET     | voir les prestations d'un salon             |
+| `/api/salons/:id/creneaux`      | GET     | voir les creneaux disponibles               |
+| `/api/reservations`             | POST    | reserver un creneau                         |
+| `/api/reservations/me`          | GET     | voir ses reservations client                |
+| `/api/reservations/:id/cancel`  | PATCH   | annuler une reservation                     |
+| `/api/reservations/salon`       | GET     | voir les reservations du salon connecte     |
+| `/api/reservations/salon/stats` | GET     | voir le chiffre d'affaires simple           |
+
+#### Regles metier a connaitre
+
+- Un client peut reserver seulement un creneau disponible.
+- Une prestation doit appartenir au salon choisi.
+- Un creneau reserve devient indisponible.
+- Une annulation est possible seulement plus de 24 heures avant le rendez-vous.
+- Une reservation annulee rend le creneau a nouveau disponible.
+- Un client ne peut pas gerer les prestations d'un salon.
+- Un salon ne peut gerer que ses propres informations.
+- Les reservations annulees ne comptent pas dans le chiffre d'affaires.
+
+#### Securite a connaitre
+
+- Les mots de passe ne sont jamais stockes en clair.
+- `bcrypt` transforme le mot de passe en hash.
+- `JWT_SECRET` sert au serveur pour signer et verifier les tokens.
+- Le token JWT est renvoye apres connexion.
+- Les routes protegees attendent le header `Authorization: Bearer token_jwt`.
+- Les roles sont verifies cote serveur avec un middleware.
+- Les requetes SQL preparees limitent les injections SQL.
+- Les donnees sensibles sont placees dans `.env`.
+
+#### Phrase resume a connaitre par coeur
+
+```text
+Cut&Go est un MVP de reservation pour salons de coiffure. Le client peut rechercher un salon et reserver un creneau, tandis que le salon peut gerer ses prestations, ses horaires, ses disponibilites et ses reservations. Le projet utilise une API Express, une base MySQL relationnelle, une authentification JWT et des mots de passe hashes avec bcrypt.
+```
+
+### 0.2 Parcours a savoir expliquer
+
+#### Parcours client
+
+1. Le client cree un compte ou se connecte.
+2. Le backend verifie ses identifiants.
+3. Si la connexion reussit, le backend renvoie un token JWT.
+4. Le client recherche un salon avec des filtres.
+5. Il consulte la fiche salon, les prestations et les creneaux.
+6. Il choisit une prestation et un creneau.
+7. Le backend verifie que le creneau est disponible.
+8. La reservation est creee et le creneau devient indisponible.
+9. Le client peut consulter ses rendez-vous.
+10. Il peut annuler si le rendez-vous est dans plus de 24 heures.
+
+#### Parcours salon
+
+1. Le salon cree un compte professionnel ou se connecte.
+2. Le backend verifie son role `salon`.
+3. Le salon modifie ses informations.
+4. Il ajoute ou modifie ses prestations.
+5. Il configure ses horaires.
+6. Il cree ou modifie ses creneaux.
+7. Il consulte les reservations recues.
+8. Il consulte un chiffre d'affaires simple jour, semaine et mois.
+
+#### Parcours technique d'une requete protegee
+
+1. L'utilisateur se connecte avec email et mot de passe.
+2. Le backend compare le mot de passe avec le hash bcrypt.
+3. Le backend genere un JWT contenant l'identite et le role.
+4. Le frontend stocke temporairement ce token.
+5. Pour une route protegee, le frontend envoie `Authorization: Bearer token_jwt`.
+6. Le middleware d'authentification verifie le token.
+7. Le middleware de role verifie si l'utilisateur a le droit d'acceder a la route.
+8. Le controller execute la logique metier.
+
+### 0.3 Notions techniques a savoir definir simplement
+
+| Notion                   | Definition simple                                                            |
+| ------------------------ | ---------------------------------------------------------------------------- |
+| API REST                 | ensemble de routes HTTP permettant au frontend et au backend de communiquer  |
+| Endpoint                 | URL precise d'une API, par exemple `POST /api/auth/login`                    |
+| Middleware               | fonction executee avant le controller pour verifier ou preparer la requete   |
+| Controller               | fichier qui contient la logique d'une fonctionnalite                         |
+| JWT                      | token signe qui permet d'identifier un utilisateur connecte                  |
+| Hash                     | transformation irreversible d'un mot de passe                                |
+| Transaction SQL          | groupe d'operations SQL validees ensemble ou annulees ensemble               |
+| `FOR UPDATE`             | verrou SQL qui empeche deux reservations simultanees sur le meme creneau     |
+| CORS                     | regle navigateur qui autorise ou bloque les appels entre frontend et backend |
+| Variable d'environnement | valeur de configuration separee du code, comme un mot de passe ou un secret  |
+| Cle etrangere            | lien entre deux tables de base de donnees                                    |
+| MVP                      | version minimale mais fonctionnelle d'un produit                             |
+
+### 0.4 Plan oral conseille
+
+Pour presenter le projet de facon claire, suivre cet ordre :
+
+1. Presenter le probleme : simplifier la reservation chez un salon de coiffure.
+2. Presenter les deux types d'utilisateurs : client et salon.
+3. Expliquer le MVP : reservation, gestion salon, authentification.
+4. Presenter la stack : HTML, CSS, JS, Node, Express, MySQL.
+5. Expliquer l'architecture : frontend, API, base de donnees.
+6. Montrer le modele de donnees : users, salons, prestations, creneaux, reservations.
+7. Expliquer l'authentification : bcrypt et JWT.
+8. Expliquer la reservation : verification, transaction, verrouillage, indisponibilite.
+9. Expliquer l'annulation : regle des 24 heures.
+10. Terminer par les tests, les limites actuelles et les ameliorations possibles.
 
 ## 1. Resume du projet
 
@@ -166,7 +339,7 @@ Raison du choix :
 
 Dans le projet :
 
-- a l'inscription, le mot de passe est hashé avant l'insertion en base ;
+- a l'inscription, le mot de passe est hashe avant l'insertion en base ;
 - a la connexion, bcrypt verifie si le mot de passe correspond.
 
 ### JWT
@@ -744,7 +917,180 @@ Phrase pour l'oral :
 Nous avons teste le backend avec MariaDB et Thunder Client. Les routes publiques, la connexion, le JWT, une route protegee et la creation d'une reservation fonctionnent avec les donnees de test.
 ```
 
-## 13. Modele pour ajouter une nouvelle avancee
+## 13. Fichiers a savoir expliquer
+
+Cette section sert de fiche de revision par fichier. L'objectif n'est pas de connaitre chaque ligne par coeur, mais de savoir expliquer le role des fichiers principaux.
+
+### 13.1 Fichiers de base de donnees
+
+| Fichier               | Role                         | Ce qu'il faut savoir dire                                                                                 |
+| --------------------- | ---------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `database/schema.sql` | cree la structure de la base | il definit les tables, les cles primaires, les cles etrangeres, les contraintes et les index              |
+| `database/seed.sql`   | ajoute des donnees de test   | il permet de tester rapidement les routes avec des clients, salons, prestations, creneaux et reservations |
+
+Explication simple :
+
+```text
+Le schema SQL pose les fondations de la base de donnees, tandis que le seed permet d'avoir des donnees realistes pour tester l'application sans tout creer a la main.
+```
+
+### 13.2 Fichiers backend principaux
+
+| Fichier ou dossier                        | Role                     | Ce qu'il faut savoir dire                                                                   |
+| ----------------------------------------- | ------------------------ | ------------------------------------------------------------------------------------------- |
+| `backend/server.js`                       | point d'entree de l'API  | il configure Express, CORS, JSON, les routes et les middlewares d'erreur                    |
+| `backend/config/db.js`                    | connexion a MySQL        | il cree un pool de connexions reutilisable                                                  |
+| `backend/routes/`                         | definition des endpoints | chaque fichier regroupe les routes d'une ressource                                          |
+| `backend/controllers/`                    | logique metier           | les controllers verifient les donnees, executent les requetes SQL et renvoient les reponses |
+| `backend/middlewares/auth.middleware.js`  | verification JWT         | il verifie si l'utilisateur est connecte                                                    |
+| `backend/middlewares/role.middleware.js`  | verification des roles   | il verifie si l'utilisateur a le bon role                                                   |
+| `backend/middlewares/error.middleware.js` | gestion des erreurs      | il centralise les erreurs pour renvoyer une reponse propre                                  |
+| `backend/.env.example`                    | exemple de configuration | il liste les variables necessaires sans exposer les secrets reels                           |
+
+Explication simple :
+
+```text
+Le backend est separe en routes, controllers et middlewares pour eviter d'avoir toute la logique dans un seul fichier. Cela rend le code plus lisible, plus testable et plus simple a presenter.
+```
+
+### 13.3 Documents projet
+
+| Fichier                          | Role                                          |
+| -------------------------------- | --------------------------------------------- |
+| `brief.md`                       | vision globale du projet                      |
+| `cadrage_projet.md`              | perimetre MVP, choix fonctionnels et limites  |
+| `docs/user-stories.md`           | besoins utilisateur et criteres d'acceptation |
+| `docs/routes-api.md`             | contrat des endpoints de l'API                |
+| `journaldebord.md`               | suivi chronologique du travail                |
+| `docs/presentation-technique.md` | support de revision et presentation technique |
+
+Point a savoir expliquer :
+
+```text
+Les documents ne sont pas seulement administratifs : ils servent a garder une coherence entre le besoin utilisateur, la base de donnees, l'API et la presentation finale.
+```
+
+## 14. Questions possibles et reponses courtes
+
+### Pourquoi avoir choisi MySQL ?
+
+Parce que les donnees sont relationnelles. Une reservation depend d'un client, d'un salon, d'une prestation et d'un creneau. MySQL permet de garantir ces liens avec des cles etrangeres.
+
+### Pourquoi avoir choisi Express ?
+
+Express permet de creer rapidement une API REST claire. Il est leger, simple a comprendre et adapte a une architecture routes/controllers/middlewares.
+
+### Pourquoi ne pas stocker les mots de passe en clair ?
+
+Parce qu'en cas de fuite de base de donnees, les mots de passe seraient directement lisibles. Avec bcrypt, on stocke seulement un hash.
+
+### Difference entre `JWT_SECRET` et token JWT ?
+
+`JWT_SECRET` est la cle privee du serveur, stockee dans `.env`. Le token JWT est la valeur envoyee au client apres connexion. Le client utilise le token, mais ne connait jamais le secret.
+
+### Pourquoi verifier les roles cote serveur ?
+
+Parce que le frontend peut etre modifie par un utilisateur. Les vraies autorisations doivent donc etre controlees par le backend.
+
+### Pourquoi utiliser une transaction pour reserver ?
+
+Une reservation modifie plusieurs donnees : elle cree une reservation et rend un creneau indisponible. La transaction garantit que tout est valide ensemble, ou que rien n'est enregistre en cas d'erreur.
+
+### Pourquoi utiliser `FOR UPDATE` ?
+
+Pour verrouiller le creneau pendant la reservation. Cela evite que deux clients reservent le meme creneau au meme moment.
+
+### Pourquoi desactiver une prestation au lieu de la supprimer ?
+
+Parce qu'une prestation peut deja etre liee a une ancienne reservation. La desactivation garde l'historique sans afficher la prestation comme disponible.
+
+### Comment fonctionne une route protegee ?
+
+Le frontend envoie un token dans le header `Authorization`. Le middleware verifie le token, recupere l'utilisateur, puis le middleware de role verifie si l'action est autorisee.
+
+### Qu'est-ce qui prouve que le backend fonctionne ?
+
+Les tests avec MariaDB et Thunder Client ont valide `/api/health`, la recherche des salons, la connexion, le JWT, une route protegee et la creation d'une reservation.
+
+### Quelles sont les limites actuelles du MVP ?
+
+Le paiement, les emails, les SMS, les vrais avis clients, l'upload reel d'images, la geolocalisation avancee et une interface admin complete sont hors MVP.
+
+### Quelle amelioration serait prioritaire ensuite ?
+
+La priorite suivante est de creer le frontend HTML/CSS/JavaScript, puis de le connecter a l'API pour tester les parcours complets client et salon.
+
+## 15. Deroule detaille pour presentation orale
+
+Cette partie peut servir de script. Il ne faut pas la lire mot a mot, mais elle aide a structurer l'explication.
+
+### Introduction
+
+```text
+Le projet s'appelle Cut&Go. C'est une plateforme de reservation pour salons de coiffure. L'objectif est de proposer une version MVP d'une application de prise de rendez-vous, avec un parcours client et un parcours salon.
+```
+
+### Besoin utilisateur
+
+```text
+Le client a besoin de trouver rapidement un salon, voir les prestations et reserver un creneau disponible. De son cote, le salon a besoin de gerer ses informations, ses prestations, ses disponibilites et ses reservations.
+```
+
+### Choix du MVP
+
+```text
+Nous avons volontairement limite le projet a un MVP. Le but est d'avoir une base stable et defendable avant d'ajouter des fonctionnalites plus avancees comme le paiement, les notifications ou les vrais avis clients.
+```
+
+### Architecture
+
+```text
+L'application est organisee avec un frontend HTML, CSS et JavaScript Vanilla, un backend Node.js avec Express, et une base de donnees MySQL. Le frontend communique avec le backend par des routes API, et le backend interroge la base de donnees.
+```
+
+### Base de donnees
+
+```text
+La base est relationnelle. Elle contient les utilisateurs, les salons, les prestations, les horaires, les creneaux et les reservations. Les cles etrangeres permettent de garder des liens coherents entre ces tables.
+```
+
+### Authentification
+
+```text
+Pour l'authentification, les mots de passe sont hashes avec bcrypt. Quand l'utilisateur se connecte, le backend genere un token JWT. Ce token est ensuite envoye dans les routes protegees pour identifier l'utilisateur.
+```
+
+### Reservation
+
+```text
+La reservation est une partie importante du projet. Le backend verifie que le creneau existe, qu'il est disponible et que la prestation appartient bien au salon. Ensuite il cree la reservation et rend le creneau indisponible.
+```
+
+### Annulation
+
+```text
+Pour l'annulation, une regle metier a ete ajoutee : le client peut annuler seulement si le rendez-vous commence dans plus de 24 heures. Si l'annulation est acceptee, la reservation passe en statut annulee et le creneau redevient disponible.
+```
+
+### Securite
+
+```text
+Les points de securite principaux sont le hashage des mots de passe, les routes protegees par JWT, la verification des roles, les requetes SQL preparees et l'utilisation de variables d'environnement pour les informations sensibles.
+```
+
+### Tests
+
+```text
+Le backend a ete teste avec une vraie base MariaDB et Thunder Client. Les tests ont valide les routes publiques, la connexion, la recuperation du token JWT, une route protegee et la creation d'une reservation.
+```
+
+### Conclusion
+
+```text
+Cut&Go est donc une base de MVP fonctionnelle pour la reservation de coiffure. Le backend est structure, la base de donnees est coherente, les principales regles metier sont presentes, et la prochaine etape logique est la finalisation du frontend.
+```
+
+## 16. Modele pour ajouter une nouvelle avancee
 
 A chaque nouvelle fonctionnalite importante, ajouter une sous-section avec ce modele :
 
@@ -772,6 +1118,6 @@ Phrase pour l'oral :
 `...`
 ```
 
-## 14. Phrase simple pour presenter le projet
+## 17. Phrase simple pour presenter le projet
 
 Cut&Go est une application web de reservation pour salons de coiffure. J'ai choisi une stack simple et adaptee au programme : HTML, CSS et JavaScript Vanilla pour le frontend, Node.js et Express pour l'API, MySQL pour les donnees relationnelles, bcrypt pour securiser les mots de passe, JWT pour proteger les routes, et dotenv pour separer la configuration du code. L'objectif est de livrer un MVP stable, comprehensible et defendable devant un jury.
