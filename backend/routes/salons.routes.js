@@ -9,6 +9,7 @@ const roleMiddleware = require('../middlewares/role.middleware');
 const router = express.Router();
 
 router.get('/', salonsController.listSalons);
+router.get('/me', authMiddleware, roleMiddleware('salon'), salonsController.getMySalon);
 router.get('/:id', salonsController.getSalonById);
 router.get('/:id/prestations', prestationsController.listBySalon);
 router.get('/:id/horaires', horairesController.listBySalon);

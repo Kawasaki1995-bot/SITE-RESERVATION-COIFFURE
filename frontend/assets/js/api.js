@@ -8,7 +8,17 @@ function getToken() {
 
 function getCurrentUser() {
   const rawUser = sessionStorage.getItem(USER_KEY);
-  return rawUser ? JSON.parse(rawUser) : null;
+
+  if (!rawUser) {
+    return null;
+  }
+
+  try {
+    return JSON.parse(rawUser);
+  } catch (error) {
+    clearSession();
+    return null;
+  }
 }
 
 function saveSession(token, user) {
@@ -61,11 +71,31 @@ function hydrateNavigation() {
     });
   });
   document.querySelectorAll('[data-role="client"]').forEach((element) => {
-    element.hidden = Boolean(user && user.role !== 'client');
+    element.hidden = !user || user.role !== 'client';
   });
   document.querySelectorAll('[data-role="salon"]').forEach((element) => {
-    element.hidden = Boolean(user && user.role !== 'salon');
+    element.hidden = !user || user.role !== 'salon';
   });
+}
+
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function safeImageUrl(value, fallback) {
+  if (!value) return fallback;
+
+  try {
+    const url = new URL(value, window.location.href);
+    return ['http:', 'https:'].includes(url.protocol) ? url.href : fallback;
+  } catch (error) {
+    return fallback;
+  }
 }
 
 function formatPrice(value) {

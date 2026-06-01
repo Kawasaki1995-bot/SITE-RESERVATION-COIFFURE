@@ -65,7 +65,7 @@ Cette todo suit l'ordre de travail souhaite : conception, backend, frontend, pui
 - [x] Ajouter la validation JS des formulaires.
 - [x] Creer une navigation adaptee au role utilisateur.
 - [x] Creer les composants visuels : cartes salon, boutons, formulaires, listes.
-- [ ] Tester l'accessibilite de base : labels, contrastes, navigation clavier.
+- [x] Tester l'accessibilite de base : labels, contrastes, navigation clavier.
 
 ## Phase 4 - Connexion front/back
 
@@ -74,33 +74,40 @@ Cette todo suit l'ordre de travail souhaite : conception, backend, frontend, pui
 - [x] Stocker le JWT en `sessionStorage`.
 - [x] Envoyer le JWT dans le header `Authorization`.
 - [x] Verifier la syntaxe JavaScript apres branchement de l'authentification.
-- [ ] Gerer l'etat connecte/deconnecte.
-- [ ] Gerer l'affichage selon le role client ou salon.
-- [ ] Connecter la recherche salon a l'API.
-- [ ] Connecter les filtres note, prix et prestation.
-- [ ] Connecter la fiche salon aux donnees API.
-- [ ] Connecter la reservation d'un creneau.
-- [ ] Gerer les messages de refus si le creneau est indisponible.
-- [ ] Connecter l'annulation de rendez-vous.
-- [ ] Connecter le dashboard salon.
-- [ ] Connecter la gestion des prestations.
-- [ ] Connecter la gestion des horaires et creneaux.
-- [ ] Ajouter les loaders et messages d'erreur.
+- [x] Gerer l'etat connecte/deconnecte.
+- [x] Gerer l'affichage selon le role client ou salon.
+- [x] Connecter la recherche salon a l'API.
+- [x] Connecter les filtres note, prix et prestation.
+- [x] Ajouter `image_url` dans la reponse API de recherche salons pour les cartes frontend.
+- [x] Connecter la fiche salon aux donnees API.
+- [x] Connecter les prestations salon aux donnees API.
+- [x] Connecter les creneaux salon aux donnees API.
+- [x] Connecter la reservation d'un creneau.
+- [x] Gerer les messages de refus si le creneau est indisponible.
+- [x] Recharger les creneaux disponibles apres une reservation.
+- [x] Connecter l'affichage des rendez-vous client.
+- [x] Connecter l'annulation de rendez-vous.
+- [x] Connecter le dashboard salon.
+- [x] Connecter les statistiques salon.
+- [x] Connecter l'affichage des reservations salon.
+- [x] Connecter la gestion des prestations.
+- [x] Connecter la gestion des horaires et creneaux.
+- [x] Ajouter les loaders et messages d'erreur.
 - [ ] Tester le parcours client complet.
 - [ ] Tester le parcours salon complet.
 
 ## Phase 5 - Finalisation jury
 
 - [x] Ajouter dans `DIRECTIVES_IA.md` la regle de mise a jour systematique de `TODO_PROJET.md`.
-- [ ] Rediger le README d'installation.
-- [ ] Documenter les variables d'environnement.
-- [ ] Ajouter des comptes de test.
+- [x] Rediger le README d'installation.
+- [x] Documenter les variables d'environnement.
+- [x] Ajouter des comptes de test.
 - [ ] Faire un audit Lighthouse.
-- [ ] Corriger les problemes d'accessibilite principaux.
+- [x] Corriger les problemes d'accessibilite principaux.
 - [ ] Verifier les mentions legales et la confidentialite.
 - [ ] Preparer le dossier de projet.
 - [ ] Preparer le support de presentation.
-- [ ] Preparer un scenario de demonstration.
-- [ ] Preparer les reponses aux questions techniques du jury.
+- [x] Preparer un scenario de demonstration.
+- [x] Preparer les reponses aux questions techniques du jury.
 - [ ] Deployer l'application.
 - [ ] Tester l'application en production.

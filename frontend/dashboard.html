@@ -37,21 +37,34 @@
         </div>
       </div>
 
-      <form class="form-panel">
+      <form class="form-panel" data-salon-form>
         <h2>Informations salon</h2>
         <div class="field">
           <label for="salon-name">Nom</label>
-          <input id="salon-name" value="Salon Elegance">
+          <input id="salon-name" name="nom" required>
         </div>
         <div class="field">
           <label for="salon-city">Ville</label>
-          <input id="salon-city" value="Bruxelles">
+          <input id="salon-city" name="ville" required>
+        </div>
+        <div class="field">
+          <label for="salon-address">Adresse</label>
+          <input id="salon-address" name="adresse" required>
         </div>
         <div class="field">
           <label for="salon-description">Description</label>
-          <textarea id="salon-description" rows="4">Salon moderne specialise dans les coupes classiques.</textarea>
+          <textarea id="salon-description" name="description" rows="4"></textarea>
         </div>
-        <button class="button button--gold" type="button">Preparer la mise a jour</button>
+        <div class="field">
+          <label for="salon-phone">Telephone</label>
+          <input id="salon-phone" name="telephone">
+        </div>
+        <div class="field">
+          <label for="salon-image">Image URL</label>
+          <input id="salon-image" name="image_url" type="url">
+        </div>
+        <button class="button button--gold" type="submit">Mettre a jour</button>
+        <p class="form-message" data-salon-message aria-live="polite"></p>
       </form>
 
       <div class="tool-panel">
@@ -61,14 +74,47 @@
 
       <div class="tool-panel">
         <h2>Prestations rapides</h2>
-        <div class="choice-row"><span>Coupe homme</span><strong>25 EUR</strong></div>
-        <div class="choice-row"><span>Coupe femme</span><strong>45 EUR</strong></div>
-        <div class="choice-row"><span>Brushing</span><strong>35 EUR</strong></div>
+        <form class="inline-form" data-prestation-form>
+          <div class="field">
+            <label for="prestation-name">Nom</label>
+            <input id="prestation-name" name="nom" placeholder="Coupe homme" required>
+          </div>
+          <div class="field">
+            <label for="prestation-price">Prix</label>
+            <input id="prestation-price" name="prix" type="number" min="0" step="0.01" placeholder="25" required>
+          </div>
+          <button class="button button--gold" type="submit">Ajouter</button>
+          <p class="form-message" data-prestation-message aria-live="polite"></p>
+        </form>
+        <div data-prestations-admin></div>
       </div>
+
+      <div class="tool-panel">
+        <h2>Creneaux</h2>
+        <form class="inline-form" data-creneau-form>
+          <div class="field">
+            <label for="creneau-date">Date</label>
+            <input id="creneau-date" name="date_creneau" type="date" required>
+          </div>
+          <div class="field">
+            <label for="creneau-time">Heure</label>
+            <input id="creneau-time" name="heure_debut" type="time" step="1800" required>
+          </div>
+          <button class="button button--gold" type="submit">Ajouter</button>
+          <p class="form-message" data-creneau-message aria-live="polite"></p>
+        </form>
+        <div data-creneaux-admin></div>
+      </div>
+
+      <form class="form-panel" data-horaires-form>
+        <h2>Horaires</h2>
+        <div data-horaires-admin></div>
+        <button class="button button--gold" type="submit">Enregistrer les horaires</button>
+        <p class="form-message" data-horaires-message aria-live="polite"></p>
+      </form>
     </section>
   </main>
 
-  <script src="assets/js/mock-data.js"></script>
   <script src="assets/js/api.js"></script>
   <script src="assets/js/dashboard.js"></script>
 </body>

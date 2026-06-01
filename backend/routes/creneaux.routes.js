@@ -5,6 +5,7 @@ const roleMiddleware = require('../middlewares/role.middleware');
 
 const router = express.Router();
 
+router.get('/me', authMiddleware, roleMiddleware('salon'), creneauxController.listMine);
 router.post('/', authMiddleware, roleMiddleware('salon'), creneauxController.createCreneau);
 router.put('/:id', authMiddleware, roleMiddleware('salon'), creneauxController.updateCreneau);
 

@@ -134,7 +134,7 @@ Recherche les salons avec filtres optionnels.
 - `ville` : ville recherchee.
 - `noteMin` : note minimale.
 - `prixMax` : prix maximum d'une prestation.
-- `prestation` : nom ou partie du nom de prestation.
+- `prestation` : nom ou partie du nom de prestation, ou mot present dans le nom/description du salon.
 
 **Exemple**
 
@@ -153,6 +153,7 @@ GET /api/salons?ville=Bruxelles&noteMin=4&prixMax=40&prestation=barbe
       "nom": "Studio Barber",
       "ville": "Bruxelles",
       "adresse": "42 Avenue Louise, 1050 Bruxelles",
+      "image_url": "https://example.com/image.jpg",
       "note": 4.6,
       "prix_min": 18
     }
@@ -165,6 +166,30 @@ GET /api/salons?ville=Bruxelles&noteMin=4&prixMax=40&prestation=barbe
 Retourne la fiche detaillee d'un salon.
 
 **Acces** : public
+
+**Reponse 200**
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": 1,
+    "nom": "Salon Elegance",
+    "ville": "Bruxelles",
+    "adresse": "18 Rue Royale, 1000 Bruxelles",
+    "description": "Salon moderne specialise dans les coupes classiques.",
+    "telephone": "+32 2 100 20 30",
+    "image_url": "https://example.com/image.jpg",
+    "note": 4.8
+  }
+}
+```
+
+### GET /salons/me
+
+Retourne la fiche du salon connecte.
+
+**Acces** : salon connecte
 
 **Reponse 200**
 
@@ -230,6 +255,28 @@ Liste les prestations actives d'un salon.
       "id": 1,
       "nom": "Coupe homme",
       "prix": 25
+    }
+  ]
+}
+```
+
+### GET /prestations/me
+
+Liste les prestations du salon connecte, actives et desactivees.
+
+**Acces** : salon connecte
+
+**Reponse 200**
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": 1,
+      "nom": "Coupe homme",
+      "prix": 25,
+      "active": true
     }
   ]
 }
@@ -367,6 +414,32 @@ Met a jour les horaires du salon connecte.
 Liste les creneaux disponibles d'un salon.
 
 **Acces** : public
+
+**Query params**
+
+- `date` : date au format `YYYY-MM-DD`.
+
+**Reponse 200**
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": 1,
+      "date_creneau": "2026-06-02",
+      "heure_debut": "09:00:00",
+      "disponible": true
+    }
+  ]
+}
+```
+
+### GET /creneaux/me
+
+Liste tous les creneaux du salon connecte, disponibles ou bloques.
+
+**Acces** : salon connecte
 
 **Query params**
 

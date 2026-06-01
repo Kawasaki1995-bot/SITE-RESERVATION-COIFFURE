@@ -588,6 +588,127 @@ Chaque entree doit expliquer :
 - La premiere brique de la phase 4 est terminee.
 - La prochaine etape est de connecter la recherche salon a l'API.
 
+### 01/06/2026 - Connexion de la recherche salon a l'API
+
+#### Actions realisees
+
+- Connexion de `frontend/index.html` a la route `GET /api/salons`.
+- Envoi des filtres `ville`, `noteMin`, `prixMax` et `prestation` en query params.
+- Suppression des donnees mockees sur la page d'accueil.
+- Ajout d'un etat de chargement et d'un message d'erreur pour la recherche.
+- Ajout de `image_url` dans la reponse de recherche salons cote backend.
+- Mise a jour de la documentation API pour refleter la reponse de recherche.
+- Verification de la syntaxe backend avec `npm run check`.
+- Verification de la syntaxe JavaScript frontend avec `node --check`.
+
+#### Fichiers modifies
+
+- `backend/controllers/salons.controller.js`
+- `frontend/index.html`
+- `frontend/assets/js/search.js`
+- `docs/routes-api.md`
+- `TODO_PROJET.md`
+
+#### Etat
+
+- La recherche salon et ses filtres sont branches au backend.
+- La prochaine etape est de connecter la fiche salon aux donnees API.
+
+### 01/06/2026 - Connexion de la fiche salon a l'API
+
+#### Actions realisees
+
+- Connexion de la fiche salon a `GET /api/salons/:id`.
+- Connexion de la liste des prestations a `GET /api/salons/:id/prestations`.
+- Connexion de la liste des creneaux disponibles a `GET /api/salons/:id/creneaux`.
+- Suppression des donnees mockees sur `frontend/salon.html`.
+- Ajout d'etats de chargement et d'erreur sur la fiche salon.
+- Verification de la syntaxe backend avec `npm run check`.
+- Verification de la syntaxe JavaScript frontend avec `node --check`.
+
+#### Fichiers modifies
+
+- `frontend/salon.html`
+- `frontend/assets/js/salon.js`
+- `TODO_PROJET.md`
+
+#### Etat
+
+- La fiche salon affiche maintenant les donnees de l'API.
+- La prochaine etape est de connecter la reservation d'un creneau avec `POST /api/reservations`.
+
+### 01/06/2026 - Connexion de la reservation d'un creneau
+
+#### Actions realisees
+
+- Connexion du formulaire de reservation a `POST /api/reservations`.
+- Verification cote frontend qu'un utilisateur est connecte avant de reserver.
+- Verification cote frontend que seul un compte client peut reserver.
+- Envoi de `salon_id`, `prestation_id` et `creneau_id` au backend.
+- Affichage des messages de succes et d'erreur API.
+- Rechargement des creneaux disponibles apres une reservation confirmee.
+- Verification de la syntaxe backend avec `npm run check`.
+- Verification de la syntaxe JavaScript frontend avec `node --check`.
+
+#### Fichiers modifies
+
+- `frontend/assets/js/salon.js`
+- `TODO_PROJET.md`
+
+#### Etat
+
+- Le parcours client recherche, fiche salon et reservation est maintenant branche au backend.
+- La prochaine etape est de connecter la page `mes-rdv.html` pour afficher les reservations reelles et gerer l'annulation.
+
+### 01/06/2026 - Connexion des rendez-vous client et de l'annulation
+
+#### Actions realisees
+
+- Connexion de `mes-rdv.html` a `GET /api/reservations/me`.
+- Suppression des donnees mockees sur la page des rendez-vous client.
+- Ajout d'un controle de connexion avant affichage des reservations.
+- Ajout d'un controle de role pour reserver la page aux comptes clients.
+- Connexion de l'annulation a `PATCH /api/reservations/:id/cancel`.
+- Rechargement de la liste apres une annulation reussie.
+- Affichage des erreurs API, notamment si l'annulation est interdite moins de 24 heures avant le rendez-vous.
+- Verification de la syntaxe backend avec `npm run check`.
+- Verification de la syntaxe JavaScript frontend avec `node --check`.
+
+#### Fichiers modifies
+
+- `frontend/mes-rdv.html`
+- `frontend/assets/js/reservations.js`
+- `TODO_PROJET.md`
+
+#### Etat
+
+- Le parcours client peut maintenant rechercher, reserver, consulter ses rendez-vous et demander une annulation.
+- La prochaine etape est de connecter le dashboard salon.
+
+### 01/06/2026 - Connexion du dashboard salon
+
+#### Actions realisees
+
+- Connexion des statistiques salon a `GET /api/reservations/salon/stats`.
+- Connexion de la liste des reservations salon a `GET /api/reservations/salon`.
+- Suppression des donnees mockees sur `frontend/dashboard.html`.
+- Ajout d'un controle de connexion avant affichage du dashboard.
+- Ajout d'un controle de role pour reserver la page aux comptes salon.
+- Ajout d'un etat de chargement et d'un message d'erreur sur la liste des reservations.
+- Verification de la syntaxe backend avec `npm run check`.
+- Verification de la syntaxe JavaScript frontend avec `node --check`.
+
+#### Fichiers modifies
+
+- `frontend/dashboard.html`
+- `frontend/assets/js/dashboard.js`
+- `TODO_PROJET.md`
+
+#### Etat
+
+- Le dashboard salon affiche maintenant les statistiques et reservations de l'API.
+- La prochaine etape est de connecter la gestion des prestations depuis le dashboard.
+
 ---
 
 _Ce journal de bord evoluera au fur et a mesure de l'avancement du projet._

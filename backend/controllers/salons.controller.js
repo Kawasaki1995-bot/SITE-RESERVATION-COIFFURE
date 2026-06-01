@@ -23,6 +23,7 @@ async function listSalons(req, res, next) {
         s.nom,
         s.ville,
         s.adresse,
+        s.image_url,
         s.note,
         MIN(p.prix) AS prix_min
       FROM salons s
@@ -41,11 +42,23 @@ async function listSalons(req, res, next) {
     }
 
     if (prestation) {
-      sql += ' AND EXISTS (SELECT 1 FROM prestations p2 WHERE p2.salon_id = s.id AND p2.active = TRUE AND p2.nom LIKE ?)';
+      sql += ` AND (
+        s.nom LIKE ?
+        OR s.description LIKE ?
+        OR EXISTS (
+          SELECT 1
+          FROM prestations p2
+          WHERE p2.salon_id = s.id
+            AND p2.active = TRUE
+            AND p2.nom LIKE ?
+        )
+      )`;
+      params.push(`%${prestation}%`);
+      params.push(`%${prestation}%`);
       params.push(`%${prestation}%`);
     }
 
-    sql += ' GROUP BY s.id, s.nom, s.ville, s.adresse, s.note';
+    sql += ' GROUP BY s.id, s.nom, s.ville, s.adresse, s.image_url, s.note';
 
     if (prixMax !== undefined) {
       sql += ' HAVING prix_min <= ?';
@@ -78,6 +91,31 @@ async function getSalonById(req, res, next) {
       return res.status(404).json({
         success: false,
         message: 'Salon introuvable'
+      });
+    }
+
+    res.json({
+      success: true,
+      data: salons[0]
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function getMySalon(req, res, next) {
+  try {
+    const [salons] = await pool.execute(
+      `SELECT id, nom, ville, adresse, description, telephone, image_url, note
+       FROM salons
+       WHERE user_id = ?`,
+      [req.user.id]
+    );
+
+    if (salons.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'Salon introuvable pour ce compte'
       });
     }
 
@@ -128,5 +166,6 @@ async function updateMySalon(req, res, next) {
 module.exports = {
   listSalons,
   getSalonById,
+  getMySalon,
   updateMySalon
 };

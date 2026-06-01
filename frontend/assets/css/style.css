@@ -40,6 +40,15 @@ a {
   text-decoration: none;
 }
 
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(178, 122, 53, 0.72);
+  outline-offset: 3px;
+}
+
 button,
 input,
 select,
@@ -261,6 +270,12 @@ textarea {
   transform: translateY(-1px);
 }
 
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
+  transform: none;
+}
+
 .button--dark {
   color: var(--color-panel);
   background: linear-gradient(135deg, var(--color-ink), #2b3632);
@@ -390,6 +405,17 @@ textarea {
   padding: 1rem;
 }
 
+.tool-panel {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.inline-form {
+  display: grid;
+  gap: 0.8rem;
+}
+
 .choice-row,
 .slot,
 .list-row {
@@ -421,6 +447,37 @@ textarea {
 .choice-row input {
   width: 18px;
   height: 18px;
+}
+
+.schedule-row {
+  display: grid;
+  grid-template-columns: minmax(110px, 1fr) minmax(0, 120px) minmax(0, 120px);
+  gap: 0.6rem;
+  align-items: center;
+  border: 1px solid var(--color-line);
+  border-radius: 6px;
+  padding: 0.75rem;
+  background: var(--color-panel);
+}
+
+.schedule-row + .schedule-row {
+  margin-top: 0.7rem;
+}
+
+.schedule-row__closed {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 800;
+}
+
+.schedule-row input[type="time"] {
+  width: 100%;
+  min-height: 40px;
+  border: 1px solid var(--color-line);
+  border-radius: 6px;
+  padding: 0.55rem;
+  background: #fffdfa;
 }
 
 .auth-grid,
@@ -538,8 +595,18 @@ textarea {
 
   .section-heading,
   .footer__inner,
-  .list-row {
+  .list-row,
+  .schedule-row {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .schedule-row {
+    display: flex;
+    width: 100%;
+  }
+
+  .schedule-row input[type="time"] {
+    width: 100%;
   }
 }

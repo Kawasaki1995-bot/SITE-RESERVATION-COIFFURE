@@ -28,6 +28,34 @@ async function listBySalon(req, res, next) {
   }
 }
 
+async function listMine(req, res, next) {
+  try {
+    const salonId = await getSalonIdForUser(req.user.id);
+
+    if (!salonId) {
+      return res.status(404).json({
+        success: false,
+        message: 'Salon introuvable pour ce compte'
+      });
+    }
+
+    const [prestations] = await pool.execute(
+      `SELECT id, nom, prix, active
+       FROM prestations
+       WHERE salon_id = ?
+       ORDER BY active DESC, prix ASC, nom ASC`,
+      [salonId]
+    );
+
+    res.json({
+      success: true,
+      data: prestations
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 async function createPrestation(req, res, next) {
   try {
     const { nom, prix } = req.body;
@@ -141,6 +169,7 @@ async function deletePrestation(req, res, next) {
 
 module.exports = {
   listBySalon,
+  listMine,
   createPrestation,
   updatePrestation,
   deletePrestation

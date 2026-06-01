@@ -5,9 +5,15 @@ function isValidDate(value) {
     return false;
   }
 
-  const date = new Date(`${value}T00:00:00`);
+  const [year, month, day] = value.split('-').map(Number);
+  const date = new Date(year, month - 1, day);
 
-  return !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === value;
+  return (
+    !Number.isNaN(date.getTime())
+    && date.getFullYear() === year
+    && date.getMonth() === month - 1
+    && date.getDate() === day
+  );
 }
 
 function isValidHalfHour(value) {
@@ -30,6 +36,49 @@ async function listBySalon(req, res, next) {
       SELECT id, date_creneau, heure_debut, disponible
       FROM creneaux
       WHERE salon_id = ? AND disponible = TRUE
+    `;
+
+    if (req.query.date) {
+      if (!isValidDate(req.query.date)) {
+        return res.status(400).json({
+          success: false,
+          message: 'Date invalide'
+        });
+      }
+
+      sql += ' AND date_creneau = ?';
+      params.push(req.query.date);
+    }
+
+    sql += ' ORDER BY date_creneau ASC, heure_debut ASC';
+
+    const [creneaux] = await pool.execute(sql, params);
+
+    res.json({
+      success: true,
+      data: creneaux
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function listMine(req, res, next) {
+  try {
+    const salonId = await getSalonIdForUser(req.user.id);
+
+    if (!salonId) {
+      return res.status(404).json({
+        success: false,
+        message: 'Salon introuvable pour ce compte'
+      });
+    }
+
+    const params = [salonId];
+    let sql = `
+      SELECT id, date_creneau, heure_debut, disponible
+      FROM creneaux
+      WHERE salon_id = ?
     `;
 
     if (req.query.date) {
@@ -155,6 +204,7 @@ async function updateCreneau(req, res, next) {
 
 module.exports = {
   listBySalon,
+  listMine,
   createCreneau,
   updateCreneau
 };
