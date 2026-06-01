@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cut&Go - Reservation coiffure</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Navigation principale">
+      <a class="brand" href="index.html"><span class="brand-mark">C</span><span>Cut&Go</span></a>
+      <div class="nav__links">
+        <a href="index.html">Recherche</a>
+        <a href="mes-rdv.html" data-role="client">Mes RDV</a>
+        <a href="dashboard.html" data-role="salon">Dashboard</a>
+        <a href="auth.html" data-auth-link>Connexion</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero__inner">
+        <p class="eyebrow">Reservation coiffure</p>
+        <h1>Cut&Go</h1>
+        <p>Trouvez un salon, comparez les prestations et choisissez un creneau disponible en quelques clics.</p>
+        <div class="hero__stats" aria-label="Indicateurs de confiance">
+          <span><strong>3</strong> salons partenaires</span>
+          <span><strong>4.7/5</strong> note moyenne</span>
+          <span><strong>24h</strong> reservation rapide</span>
+        </div>
+        <form class="search-panel" data-search-form>
+          <div class="field">
+            <label for="ville">Ville</label>
+            <input id="ville" name="ville" type="search" placeholder="Bruxelles">
+          </div>
+          <div class="field">
+            <label for="prestation">Prestation</label>
+            <input id="prestation" name="prestation" type="search" placeholder="Coupe, barbe...">
+          </div>
+          <div class="field">
+            <label for="noteMin">Note min.</label>
+            <select id="noteMin" name="noteMin">
+              <option value="0">Toutes</option>
+              <option value="4">4 et plus</option>
+              <option value="4.5">4.5 et plus</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="prixMax">Prix max.</label>
+            <select id="prixMax" name="prixMax">
+              <option value="999">Tous</option>
+              <option value="25">25 EUR</option>
+              <option value="40">40 EUR</option>
+              <option value="50">50 EUR</option>
+            </select>
+          </div>
+          <button class="button button--gold" type="submit">Rechercher</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Salons disponibles</p>
+          <h2>Resultats</h2>
+        </div>
+        <strong data-result-count>0 salon trouve</strong>
+      </div>
+      <div class="results-grid" data-salon-results></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <span>Cut&Go - MVP DWWM</span>
+      <span><a href="mentions-legales.html">Mentions legales</a> - <a href="confidentialite.html">Confidentialite</a></span>
+    </div>
+  </footer>
+
+  <script src="assets/js/mock-data.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/search.js"></script>
+</body>
+</html>

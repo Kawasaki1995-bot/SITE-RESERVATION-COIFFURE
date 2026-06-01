@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard salon - Cut&Go</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Navigation principale">
+      <a class="brand" href="index.html"><span class="brand-mark">C</span><span>Cut&Go</span></a>
+      <div class="nav__links">
+        <a href="index.html">Recherche</a>
+        <a href="mes-rdv.html" data-role="client">Mes RDV</a>
+        <a href="auth.html" data-auth-link>Connexion</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="page-title">
+        <p class="eyebrow">Espace professionnel</p>
+        <h1>Dashboard salon</h1>
+        <p>Suivez les reservations, le chiffre d'affaires et les informations principales du salon.</p>
+      </div>
+    </section>
+
+    <section class="section dashboard-grid">
+      <div class="tool-panel">
+        <h2>Chiffre d'affaires</h2>
+        <div class="stat-grid">
+          <div class="stat"><span>Jour</span><strong data-stat-day>0 EUR</strong></div>
+          <div class="stat"><span>Semaine</span><strong data-stat-week>0 EUR</strong></div>
+          <div class="stat"><span>Mois</span><strong data-stat-month>0 EUR</strong></div>
+        </div>
+      </div>
+
+      <form class="form-panel">
+        <h2>Informations salon</h2>
+        <div class="field">
+          <label for="salon-name">Nom</label>
+          <input id="salon-name" value="Salon Elegance">
+        </div>
+        <div class="field">
+          <label for="salon-city">Ville</label>
+          <input id="salon-city" value="Bruxelles">
+        </div>
+        <div class="field">
+          <label for="salon-description">Description</label>
+          <textarea id="salon-description" rows="4">Salon moderne specialise dans les coupes classiques.</textarea>
+        </div>
+        <button class="button button--gold" type="button">Preparer la mise a jour</button>
+      </form>
+
+      <div class="tool-panel">
+        <h2>Reservations</h2>
+        <div data-salon-reservations></div>
+      </div>
+
+      <div class="tool-panel">
+        <h2>Prestations rapides</h2>
+        <div class="choice-row"><span>Coupe homme</span><strong>25 EUR</strong></div>
+        <div class="choice-row"><span>Coupe femme</span><strong>45 EUR</strong></div>
+        <div class="choice-row"><span>Brushing</span><strong>35 EUR</strong></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="assets/js/mock-data.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+</body>
+</html>

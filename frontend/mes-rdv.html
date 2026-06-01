@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mes rendez-vous - Cut&Go</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Navigation principale">
+      <a class="brand" href="index.html"><span class="brand-mark">C</span><span>Cut&Go</span></a>
+      <div class="nav__links">
+        <a href="index.html">Recherche</a>
+        <a href="dashboard.html" data-role="salon">Dashboard</a>
+        <a href="auth.html" data-auth-link>Connexion</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="page-title">
+        <p class="eyebrow">Espace client</p>
+        <h1>Mes rendez-vous</h1>
+        <p>Retrouvez vos reservations confirmees et les actions disponibles.</p>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="tool-panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Connecte en tant que</p>
+            <h2 data-user-name>Invite</h2>
+          </div>
+          <a class="button button--gold" href="index.html">Nouvelle recherche</a>
+        </div>
+        <div data-reservations></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="assets/js/mock-data.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/reservations.js"></script>
+</body>
+</html>

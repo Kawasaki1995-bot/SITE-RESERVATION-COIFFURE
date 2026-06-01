@@ -1,0 +1,87 @@
+const API_BASE_URL = 'http://localhost:3000/api';
+const TOKEN_KEY = 'cutandgo_token';
+const USER_KEY = 'cutandgo_user';
+
+function getToken() {
+  return sessionStorage.getItem(TOKEN_KEY);
+}
+
+function getCurrentUser() {
+  const rawUser = sessionStorage.getItem(USER_KEY);
+  return rawUser ? JSON.parse(rawUser) : null;
+}
+
+function saveSession(token, user) {
+  sessionStorage.setItem(TOKEN_KEY, token);
+  sessionStorage.setItem(USER_KEY, JSON.stringify(user));
+}
+
+function clearSession() {
+  sessionStorage.removeItem(TOKEN_KEY);
+  sessionStorage.removeItem(USER_KEY);
+}
+
+async function apiRequest(path, options = {}) {
+  const headers = {
+    'Content-Type': 'application/json',
+    ...options.headers
+  };
+  const token = getToken();
+
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+
+  const response = await fetch(`${API_BASE_URL}${path}`, {
+    ...options,
+    headers
+  });
+  const payload = await response.json().catch(() => ({}));
+
+  if (!response.ok || payload.success === false) {
+    throw new Error(payload.message || 'Une erreur est survenue');
+  }
+
+  return payload.data ?? payload;
+}
+
+function hydrateNavigation() {
+  const user = getCurrentUser();
+  document.querySelectorAll('[data-user-name]').forEach((item) => {
+    item.textContent = user ? user.nom : 'Invite';
+  });
+  document.querySelectorAll('[data-auth-link]').forEach((link) => {
+    link.textContent = user ? 'Deconnexion' : 'Connexion';
+    link.href = user ? '#' : 'auth.html';
+    link.addEventListener('click', (event) => {
+      if (!user) return;
+      event.preventDefault();
+      clearSession();
+      window.location.href = 'index.html';
+    });
+  });
+  document.querySelectorAll('[data-role="client"]').forEach((element) => {
+    element.hidden = Boolean(user && user.role !== 'client');
+  });
+  document.querySelectorAll('[data-role="salon"]').forEach((element) => {
+    element.hidden = Boolean(user && user.role !== 'salon');
+  });
+}
+
+function formatPrice(value) {
+  return `${Number(value).toFixed(0)} EUR`;
+}
+
+function formatTime(value) {
+  return value ? value.slice(0, 5) : '';
+}
+
+function formatDate(value) {
+  return new Intl.DateTimeFormat('fr-BE', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric'
+  }).format(new Date(`${value}T00:00:00`));
+}
+
+document.addEventListener('DOMContentLoaded', hydrateNavigation);

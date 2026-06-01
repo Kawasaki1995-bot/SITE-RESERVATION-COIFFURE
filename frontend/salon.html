@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fiche salon - Cut&Go</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Navigation principale">
+      <a class="brand" href="index.html"><span class="brand-mark">C</span><span>Cut&Go</span></a>
+      <div class="nav__links">
+        <a href="index.html">Recherche</a>
+        <a href="mes-rdv.html" data-role="client">Mes RDV</a>
+        <a href="auth.html" data-auth-link>Connexion</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <img class="salon-cover" src="" alt="" data-salon-image>
+    <section class="section two-column">
+      <div class="detail-panel">
+        <p class="eyebrow" data-salon-city></p>
+        <h1 data-salon-title></h1>
+        <p data-salon-description></p>
+        <p><strong>Adresse :</strong> <span data-salon-address></span></p>
+        <p><strong>Telephone :</strong> <span data-salon-phone></span></p>
+        <p><strong>Note :</strong> <span data-salon-note></span></p>
+      </div>
+
+      <form class="form-panel" data-booking-form>
+        <h2>Reserver</h2>
+        <div>
+          <p class="eyebrow">Prestations</p>
+          <div data-prestations></div>
+        </div>
+        <div>
+          <p class="eyebrow">Creneaux</p>
+          <div data-creneaux></div>
+        </div>
+        <button class="button button--dark" type="submit">Confirmer le choix</button>
+        <p class="form-message" data-booking-message aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <script src="assets/js/mock-data.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/salon.js"></script>
+</body>
+</html>

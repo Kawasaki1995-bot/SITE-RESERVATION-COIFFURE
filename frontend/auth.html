@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Connexion - Cut&Go</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Navigation principale">
+      <a class="brand" href="index.html"><span class="brand-mark">C</span><span>Cut&Go</span></a>
+      <div class="nav__links">
+        <a href="index.html">Recherche</a>
+        <a href="mes-rdv.html">Mes RDV</a>
+        <a href="dashboard.html">Dashboard</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="page-title">
+        <p class="eyebrow">Compte utilisateur</p>
+        <h1>Connexion et inscription</h1>
+        <p>Accedez a vos reservations client ou a votre espace professionnel.</p>
+      </div>
+    </section>
+
+    <section class="section auth-grid">
+      <form class="form-panel" data-login-form>
+        <h2>Connexion</h2>
+        <div class="field">
+          <label for="login-email">Email</label>
+          <input id="login-email" name="email" type="email" value="alice.client@cutandgo.test" required>
+        </div>
+        <div class="field">
+          <label for="login-password">Mot de passe</label>
+          <input id="login-password" name="password" type="password" value="Password123!" required>
+        </div>
+        <button class="button button--dark" type="submit">Se connecter</button>
+        <p class="form-message" aria-live="polite"></p>
+      </form>
+
+      <form class="form-panel" data-register-form>
+        <h2>Inscription</h2>
+        <div class="field">
+          <label for="register-name">Nom</label>
+          <input id="register-name" name="nom" type="text" required>
+        </div>
+        <div class="field">
+          <label for="register-email">Email</label>
+          <input id="register-email" name="email" type="email" required>
+        </div>
+        <div class="field">
+          <label for="register-password">Mot de passe</label>
+          <input id="register-password" name="password" type="password" minlength="8" required>
+        </div>
+        <div class="field">
+          <label for="register-role">Type de compte</label>
+          <select id="register-role" name="role" required>
+            <option value="client">Client</option>
+            <option value="salon">Salon</option>
+          </select>
+        </div>
+        <button class="button button--gold" type="submit">Creer le compte</button>
+        <p class="form-message" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/auth.js"></script>
+</body>
+</html>

@@ -144,7 +144,20 @@ Chaque entree quotidienne doit expliquer clairement :
 
 Le journal de bord sert de journal de progression pour le dossier de projet et la soutenance DWWM.
 
-## 11. Presentation technique
+## 11. Mise a jour de la todo
+
+A chaque fois qu'une etape est ajoutee, terminee ou modifiee, le fichier `TODO_PROJET.md` doit etre mis a jour dans la meme session de travail.
+
+La mise a jour doit indiquer clairement :
+
+- les actions realisees ;
+- les taches terminees en cochant les cases correspondantes ;
+- les nouvelles taches restantes si une fonctionnalite n'est pas encore complete ;
+- les points a verifier ensuite.
+
+Si une fonctionnalite est seulement preparee ou partiellement faite, elle ne doit pas etre marquee comme terminee. Elle doit etre ajoutee ou conservee comme tache restante.
+
+## 12. Presentation technique
 
 Le fichier `docs/presentation-technique.md` doit etre alimente a chaque avancee importante du projet.
 
@@ -158,6 +171,6 @@ Il doit expliquer :
 
 Ce fichier sert a preparer les explications devant un groupe, un formateur ou un jury.
 
-## 12. Principe principal
+## 13. Principe principal
 
 Le projet doit etre complet, comprehensible et defendable devant un jury DWWM. Il vaut mieux livrer un MVP stable, securise et bien documente qu'une plateforme trop large avec des fonctionnalites inachevees.

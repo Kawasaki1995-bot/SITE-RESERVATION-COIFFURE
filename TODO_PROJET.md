@@ -51,28 +51,29 @@ Cette todo suit l'ordre de travail souhaite : conception, backend, frontend, pui
 
 ## Phase 3 - Frontend
 
-- [ ] Creer la structure frontend.
-- [ ] Creer `index.html` pour l'accueil et la recherche.
-- [ ] Creer `auth.html` pour connexion/inscription.
-- [ ] Creer `salon.html` pour la fiche salon.
-- [ ] Creer `mes-rdv.html` pour les rendez-vous client.
-- [ ] Creer `dashboard.html` pour l'espace salon.
-- [ ] Creer les pages mentions legales et confidentialite.
-- [ ] Creer le fichier CSS principal.
-- [ ] Definir les variables CSS : couleurs, espaces, typographies.
-- [ ] Integrer le style premium Cut&Go.
-- [ ] Rendre toutes les pages responsive mobile-first.
-- [ ] Ajouter la validation JS des formulaires.
-- [ ] Creer une navigation adaptee au role utilisateur.
-- [ ] Creer les composants visuels : cartes salon, boutons, formulaires, listes.
+- [x] Creer la structure frontend.
+- [x] Creer `index.html` pour l'accueil et la recherche.
+- [x] Creer `auth.html` pour connexion/inscription.
+- [x] Creer `salon.html` pour la fiche salon.
+- [x] Creer `mes-rdv.html` pour les rendez-vous client.
+- [x] Creer `dashboard.html` pour l'espace salon.
+- [x] Creer les pages mentions legales et confidentialite.
+- [x] Creer le fichier CSS principal.
+- [x] Definir les variables CSS : couleurs, espaces, typographies.
+- [x] Integrer le style premium Cut&Go.
+- [x] Rendre toutes les pages responsive mobile-first.
+- [x] Ajouter la validation JS des formulaires.
+- [x] Creer une navigation adaptee au role utilisateur.
+- [x] Creer les composants visuels : cartes salon, boutons, formulaires, listes.
 - [ ] Tester l'accessibilite de base : labels, contrastes, navigation clavier.
 
 ## Phase 4 - Connexion front/back
 
-- [ ] Connecter l'inscription au backend.
-- [ ] Connecter la connexion au backend.
-- [ ] Stocker le JWT en `sessionStorage`.
-- [ ] Envoyer le JWT dans le header `Authorization`.
+- [x] Connecter l'inscription au backend.
+- [x] Connecter la connexion au backend.
+- [x] Stocker le JWT en `sessionStorage`.
+- [x] Envoyer le JWT dans le header `Authorization`.
+- [x] Verifier la syntaxe JavaScript apres branchement de l'authentification.
 - [ ] Gerer l'etat connecte/deconnecte.
 - [ ] Gerer l'affichage selon le role client ou salon.
 - [ ] Connecter la recherche salon a l'API.
@@ -90,6 +91,7 @@ Cette todo suit l'ordre de travail souhaite : conception, backend, frontend, pui
 
 ## Phase 5 - Finalisation jury
 
+- [x] Ajouter dans `DIRECTIVES_IA.md` la regle de mise a jour systematique de `TODO_PROJET.md`.
 - [ ] Rediger le README d'installation.
 - [ ] Documenter les variables d'environnement.
 - [ ] Ajouter des comptes de test.

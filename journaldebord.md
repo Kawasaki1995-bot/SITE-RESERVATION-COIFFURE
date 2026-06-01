@@ -536,6 +536,58 @@ Chaque entree doit expliquer :
 - Tester les routes salon avec un compte salon.
 - Passer ensuite a la creation du frontend.
 
+### 01/06/2026 - Creation du frontend statique
+
+#### Contexte
+
+- Le backend MVP est considere termine pour passer a la suite du projet.
+- La prochaine etape logique est la phase 3 : creer le frontend HTML, CSS et JavaScript Vanilla.
+- Le frontend utilise pour l'instant des donnees de demonstration afin de travailler les ecrans avant la connexion API complete.
+
+#### Decisions
+
+- Conserver une architecture simple dans `frontend/`.
+- Centraliser les styles dans `frontend/assets/css/style.css`.
+- Preparer `frontend/assets/js/api.js` pour le futur branchement au backend.
+- Separer les scripts par page : recherche, auth, fiche salon, reservations et dashboard.
+
+#### Fichiers crees
+
+- `frontend/index.html` : accueil, recherche et cartes salons.
+- `frontend/auth.html` : connexion et inscription.
+- `frontend/salon.html` : fiche salon, prestations et choix de creneau.
+- `frontend/mes-rdv.html` : rendez-vous client.
+- `frontend/dashboard.html` : espace salon.
+- `frontend/mentions-legales.html` : page mentions legales.
+- `frontend/confidentialite.html` : page confidentialite.
+- `frontend/assets/css/style.css` : style principal responsive.
+- `frontend/assets/js/*.js` : logique front Vanilla et donnees de demo.
+
+#### Etat
+
+- La phase frontend statique est creee.
+- Il reste a tester l'accessibilite de base, puis a connecter progressivement le frontend au backend.
+
+### 01/06/2026 - Debut de la connexion front/back : authentification
+
+#### Actions realisees
+
+- Connexion de `frontend/auth.html` au backend pour l'inscription.
+- Connexion de `frontend/auth.html` au backend pour la connexion.
+- Stockage du token JWT et de l'utilisateur en `sessionStorage`.
+- Redirection apres connexion selon le role : client vers l'accueil, salon vers le dashboard.
+- Verification de la syntaxe des fichiers JavaScript du frontend avec `node --check`.
+
+#### Fichiers modifies
+
+- `frontend/assets/js/auth.js`
+- `TODO_PROJET.md`
+
+#### Etat
+
+- La premiere brique de la phase 4 est terminee.
+- La prochaine etape est de connecter la recherche salon a l'API.
+
 ---
 
 _Ce journal de bord evoluera au fur et a mesure de l'avancement du projet._
