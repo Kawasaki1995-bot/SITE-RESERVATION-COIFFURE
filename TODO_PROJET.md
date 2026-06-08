@@ -14,11 +14,11 @@ Cette todo suit l'ordre de travail souhaite : conception, backend, frontend, pui
 - [x] Corriger les textes encodes dans les fichiers existants si necessaire.
 - [x] Completer les user stories avec des criteres d'acceptation.
 - [x] Organiser les user stories par priorite : Must, Should, Could.
-- [ ] Finaliser le parcours client complet.
-- [ ] Finaliser le parcours salon complet.
+- [x] Finaliser le parcours client complet.
+- [x] Finaliser le parcours salon complet.
 - [ ] Creer ou finaliser les maquettes Figma desktop.
 - [ ] Creer ou finaliser les maquettes Figma mobile.
-- [ ] Verifier la coherence entre brief, wireframes et MVP.
+- [x] Verifier la coherence entre brief, wireframes et MVP.
 
 ## Phase 2 - Backend et base de donnees
 
@@ -93,8 +93,8 @@ Cette todo suit l'ordre de travail souhaite : conception, backend, frontend, pui
 - [x] Connecter la gestion des prestations.
 - [x] Connecter la gestion des horaires et creneaux.
 - [x] Ajouter les loaders et messages d'erreur.
-- [ ] Tester le parcours client complet.
-- [ ] Tester le parcours salon complet.
+- [x] Tester le parcours client complet.
+- [x] Tester le parcours salon complet.
 
 ## Phase 5 - Finalisation jury
 
@@ -102,11 +102,11 @@ Cette todo suit l'ordre de travail souhaite : conception, backend, frontend, pui
 - [x] Rediger le README d'installation.
 - [x] Documenter les variables d'environnement.
 - [x] Ajouter des comptes de test.
-- [ ] Faire un audit Lighthouse.
+- [x] Faire un audit Lighthouse.
 - [x] Corriger les problemes d'accessibilite principaux.
-- [ ] Verifier les mentions legales et la confidentialite.
-- [ ] Preparer le dossier de projet.
-- [ ] Preparer le support de presentation.
+- [x] Verifier les mentions legales et la confidentialite.
+- [x] Preparer le dossier de projet.
+- [x] Preparer le support de presentation.
 - [x] Preparer un scenario de demonstration.
 - [x] Preparer les reponses aux questions techniques du jury.
 - [ ] Deployer l'application.

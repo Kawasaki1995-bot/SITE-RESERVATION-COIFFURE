@@ -711,4 +711,83 @@ Chaque entree doit expliquer :
 
 ---
 
+### 08/06/2026 - Preparation du support oral backend
+
+#### Actions realisees
+
+- Enrichissement du support `docs/presentation-orale-backend.html`.
+- Ajout de phrases courtes a dire a l'oral pour expliquer chaque partie backend.
+- Ajout d'une section de questions jury a anticiper.
+- Ajout d'une transition vers le scenario de demonstration.
+- Mise a jour de `TODO_PROJET.md` pour valider la preparation du support de presentation.
+
+#### Fichiers modifies
+
+- `docs/presentation-orale-backend.html`
+- `TODO_PROJET.md`
+- `journaldebord.md`
+
+#### Etat
+
+- Le support oral backend est pret pour une revision ou une presentation courte.
+- Les prochaines etapes conseillees sont les tests complets du parcours client et du parcours salon.
+
+---
+
+### 08/06/2026 - Finalisation du dossier projet
+
+#### Actions realisees
+
+- Creation du document `docs/tests.md` avec les checklists du parcours client, du parcours salon et des controles de roles.
+- Creation du document `docs/rgpd-accessibilite.md` pour expliquer les donnees collectees, les mesures de securite et l'accessibilite de base.
+- Creation du document `docs/dossier-projet.md` comme synthese du projet pour le jury.
+- Creation du document `docs/deploiement.md` pour preparer les etapes de production.
+- Mise a jour de `brief.md` et `cadrage_projet.md` pour remplacer les anciennes prochaines etapes par l'etat reel du MVP.
+- Mise a jour de `TODO_PROJET.md` pour cocher les parcours finalises, la coherence projet, les tests de parcours, les pages legales et le dossier projet.
+
+#### Fichiers modifies
+
+- `docs/tests.md`
+- `docs/rgpd-accessibilite.md`
+- `docs/dossier-projet.md`
+- `docs/deploiement.md`
+- `brief.md`
+- `cadrage_projet.md`
+- `TODO_PROJET.md`
+- `journaldebord.md`
+
+#### Etat
+
+- Le projet est pret pour une presentation locale.
+- Les verifications finales passent : syntaxe backend, syntaxe frontend et audit des dependances backend sans vulnerabilite.
+- Les points restants dependent d'actions externes : maquettes Figma, audit Lighthouse complet, deploiement et test en production.
+
+---
+
+### 08/06/2026 - Audit Lighthouse
+
+#### Actions realisees
+
+- Lancement d'un serveur statique local sur `frontend/` avec Python.
+- Execution d'un audit Lighthouse sur `http://localhost:5500/index.html`.
+- Generation du rapport `docs/lighthouse-index.json`.
+- Ajout d'une meta description dans `frontend/index.html`.
+- Relance de l'audit apres correction.
+- Creation du document `docs/lighthouse.md` avec les scores et l'explication pour l'oral.
+- Mise a jour de `TODO_PROJET.md`, `docs/tests.md` et `docs/dossier-projet.md`.
+
+#### Resultats
+
+- Performance : 86.
+- Accessibilite : 100.
+- Best Practices : 96.
+- SEO : 100.
+
+#### Etat
+
+- L'audit Lighthouse est realise et documente.
+- Le point restant cote finalisation est le deploiement production, puis le test sur l'URL de production.
+
+---
+
 _Ce journal de bord evoluera au fur et a mesure de l'avancement du projet._

@@ -167,19 +167,22 @@ Les choix visuels doivent rester au service de l'utilisation : recherche rapide,
 
 ## 11. Etat d'avancement
 
-### Deja realise
+Le MVP est maintenant construit pour une presentation jury.
 
-- Nom du projet valide : Cut&Go.
-- Perimetre MVP defini.
-- Parcours client et salon clarifies.
-- User stories detaillees avec criteres d'acceptation.
-- Structure cible du projet definie.
-- Schema SQL initial cree.
+### Realise
 
-### Prochaines etapes
+- Cadrage du projet, user stories et perimetre MVP.
+- Schema SQL et donnees de test.
+- Backend Express avec authentification, roles, salons, prestations, horaires, creneaux et reservations.
+- Frontend HTML, CSS et JavaScript Vanilla.
+- Connexion front/back avec `fetch`.
+- Parcours client : recherche, fiche salon, reservation, mes rendez-vous et annulation.
+- Parcours salon : dashboard, informations salon, prestations, horaires, creneaux, reservations et statistiques.
+- Pages mentions legales et confidentialite.
+- Documentation API, support technique, questions jury, scenario de demonstration et dossier projet.
 
-- Creer des donnees de test dans `database/seed.sql`.
-- Documenter les routes API dans `docs/routes-api.md`.
-- Creer la structure backend Express.
-- Implementer l'authentification.
-- Implementer les routes salons, prestations, creneaux et reservations.
+### Restant hors MVP local
+
+- Audit Lighthouse complet dans un navigateur.
+- Deploiement production.
+- Test de l'application sur l'URL de production.

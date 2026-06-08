@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Presentation orale backend - Cut&Go</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --text: #1f2933;
+      --muted: #5d6878;
+      --primary: #006d77;
+      --accent: #c44536;
+      --card: #ffffff;
+      --line: #dde3ea;
+      --soft: #edf7f8;
+      --warning: #fff7f5;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 48px;
+    }
+
+    header {
+      border-bottom: 3px solid var(--primary);
+      padding-bottom: 22px;
+      margin-bottom: 26px;
+    }
+
+    .kicker {
+      margin: 0 0 8px;
+      color: var(--accent);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0;
+      font-size: 0.9rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      line-height: 1.05;
+    }
+
+    .subtitle {
+      max-width: 760px;
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 1.15rem;
+    }
+
+    .timer {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      margin-top: 18px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .wide {
+      grid-column: 1 / -1;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      color: var(--primary);
+      font-size: 1.35rem;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    li {
+      margin: 8px 0;
+    }
+
+    .talk {
+      border-left: 4px solid var(--accent);
+      background: var(--warning);
+    }
+
+    .talk p {
+      margin: 0;
+      font-size: 1.05rem;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .step {
+      border: 1px solid var(--line);
+      padding: 12px;
+      background: #f9fbfc;
+      border-radius: 6px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .tech {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 6px 10px;
+      border-left: 3px solid var(--primary);
+      background: var(--soft);
+      color: var(--primary);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .script {
+      margin-top: 14px;
+      padding: 12px;
+      border: 1px dashed var(--line);
+      background: #fbfcfd;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .script strong {
+      color: var(--text);
+    }
+
+    .qa-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .qa {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 12px;
+      background: #f9fbfc;
+    }
+
+    .qa h3 {
+      margin: 0 0 8px;
+      color: var(--accent);
+      font-size: 1rem;
+    }
+
+    .qa p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 760px) {
+      main {
+        padding: 24px 14px 36px;
+      }
+
+      .grid,
+      .steps,
+      .qa-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="kicker">Oral de presentation - Partie backend</p>
+      <h1>Cut&amp;Go</h1>
+      <p class="subtitle">
+        Presentation simple de la partie invisible du site : ce qui gere les comptes,
+        les salons, les rendez-vous et les informations affichees a l'utilisateur.
+      </p>
+      <div class="timer">Objectif : 3 minutes</div>
+    </header>
+
+    <div class="grid">
+      <section class="wide talk">
+        <h2>Introduction</h2>
+        <p>
+          Dans cette partie, je vais presenter ce que fait le backend. C'est la partie cachee du site :
+          elle recoit les demandes des utilisateurs, verifie les informations, enregistre les donnees
+          et renvoie les bonnes reponses au site.
+        </p>
+        <div class="script">
+          <strong>A dire :</strong> Le frontend montre les pages, mais le backend decide si une action est autorisee
+          et garde les donnees coherentes.
+        </div>
+      </section>
+
+      <section>
+        <h2>1. Le role du backend</h2>
+        <ul>
+          <li>Il fait le lien entre le site et la base de donnees.</li>
+          <li>Il recoit les actions de l'utilisateur : connexion, recherche, reservation.</li>
+          <li>Il controle que les informations sont correctes avant de les enregistrer.</li>
+          <li>Il renvoie au site les donnees a afficher.</li>
+        </ul>
+        <div class="tech">Terme technique : serveur Node.js avec Express</div>
+        <div class="script">
+          <strong>A dire :</strong> Une route recoit la demande, le controller traite la logique, puis MySQL renvoie les donnees.
+        </div>
+      </section>
+
+      <section>
+        <h2>2. Les informations stockees</h2>
+        <ul>
+          <li>Les comptes clients et les comptes salons.</li>
+          <li>Les informations des salons : ville, adresse, note, description.</li>
+          <li>Les prestations proposees avec leurs prix.</li>
+          <li>Les horaires, les creneaux disponibles et les reservations.</li>
+        </ul>
+        <div class="tech">Terme technique : base de donnees MySQL</div>
+        <div class="script">
+          <strong>A dire :</strong> Les tables sont reliees entre elles pour savoir quel client reserve quelle prestation,
+          dans quel salon, sur quel creneau.
+        </div>
+      </section>
+
+      <section>
+        <h2>3. Les comptes utilisateurs</h2>
+        <ul>
+          <li>Un client peut creer un compte et se connecter.</li>
+          <li>Un salon peut aussi creer un espace professionnel.</li>
+          <li>Les mots de passe ne sont pas stockes en clair.</li>
+          <li>Une fois connecte, le site sait qui utilise l'application.</li>
+        </ul>
+        <div class="tech">Terme technique : bcrypt et token JWT</div>
+        <div class="script">
+          <strong>A dire :</strong> bcrypt protege les mots de passe, et le JWT permet de reconnaitre l'utilisateur
+          apres la connexion.
+        </div>
+      </section>
+
+      <section>
+        <h2>4. Les droits d'acces</h2>
+        <ul>
+          <li>Un client ne peut pas acceder aux outils d'un salon.</li>
+          <li>Un salon ne peut pas reserver comme un client.</li>
+          <li>Certaines actions demandent d'etre connecte.</li>
+          <li>Le backend verifie les droits avant chaque action importante.</li>
+        </ul>
+        <div class="tech">Terme technique : middleware d'authentification et de role</div>
+        <div class="script">
+          <strong>A dire :</strong> Les droits sont controles cote serveur, car le frontend seul ne suffit jamais
+          pour proteger une application.
+        </div>
+      </section>
+
+      <section>
+        <h2>5. Recherche des salons</h2>
+        <ul>
+          <li>L'utilisateur peut chercher un salon par ville.</li>
+          <li>Il peut filtrer selon la note, le prix ou la prestation.</li>
+          <li>Le backend renvoie la liste des salons correspondants.</li>
+          <li>Il permet aussi d'afficher la fiche complete d'un salon.</li>
+        </ul>
+        <div class="tech">Terme technique : routes API REST en GET</div>
+        <div class="script">
+          <strong>A dire :</strong> Les filtres sont optionnels : la meme route peut chercher par ville, note,
+          prix maximum ou prestation.
+        </div>
+      </section>
+
+      <section>
+        <h2>6. Reservation d'un rendez-vous</h2>
+        <ul>
+          <li>Le client choisit un salon, une prestation et un horaire.</li>
+          <li>Le backend verifie que le creneau est encore libre.</li>
+          <li>Si tout est correct, le rendez-vous est enregistre.</li>
+          <li>Le creneau devient ensuite indisponible pour les autres clients.</li>
+        </ul>
+        <div class="tech">Terme technique : requete POST et mise a jour SQL</div>
+        <div class="script">
+          <strong>A dire :</strong> La reservation utilise une transaction et un verrou SQL pour eviter qu'un meme
+          creneau soit pris deux fois.
+        </div>
+      </section>
+
+      <section>
+        <h2>7. Espace professionnel</h2>
+        <ul>
+          <li>Le salon peut gerer ses prestations.</li>
+          <li>Il peut organiser ses horaires et ses creneaux.</li>
+          <li>Il peut consulter les rendez-vous recus.</li>
+          <li>Il garde une vue claire sur son activite.</li>
+        </ul>
+        <div class="tech">Terme technique : routes protegees pour le role salon</div>
+        <div class="script">
+          <strong>A dire :</strong> Le dashboard est reserve au role salon et centralise la gestion quotidienne.
+        </div>
+      </section>
+
+      <section>
+        <h2>8. Statistiques</h2>
+        <ul>
+          <li>Le salon peut voir un chiffre d'affaires simple.</li>
+          <li>Les montants sont calcules a partir des reservations.</li>
+          <li>Le suivi peut se faire sur la journee, la semaine ou le mois.</li>
+          <li>Ces informations aident le salon a suivre son activite.</li>
+        </ul>
+        <div class="tech">Terme technique : calculs SQL avec SUM et COUNT</div>
+        <div class="script">
+          <strong>A dire :</strong> Les statistiques ne comptent pas les reservations annulees, seulement l'activite confirmee.
+        </div>
+      </section>
+
+      <section class="wide">
+        <h2>Parcours backend complet</h2>
+        <div class="steps">
+          <div class="step">Connexion</div>
+          <div class="step">Recherche salon</div>
+          <div class="step">Reservation</div>
+          <div class="step">Suivi salon</div>
+        </div>
+      </section>
+
+      <section class="wide">
+        <h2>Questions jury a anticiper</h2>
+        <div class="qa-grid">
+          <div class="qa">
+            <h3>Pourquoi MySQL ?</h3>
+            <p>Les donnees sont relationnelles : clients, salons, prestations, creneaux et reservations sont lies.</p>
+          </div>
+          <div class="qa">
+            <h3>Pourquoi JWT ?</h3>
+            <p>Le token permet au backend de reconnaitre l'utilisateur connecte sur les routes protegees.</p>
+          </div>
+          <div class="qa">
+            <h3>Pourquoi une transaction ?</h3>
+            <p>Elle garantit qu'une reservation et l'indisponibilite du creneau sont validees ensemble.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="wide">
+        <h2>Transition vers la demonstration</h2>
+        <ul>
+          <li>Montrer une connexion client.</li>
+          <li>Rechercher un salon et ouvrir sa fiche.</li>
+          <li>Reserver un creneau disponible.</li>
+          <li>Passer cote salon pour voir les reservations et les statistiques.</li>
+        </ul>
+      </section>
+
+      <section class="wide talk">
+        <h2>Conclusion</h2>
+        <p>
+          Pour conclure, le backend est la base solide du projet. Il permet aux utilisateurs
+          de se connecter, de chercher un salon, de reserver un rendez-vous, et aux salons
+          de gerer leur activite. Meme s'il ne se voit pas directement, il fait fonctionner
+          toute la logique du site.
+        </p>
+        <div class="script">
+          <strong>A dire :</strong> La difficulte principale a ete de garder une logique fiable entre les roles,
+          les reservations et les creneaux disponibles.
+        </div>
+      </section>
+
+      <section class="wide">
+        <h2>Phrase de fin possible</h2>
+        <p class="note">
+          "La plus grande difficulte a ete de bien organiser les droits entre clients et salons,
+          et de s'assurer qu'un creneau reserve ne puisse pas etre pris deux fois."
+        </p>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

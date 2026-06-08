@@ -147,15 +147,16 @@ Frameworks front-end non prioritaires : React, Vue, Angular, Tailwind, Bootstrap
 - Images : image par defaut ou URL simple, pas d'upload reel dans le MVP.
 - Conformite : mentions legales et confidentialite prevues.
 
-## 9. Prochaine etape conseillee
+## 9. Etat de finalisation
 
-La prochaine etape consiste a creer le modele de base de donnees avec les tables principales :
+Les elements du MVP sont maintenant couverts :
 
-- users
-- salons
-- prestations
-- horaires_ouverture
-- creneaux
-- reservations
+- modele de base de donnees avec `users`, `salons`, `prestations`, `horaires_ouverture`, `creneaux` et `reservations` ;
+- API Express avec routes publiques, routes protegees et verification des roles ;
+- frontend HTML, CSS et JavaScript Vanilla ;
+- parcours client complet ;
+- parcours salon complet ;
+- pages legales ;
+- documentation technique et support de presentation.
 
-Ensuite, il faudra definir les routes API Express correspondant aux parcours client et salon.
+Les dernieres actions hors MVP local concernent le deploiement, le test en production et un audit Lighthouse complet.
