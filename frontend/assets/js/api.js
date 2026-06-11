@@ -1,6 +1,29 @@
-const API_BASE_URL = 'http://localhost:3000/api';
+const DEFAULT_API_PORT = '3000';
+const API_BASE_URL = resolveApiBaseUrl();
 const TOKEN_KEY = 'cutandgo_token';
 const USER_KEY = 'cutandgo_user';
+
+function resolveApiBaseUrl() {
+  const configuredUrl = window.CUTANDGO_API_BASE_URL
+    || document.querySelector('meta[name="api-base-url"]')?.content;
+
+  if (configuredUrl) {
+    return configuredUrl.replace(/\/$/, '');
+  }
+
+  const { hostname, origin, port, protocol } = window.location;
+  const isLocalHost = ['localhost', '127.0.0.1'].includes(hostname);
+
+  if (protocol === 'file:') {
+    return `http://localhost:${DEFAULT_API_PORT}/api`;
+  }
+
+  if (isLocalHost && port && port !== DEFAULT_API_PORT) {
+    return `${protocol}//${hostname}:${DEFAULT_API_PORT}/api`;
+  }
+
+  return `${origin}/api`;
+}
 
 function getToken() {
   return sessionStorage.getItem(TOKEN_KEY);
