@@ -109,5 +109,5 @@ Cette todo suit l'ordre de travail souhaite : conception, backend, frontend, pui
 - [x] Preparer le support de presentation.
 - [x] Preparer un scenario de demonstration.
 - [x] Preparer les reponses aux questions techniques du jury.
-- [ ] Deployer l'application.
-- [ ] Tester l'application en production.
+- [x] Deployer l'application sur Alwaysdata.
+- [x] Tester l'application en production sur Alwaysdata.

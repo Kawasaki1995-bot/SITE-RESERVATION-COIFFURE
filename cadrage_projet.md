@@ -159,4 +159,4 @@ Les elements du MVP sont maintenant couverts :
 - pages legales ;
 - documentation technique et support de presentation.
 
-Les dernieres actions hors MVP local concernent le deploiement, le test en production et un audit Lighthouse complet.
+Le MVP est maintenant deploye sur Alwaysdata. Les dernieres actions concernent surtout la verification finale de la documentation, les tests de demonstration, les captures pour le dossier professionnel et les revisions avant jury.

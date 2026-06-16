@@ -582,19 +582,19 @@ Des controles ont ete faits sur le backend :
 - validation d'une route protegee ;
 - validation de la creation d'une reservation.
 
-## 11. Ce qui reste a faire
+## 11. Points de finalisation avant jury
 
-Avant une version complete, il reste a :
+Le MVP est implemente et deploye sur Alwaysdata. Avant la soutenance, les actions
+restantes concernent surtout la verification et la preparation orale :
 
-- tester les routes salon restantes avec Thunder Client ;
-- tester l'annulation de reservation ;
-- creer le frontend HTML/CSS/JS ;
-- connecter le frontend au backend ;
-- ajouter les pages legales ;
-- documenter les tests ;
-- preparer le README d'installation ;
-- preparer la presentation finale ;
-- deployer le projet.
+- refaire le parcours client complet en production ;
+- refaire le parcours salon complet en production ;
+- verifier l'annulation de reservation quand la regle des 24 heures le permet ;
+- completer les URL Alwaysdata dans les documents de rendu ;
+- refaire un audit Lighthouse sur l'URL publique si possible ;
+- preparer les captures d'ecran pour le dossier professionnel ;
+- repeter le scenario de demonstration ;
+- revoir les questions techniques du jury.
 
 ## 12. Avancement technique detaille
 
@@ -1018,7 +1018,10 @@ Le paiement, les emails, les SMS, les vrais avis clients, l'upload reel d'images
 
 ### Quelle amelioration serait prioritaire ensuite ?
 
-La priorite suivante est de creer le frontend HTML/CSS/JavaScript, puis de le connecter a l'API pour tester les parcours complets client et salon.
+La priorite suivante est de consolider la version en ligne : refaire les tests
+client et salon sur Alwaysdata, completer les URL dans la documentation, ajouter
+des captures pour le dossier professionnel et corriger les derniers details
+visuels ou documentaires avant jury.
 
 ## 15. Deroule detaille pour presentation orale
 

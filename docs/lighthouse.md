@@ -12,6 +12,9 @@ Rapport detaille :
 docs/lighthouse-index.json
 ```
 
+Le projet etant maintenant deploye sur Alwaysdata, un audit complementaire sur
+l'URL publique peut etre ajoute avant la remise finale.
+
 ## Scores
 
 | Categorie | Score |
@@ -35,9 +38,12 @@ Correction ajoutee dans `frontend/index.html` :
 
 Apres correction, le score SEO est passe de 90 a 100.
 
-## Point restant
+## Points restants
 
-La performance est correcte mais perfectible. Le LCP mesure environ 2.8 secondes. Pour aller plus loin, il faudrait optimiser davantage les images ou prioriser l'image principale.
+- La performance est correcte mais perfectible. Le LCP mesure environ 2.8 secondes.
+- L'audit actuel est local ; il faudra idealement refaire Lighthouse sur l'URL Alwaysdata.
+
+Pour aller plus loin, il faudrait optimiser davantage les images ou prioriser l'image principale.
 
 ## Note technique
 

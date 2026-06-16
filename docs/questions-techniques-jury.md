@@ -58,7 +58,7 @@ Les textes dynamiques affiches dans le HTML sont echappes avec `escapeHtml`. Les
 - Pas d'email de confirmation.
 - Pas de vrai back-office admin.
 - Pas de creation automatique de creneaux depuis les horaires.
-- Pas encore de deploiement production.
+- Deploiement production effectue sur Alwaysdata.
 
 Ces points sont hors MVP mais peuvent etre presentes comme evolutions futures.
 

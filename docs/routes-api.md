@@ -10,6 +10,12 @@ URL de base locale :
 http://localhost:3000/api
 ```
 
+URL de base production Alwaysdata :
+
+```text
+https://cutandgo.alwaysdata.net/api
+```
+
 Format des reponses :
 
 ```json

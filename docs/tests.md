@@ -75,4 +75,4 @@ Resultat attendu : le salon peut gerer ses informations, ses prestations, ses ho
 - L'audit Lighthouse de la page d'accueil donne 86 en performance, 100 en accessibilite, 96 en bonnes pratiques et 100 en SEO.
 - Les parcours client et salon ont ete prevus comme scenarios de demonstration.
 - Les routes sensibles sont protegees par JWT et verification de role.
-- Les limites restantes sont normales pour le MVP : pas de paiement, pas d'emails, pas de production finalisee.
+- Les limites restantes sont normales pour le MVP : pas de paiement, pas d'emails, pas d'upload reel et pas d'interface admin complete. Le projet est deploye sur Alwaysdata, mais il reste une application pedagogique a presenter comme MVP.

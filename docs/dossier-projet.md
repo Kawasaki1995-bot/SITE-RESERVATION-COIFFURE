@@ -69,6 +69,7 @@ route -> middleware -> controller -> requete SQL -> reponse JSON
 - gestion des creneaux ;
 - statistiques simples ;
 - pages mentions legales et confidentialite ;
+- deploiement sur Alwaysdata ;
 - documentation API et support oral.
 
 ## 7. Regles metier importantes
@@ -99,9 +100,9 @@ route -> middleware -> controller -> requete SQL -> reponse JSON
 - `docs/questions-techniques-jury.md` : questions possibles.
 - `docs/tests.md` : checklist de tests.
 - `docs/rgpd-accessibilite.md` : RGPD et accessibilite.
-- `docs/deploiement.md` : preparation du deploiement.
+- `docs/deploiement.md` : deploiement Alwaysdata et procedure de verification.
 - `docs/lighthouse.md` : resultats de l'audit Lighthouse.
 
 ## 10. Conclusion
 
-Cut&Go est un MVP complet pour une soutenance : le parcours client et le parcours salon sont couverts, l'API est structuree, la base de donnees est relationnelle, et les principales regles metier sont implementees.
+Cut&Go est un MVP complet pour une soutenance : le parcours client et le parcours salon sont couverts, l'API est structuree, la base de donnees est relationnelle, les principales regles metier sont implementees, et l'application est deployee sur Alwaysdata.

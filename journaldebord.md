@@ -790,4 +790,62 @@ Chaque entree doit expliquer :
 
 ---
 
+### 11/06/2026 - Adaptation de l'URL API frontend
+
+#### Actions realisees
+
+- Analyse des appels API cote frontend.
+- Remplacement de l'URL API codee en dur `http://localhost:3000/api` dans `frontend/assets/js/api.js`.
+- Ajout d'une resolution automatique de l'URL API selon l'environnement :
+  - meme origine en production avec `/api` ;
+  - backend local sur le port `3000` pendant le developpement ;
+  - surcharge possible via `window.CUTANDGO_API_BASE_URL` ou une balise meta `api-base-url`.
+- Verification syntaxique de `frontend/assets/js/api.js`.
+- Verification qu'il ne reste plus d'appel direct a `http://localhost:3000/api` dans le frontend.
+
+#### Fichiers modifies
+
+- `frontend/assets/js/api.js`
+- `journaldebord.md`
+
+#### Etat
+
+- Le frontend n'est plus bloque sur une URL API locale codee en dur.
+- Le projet est mieux prepare pour un deploiement ou un changement d'environnement.
+
+---
+
+### 16/06/2026 - Mise a jour de la documentation apres deploiement Alwaysdata
+
+#### Actions realisees
+
+- Prise en compte du fait que le projet est maintenant deploye sur Alwaysdata.
+- Mise a jour de la todo pour indiquer que le deploiement et les tests production sont effectues.
+- Relecture des documents pour supprimer les mentions indiquant que le projet n'etait pas encore deploye.
+- Reecriture de `docs/deploiement.md` pour decrire l'etat reel du deploiement et non plus seulement une preparation.
+- Ajout des URL publiques Alwaysdata pour le frontend, le backend et `/api/health`.
+- Mise a jour du rapport d'analyse pour recentrer les priorites sur les tests production, les URL Alwaysdata et la preparation jury.
+
+#### Fichiers modifies
+
+- `README.md`
+- `TODO_PROJET.md`
+- `cadrage_projet.md`
+- `docs/deploiement.md`
+- `docs/dossier-projet.md`
+- `docs/lighthouse.md`
+- `docs/presentation-technique.md`
+- `docs/questions-techniques-jury.md`
+- `docs/rapport-analyse-projet.md`
+- `docs/rgpd-accessibilite.md`
+- `docs/routes-api.md`
+- `docs/tests.md`
+
+#### Etat
+
+- La documentation est plus coherente avec l'etat actuel du projet.
+- Les URL Alwaysdata exactes sont maintenant renseignees dans les documents principaux.
+
+---
+
 _Ce journal de bord evoluera au fur et a mesure de l'avancement du projet._

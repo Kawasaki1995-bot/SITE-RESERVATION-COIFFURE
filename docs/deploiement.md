@@ -1,27 +1,36 @@
 # Deploiement Alwaysdata - Cut&Go
 
-Ce document prepare le deploiement du MVP Cut&Go sur Alwaysdata.
+Ce document decrit le deploiement du MVP Cut&Go sur Alwaysdata.
 
-L'objectif est d'heberger :
+Etat actuel : le deploiement a ete effectue sur Alwaysdata.
+
+URL a renseigner dans le dossier final :
+
+- frontend : `https://cutandgo.alwaysdata.net`
+- backend API : `https://cutandgo.alwaysdata.net/api`
+- test API health : `https://cutandgo.alwaysdata.net/api/health`
+
+L'objectif du deploiement est d'heberger :
 
 - le frontend statique ;
 - l'API Node.js / Express ;
 - la base de donnees MySQL.
 
-## 1. Cible de deploiement
+## 1. Architecture de production
 
-Alwaysdata est retenu comme hebergeur principal pour centraliser le projet.
+Alwaysdata est utilise comme hebergeur principal pour centraliser le projet.
 
-Architecture prevue :
+Architecture retenue :
 
 - un site web statique pour le dossier `frontend/` ;
 - un site Node.js pour le dossier `backend/` ;
 - une base MySQL creee depuis l'administration Alwaysdata ;
 - une configuration CORS entre le frontend public et l'API publique.
 
-## 2. Elements a deployer
+Le frontend appelle l'API Express. L'API communique avec la base MySQL avec les
+variables d'environnement configurees sur Alwaysdata.
 
-### Backend
+## 2. Backend
 
 Le backend est une API Node.js / Express situee dans `backend/`.
 
@@ -41,83 +50,29 @@ Variables necessaires sur Alwaysdata :
 
 ```env
 PORT=3000
-FRONTEND_URL=https://url-du-frontend-alwaysdata
+FRONTEND_URL=https://cutandgo.alwaysdata.net
 DB_HOST=mysql-host-alwaysdata
 DB_USER=utilisateur_mysql
 DB_PASSWORD=mot_de_passe_mysql
 DB_NAME=nom_base_mysql
-JWT_SECRET=valeur_longue_et_secrete
+JWT_SECRET=valeur_longue-et-secrete
 JWT_EXPIRES_IN=1d
 ```
 
 Points importants :
 
-- `JWT_SECRET` ne doit pas rester avec la valeur de developpement ;
-- `FRONTEND_URL` doit correspondre a l'URL publique du frontend ;
-- le backend utilise deja `cors`, donc le navigateur pourra appeler l'API si cette URL est correcte.
-
-### Base de donnees
-
-La base MySQL doit etre creee dans l'administration Alwaysdata.
-
-Scripts a executer dans l'ordre :
-
-1. `database/schema.sql`
-2. `database/seed.sql`
-
-Pour une vraie production, les donnees de demonstration devront etre remplacees par des donnees reelles.
-
-### Frontend
-
-Le frontend est statique et se trouve dans `frontend/`.
-
-Point important : `frontend/assets/js/api.js` contient l'URL de l'API :
-
-```js
-const API_BASE_URL = 'http://localhost:3000/api';
-```
-
-Avant le deploiement, cette valeur devra pointer vers l'URL publique du backend Alwaysdata :
-
-```js
-const API_BASE_URL = 'https://url-du-backend-alwaysdata/api';
-```
-
-## 3. Etapes de deploiement Alwaysdata
-
-### 1. Creer la base MySQL
-
-Dans l'administration Alwaysdata :
-
-1. creer une base MySQL ;
-2. noter le nom de la base ;
-3. noter l'utilisateur MySQL ;
-4. noter le mot de passe ;
-5. noter l'hote MySQL fourni par Alwaysdata.
-
-Ensuite, importer :
-
-1. `database/schema.sql`
-2. `database/seed.sql`
-
-### 2. Deployer le backend Node.js
-
-Sur Alwaysdata :
-
-1. creer un site de type Node.js ;
-2. pointer le site vers le dossier `backend/` ;
-3. installer les dependances avec `npm install` dans le dossier `backend/` ;
-4. definir les variables d'environnement ;
-5. utiliser `npm start` comme commande de lancement ;
-6. redemarrer le site.
+- `JWT_SECRET` doit etre une valeur forte et differente de la valeur locale ;
+- `FRONTEND_URL` doit correspondre exactement a l'origine publique du frontend ;
+- les identifiants MySQL sont configures cote hebergeur, pas dans le code source ;
+- le fichier `.env` local ne doit pas etre envoye dans Git.
 
 Test attendu :
 
 ```text
-https://url-du-backend-alwaysdata/api/health
+GET https://cutandgo.alwaysdata.net/api/health
 ```
 
-La reponse attendue est :
+Reponse attendue :
 
 ```json
 {
@@ -126,67 +81,106 @@ La reponse attendue est :
 }
 ```
 
-### 3. Deployer le frontend statique
+## 3. Base de donnees
 
-Sur Alwaysdata :
+La base MySQL a ete creee depuis l'administration Alwaysdata.
 
-1. creer un site statique ;
-2. pointer le site vers le dossier `frontend/` ;
-3. verifier que `index.html` est accessible ;
-4. modifier `frontend/assets/js/api.js` pour utiliser l'URL publique du backend ;
-5. tester les pages principales.
+Scripts utilises :
 
-### 4. Configurer CORS
+1. `database/schema.sql`
+2. `database/seed.sql`
 
-Dans les variables du backend :
+Le fichier `schema.sql` cree les tables principales :
+
+- `users` ;
+- `salons` ;
+- `prestations` ;
+- `horaires_ouverture` ;
+- `creneaux` ;
+- `reservations`.
+
+Le fichier `seed.sql` ajoute des donnees de demonstration pour tester les parcours
+client et salon.
+
+Pour une vraie application commerciale, ces donnees de demonstration devraient
+etre remplacees par des donnees reelles.
+
+## 4. Frontend
+
+Le frontend est statique et se trouve dans `frontend/`.
+
+Le fichier `frontend/assets/js/api.js` ne contient plus une URL API locale codee
+en dur. Il utilise une fonction de resolution :
+
+- si une URL est configuree via `window.CUTANDGO_API_BASE_URL`, elle est utilisee ;
+- sinon, une balise meta `api-base-url` peut fournir l'URL ;
+- si la page est ouverte en local, l'API locale `http://localhost:3000/api` est utilisee ;
+- en production, le frontend appelle `/api` sur la meme origine :
+  `https://cutandgo.alwaysdata.net/api`.
+
+Exemple de configuration possible dans une page HTML si le frontend et le backend
+sont sur deux domaines differents :
+
+```html
+<meta name="api-base-url" content="https://cutandgo.alwaysdata.net/api">
+```
+
+Cette solution evite de modifier directement le JavaScript a chaque changement
+d'environnement.
+
+## 5. CORS
+
+Le backend lit l'origine autorisee depuis la variable :
 
 ```env
-FRONTEND_URL=https://url-du-frontend-alwaysdata
+FRONTEND_URL=https://cutandgo.alwaysdata.net
 ```
 
-Cette valeur est utilisee dans `backend/server.js` :
+Cette valeur est utilisee dans `backend/server.js` avec `cors`.
 
-```js
-app.use(cors({
-  origin: corsOrigin
-}));
-```
+Si l'URL ne correspond pas exactement a l'origine du frontend, le navigateur peut
+bloquer les appels API.
 
-Si l'URL ne correspond pas exactement a l'origine du frontend, le navigateur peut bloquer les appels API.
+## 6. Checklist de verification production
 
-## 4. Checklist production
+- `JWT_SECRET` fort configure sur Alwaysdata.
+- Base MySQL creee.
+- `database/schema.sql` importe.
+- `database/seed.sql` importe.
+- `DB_HOST`, `DB_USER`, `DB_PASSWORD` et `DB_NAME` configures.
+- `FRONTEND_URL` configure avec l'URL publique du frontend.
+- URL API configuree via meme origine, variable globale ou balise meta.
+- `/api/health` verifie.
+- Connexion client verifiee.
+- Recherche salon verifiee.
+- Reservation verifiee.
+- Annulation verifiee si la regle des 24 heures le permet.
+- Dashboard salon verifie.
+- Console navigateur controlee.
+- Audit Lighthouse a refaire sur l'URL publique si possible.
 
-- Definir un `JWT_SECRET` fort.
-- Creer la base MySQL Alwaysdata.
-- Importer `database/schema.sql`.
-- Importer `database/seed.sql`.
-- Configurer `DB_HOST`, `DB_USER`, `DB_PASSWORD` et `DB_NAME`.
-- Configurer `FRONTEND_URL` avec l'URL du frontend.
-- Modifier `API_BASE_URL` cote frontend.
-- Verifier `/api/health`.
-- Verifier la connexion client.
-- Verifier la recherche salon.
-- Verifier une reservation.
-- Verifier le dashboard salon.
-- Lancer un audit Lighthouse sur l'URL publique.
-- Corriger les eventuels problemes critiques.
+## 7. Tests apres deploiement
 
-## 5. Tests apres deploiement
-
-Tests a realiser depuis l'URL publique :
+Tests a realiser ou a confirmer depuis l'URL publique :
 
 - ouverture de la page d'accueil ;
 - recherche d'un salon ;
 - affichage d'une fiche salon ;
-- creation d'un compte ou connexion ;
+- connexion avec un compte client ;
 - creation d'une reservation ;
 - affichage des rendez-vous ;
-- connexion salon ;
+- connexion avec un compte salon ;
 - affichage du dashboard salon ;
+- creation ou modification d'une prestation ;
+- creation ou blocage d'un creneau ;
 - controle des erreurs dans la console navigateur.
 
-## 6. Phrase pour l'oral
+## 8. Phrase pour l'oral
 
 ```text
-Pour le deploiement, j'ai choisi Alwaysdata afin de centraliser le frontend, l'API Node.js et la base MySQL sur le meme hebergeur. Le frontend statique appelle l'API Express via une URL publique, la base MySQL est configuree avec les variables d'environnement, et CORS limite les appels a l'URL du frontend.
+J'ai deploye Cut&Go sur Alwaysdata afin d'avoir le frontend, l'API Node.js et la
+base MySQL accessibles en ligne. Le backend utilise des variables
+d'environnement pour la base de donnees, le JWT et CORS. Le frontend appelle
+l'API publique, et j'ai conserve une configuration compatible avec le
+developpement local.
 ```

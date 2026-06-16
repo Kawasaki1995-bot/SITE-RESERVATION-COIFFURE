@@ -73,7 +73,7 @@ Mesures presentes dans le projet :
 
 - Un audit Lighthouse a ete realise sur la page d'accueil et documente dans `docs/lighthouse.md`.
 - Aucun test avec lecteur d'ecran n'a encore ete documente.
-- Le projet reste un MVP local, pas encore une application de production.
+- Le projet reste un MVP pedagogique, meme s'il est deploye en ligne sur Alwaysdata.
 
 ## 7. Phrase simple pour l'oral
 

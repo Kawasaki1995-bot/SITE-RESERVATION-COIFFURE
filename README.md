@@ -40,6 +40,18 @@ npm run dev
 
 6. Ouvrir le frontend depuis `frontend/index.html` ou via un serveur statique local.
 
+## Deploiement
+
+Le projet a ete deploye sur Alwaysdata.
+
+URL de production :
+
+- Frontend : `https://cutandgo.alwaysdata.net`
+- API backend : `https://cutandgo.alwaysdata.net/api`
+- Test API : `https://cutandgo.alwaysdata.net/api/health`
+
+La procedure et les points de verification sont documentes dans `docs/deploiement.md`.
+
 ## Variables d'environnement
 
 ```env

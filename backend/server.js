@@ -1,47 +1,49 @@
-const express = require('express');
-const cors = require('cors');
-require('dotenv').config();
+const express = require("express");
+const cors = require("cors");
+require("dotenv").config();
 
-const authRoutes = require('./routes/auth.routes');
-const salonsRoutes = require('./routes/salons.routes');
-const prestationsRoutes = require('./routes/prestations.routes');
-const horairesRoutes = require('./routes/horaires.routes');
-const creneauxRoutes = require('./routes/creneaux.routes');
-const reservationsRoutes = require('./routes/reservations.routes');
-const errorMiddleware = require('./middlewares/error.middleware');
+const authRoutes = require("./routes/auth.routes");
+const salonsRoutes = require("./routes/salons.routes");
+const prestationsRoutes = require("./routes/prestations.routes");
+const horairesRoutes = require("./routes/horaires.routes");
+const creneauxRoutes = require("./routes/creneaux.routes");
+const reservationsRoutes = require("./routes/reservations.routes");
+const errorMiddleware = require("./middlewares/error.middleware");
 
 const app = express();
 const port = process.env.PORT || 3000;
-const corsOrigin = process.env.FRONTEND_URL || '*';
+const corsOrigin = process.env.FRONTEND_URL || "*";
 
 if (!process.env.JWT_SECRET) {
-  console.error('JWT_SECRET manquant dans le fichier .env');
+  console.error("JWT_SECRET manquant dans le fichier .env");
   process.exit(1);
 }
 
-app.use(cors({
-  origin: corsOrigin
-}));
+app.use(
+  cors({
+    origin: corsOrigin,
+  }),
+);
 app.use(express.json());
 
-app.get('/api/health', (req, res) => {
+app.get("/api/health", (req, res) => {
   res.json({
     success: true,
-    message: 'API Cut&Go operationnelle'
+    message: "API Cut&Go operationnelle",
   });
 });
 
-app.use('/api/auth', authRoutes);
-app.use('/api/salons', salonsRoutes);
-app.use('/api/prestations', prestationsRoutes);
-app.use('/api/horaires', horairesRoutes);
-app.use('/api/creneaux', creneauxRoutes);
-app.use('/api/reservations', reservationsRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/salons", salonsRoutes);
+app.use("/api/prestations", prestationsRoutes);
+app.use("/api/horaires", horairesRoutes);
+app.use("/api/creneaux", creneauxRoutes);
+app.use("/api/reservations", reservationsRoutes);
 
 app.use((req, res) => {
   res.status(404).json({
     success: false,
-    message: 'Route introuvable'
+    message: "Route introuvable",
   });
 });
 
