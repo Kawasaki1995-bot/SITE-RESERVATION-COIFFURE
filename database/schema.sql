@@ -15,8 +15,10 @@ CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nom VARCHAR(100) NOT NULL,
   email VARCHAR(180) NOT NULL UNIQUE,
+  adresse VARCHAR(255),
   password_hash VARCHAR(255) NOT NULL,
   role ENUM('client', 'salon', 'admin') NOT NULL DEFAULT 'client',
+  statut ENUM('actif', 'restreint') NOT NULL DEFAULT 'actif',
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -117,6 +119,7 @@ CREATE TABLE reservations (
 );
 
 CREATE INDEX idx_users_role ON users(role);
+CREATE INDEX idx_users_statut ON users(statut);
 CREATE INDEX idx_salons_ville ON salons(ville);
 CREATE INDEX idx_prestations_nom ON prestations(nom);
 CREATE INDEX idx_creneaux_salon_date ON creneaux(salon_id, date_creneau);

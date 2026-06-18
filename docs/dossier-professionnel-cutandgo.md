@@ -28,6 +28,10 @@ Le client peut creer un compte, se connecter, rechercher un salon par ville, fil
 
 Le salon peut creer un compte professionnel, se connecter, gerer ses informations, ses prestations, ses horaires d'ouverture, ses creneaux disponibles ou indisponibles, consulter ses reservations et suivre un chiffre d'affaires simple.
 
+L'administrateur peut se connecter a une interface dediee pour consulter les comptes, modifier leurs informations principales, restreindre ou reactiver un compte, et supprimer un compte si necessaire.
+
+Chaque utilisateur connecte peut egalement modifier ses informations personnelles depuis une page de parametrage du compte : nom, email et adresse personnelle.
+
 La stack technique utilisee est volontairement alignee avec le titre DWWM : HTML5, CSS3, JavaScript Vanilla, Node.js, Express.js, MySQL, mysql2, bcrypt, JWT, dotenv, Git et GitHub.
 
 ## Sommaire
@@ -124,9 +128,11 @@ J'ai identifie les pages principales du MVP :
 
 - `index.html` : accueil, recherche par ville et resultats ;
 - `auth.html` : connexion et inscription ;
+- `compte.html` : parametres du compte utilisateur ;
 - `salon.html` : fiche salon, prestations et creneaux ;
 - `mes-rdv.html` : rendez-vous du client ;
 - `dashboard.html` : espace professionnel du salon ;
+- `admin.html` : administration simple des comptes ;
 - `mentions-legales.html` et `confidentialite.html` : pages legales et RGPD.
 
 J'ai concu les ecrans autour des taches principales plutot qu'autour d'un contenu decoratif. Pour le client, le parcours prioritaire est : rechercher un salon, comparer les resultats, ouvrir une fiche, choisir une prestation et reserver un creneau. Pour le salon, le parcours prioritaire est : consulter le dashboard, gerer les informations du salon, gerer les prestations, les horaires, les creneaux et les reservations.
@@ -167,7 +173,7 @@ Periode d'exercice : A completer
 
 ### 5. Informations complementaires
 
-La conception a ete volontairement orientee MVP. Certaines fonctions ont ete sorties du perimetre : paiement en ligne, notifications email ou SMS, geolocalisation avancee, interface administrateur complete, upload reel de photos et gestion multi-employes.
+La conception a ete volontairement orientee MVP. Certaines fonctions ont ete sorties du perimetre : paiement en ligne, notifications email ou SMS, geolocalisation avancee, workflow avance de validation professionnelle, upload reel de photos et gestion multi-employes.
 
 ## Exemple 3 - Realiser des interfaces utilisateur statiques, responsives et dynamiques
 
@@ -179,6 +185,7 @@ J'ai cree les pages necessaires au parcours complet :
 
 - page d'accueil et recherche dans `index.html` ;
 - authentification dans `auth.html` ;
+- parametres du compte dans `compte.html` ;
 - fiche detaillee d'un salon dans `salon.html` ;
 - espace client dans `mes-rdv.html` ;
 - dashboard salon dans `dashboard.html` ;
@@ -190,10 +197,12 @@ J'ai ensuite ajoute la partie dynamique avec plusieurs fichiers JavaScript speci
 
 - `api.js` centralise les appels `fetch`, le token JWT, la session et les fonctions communes ;
 - `auth.js` gere l'inscription, la connexion et le choix du role ;
+- `compte.js` gere la modification des informations personnelles du compte ;
 - `search.js` gere la recherche et les filtres de salons ;
 - `salon.js` affiche la fiche salon, les prestations et les creneaux ;
 - `reservations.js` gere l'affichage et l'annulation des rendez-vous client ;
 - `dashboard.js` gere l'espace salon, les prestations, horaires, creneaux, reservations et statistiques.
+- `admin.js` gere l'interface d'administration des comptes.
 
 Pour securiser l'affichage, j'ai utilise des fonctions comme `escapeHtml` dans `api.js` afin d'eviter d'injecter directement du HTML non maitrise dans la page. J'ai aussi ajoute une fonction `safeImageUrl` pour limiter les URLs d'images aux protocoles `http` et `https`.
 
@@ -408,9 +417,9 @@ Le backend a ete deploye sur Alwaysdata. Les variables d'environnement de produc
 
 # Titres, diplomes, CQP, attestations de formation
 
-| Intitule | Autorite ou organisme | Date |
-| --- | --- | --- |
-| A completer | A completer | A completer |
+| Intitule    | Autorite ou organisme | Date        |
+| ----------- | --------------------- | ----------- |
+| A completer | A completer           | A completer |
 
 # Declaration sur l'honneur
 
@@ -424,20 +433,22 @@ Signature :
 
 # Documents illustrant la pratique professionnelle
 
-| Intitule | Emplacement dans le projet |
-| --- | --- |
-| Brief projet Cut&Go | `brief.md` |
-| Cadrage projet | `cadrage_projet.md` |
-| Structure du projet | `STRUCTURE_PROJET.md` |
-| Documentation API | `docs/routes-api.md` |
-| Schema SQL | `database/schema.sql` |
-| Donnees de demonstration | `database/seed.sql` |
-| Documentation RGPD et accessibilite | `docs/rgpd-accessibilite.md` |
-| Checklist de tests | `docs/tests.md` |
-| Deploiement Alwaysdata | `docs/deploiement.md` |
-| Audit Lighthouse | `docs/lighthouse.md` et `docs/lighthouse-index.json` |
-| Frontend HTML/CSS/JS | `frontend/` |
-| Backend Express | `backend/` |
+| Intitule                            | Emplacement dans le projet                               |
+| ----------------------------------- | -------------------------------------------------------- |
+| Brief projet Cut&Go                 | `brief.md`                                               |
+| Cadrage projet                      | `cadrage_projet.md`                                      |
+| Structure du projet                 | `STRUCTURE_PROJET.md`                                    |
+| Documentation API                   | `docs/routes-api.md`                                     |
+| Schema SQL                          | `database/schema.sql`                                    |
+| Donnees de demonstration            | `database/seed.sql`                                      |
+| Documentation RGPD et accessibilite | `docs/rgpd-accessibilite.md`                             |
+| Checklist de tests                  | `docs/tests.md`                                          |
+| Deploiement Alwaysdata              | `docs/deploiement.md`                                    |
+| Audit Lighthouse                    | `docs/lighthouse.md` et `docs/lighthouse-index.json`     |
+| Frontend HTML/CSS/JS                | `frontend/`                                              |
+| Backend Express                     | `backend/`                                               |
+| Interface admin                     | `frontend/admin.html` et `frontend/assets/js/admin.js`   |
+| Parametres du compte                | `frontend/compte.html` et `frontend/assets/js/compte.js` |
 
 # Annexes
 
@@ -465,9 +476,11 @@ Cut&Go
 |   |-- assets/
 |   |-- index.html
 |   |-- auth.html
+|   |-- compte.html
 |   |-- salon.html
 |   |-- mes-rdv.html
 |   |-- dashboard.html
+|   |-- admin.html
 ```
 
 ## Annexe 2 - Routes principales de l'API
@@ -475,6 +488,7 @@ Cut&Go
 - `POST /api/auth/register` : inscription.
 - `POST /api/auth/login` : connexion.
 - `GET /api/auth/me` : utilisateur connecte.
+- `PUT /api/auth/me` : modification du compte connecte.
 - `GET /api/salons` : recherche des salons.
 - `GET /api/salons/:id` : fiche salon.
 - `PUT /api/salons/me` : modification du salon connecte.
@@ -490,6 +504,9 @@ Cut&Go
 - `PATCH /api/reservations/:id/cancel` : annulation.
 - `GET /api/reservations/salon` : reservations du salon.
 - `GET /api/reservations/salon/stats` : statistiques salon.
+- `GET /api/admin/users` : liste des comptes.
+- `PUT /api/admin/users/:id` : modification d'un compte.
+- `DELETE /api/admin/users/:id` : suppression d'un compte.
 
 ## Annexe 3 - Securite et qualite
 

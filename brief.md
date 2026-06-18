@@ -22,6 +22,7 @@ Salons ou coiffeurs independants qui veulent presenter leur activite en ligne et
 
 - Creer un compte client.
 - Se connecter.
+- Modifier ses informations de compte.
 - Rechercher un salon par ville.
 - Filtrer les salons par note, prix et prestation.
 - Consulter la fiche d'un salon.
@@ -34,6 +35,7 @@ Salons ou coiffeurs independants qui veulent presenter leur activite en ligne et
 
 - Creer un compte professionnel.
 - Se connecter.
+- Modifier ses informations de compte.
 - Completer les informations du salon.
 - Gerer les prestations.
 - Gerer les horaires d'ouverture.
@@ -41,6 +43,15 @@ Salons ou coiffeurs independants qui veulent presenter leur activite en ligne et
 - Consulter les reservations.
 - Voir les reservations du jour.
 - Suivre un chiffre d'affaires simple.
+
+### Cote administrateur
+
+- Se connecter avec un compte admin.
+- Modifier ses informations de compte.
+- Consulter les comptes utilisateurs.
+- Modifier le nom, l'email, le role et le statut d'un compte.
+- Restreindre ou reactiver un compte.
+- Supprimer un compte si necessaire.
 
 ## 4. Hors MVP et bonus
 
@@ -50,13 +61,16 @@ Ces fonctionnalites sont identifiees comme bonus et ne doivent pas bloquer la li
 - Notifications email ou SMS.
 - Upload reel de photos.
 - Geolocalisation avancee.
-- Interface administrateur complete.
+- Workflow avance de validation des justificatifs professionnels.
 - Avis clients avances.
 - Gestion de plusieurs employes dans un salon.
 
 ## 5. Regles metier principales
 
 - Un utilisateur possede un role : client, salon ou admin.
+- Un utilisateur possede un statut : actif ou restreint.
+- Un compte restreint ne peut pas se connecter.
+- Un administrateur ne peut pas supprimer son propre compte ni retirer ses propres droits admin.
 - Un compte salon represente un salon complet, pas un employe individuel.
 - Un client reserve uniquement un creneau disponible.
 - Une reservation rend le creneau indisponible.
@@ -100,9 +114,11 @@ Frameworks et outils non prioritaires pour le MVP :
 
 - `index.html` : accueil, recherche par ville et resultats.
 - `auth.html` : connexion et inscription.
+- `compte.html` : parametres du compte utilisateur.
 - `salon.html` : fiche salon, prestations et creneaux.
 - `mes-rdv.html` : rendez-vous du client connecte.
 - `dashboard.html` : espace professionnel du salon.
+- `admin.html` : administration simple des comptes.
 - `mentions-legales.html` : mentions legales.
 - `confidentialite.html` : politique de confidentialite.
 
@@ -140,6 +156,12 @@ Frameworks et outils non prioritaires pour le MVP :
 - `PATCH /api/reservations/:id/cancel` : annulation d'une reservation.
 - `GET /api/reservations/salon` : reservations du salon connecte.
 
+### Administration
+
+- `GET /api/admin/users` : liste des comptes.
+- `PUT /api/admin/users/:id` : modification d'un compte.
+- `DELETE /api/admin/users/:id` : suppression d'un compte.
+
 ## 9. Base de donnees
 
 Le modele de base de donnees du MVP contient les tables suivantes :
@@ -151,7 +173,7 @@ Le modele de base de donnees du MVP contient les tables suivantes :
 - `creneaux`
 - `reservations`
 
-Le schema SQL est defini dans `database/schema.sql`.
+Le schema SQL est defini dans `database/schema.sql`. La table `users` contient le role et le statut du compte.
 
 ## 10. Design et identite
 
@@ -178,6 +200,7 @@ Le MVP est maintenant construit pour une presentation jury.
 - Connexion front/back avec `fetch`.
 - Parcours client : recherche, fiche salon, reservation, mes rendez-vous et annulation.
 - Parcours salon : dashboard, informations salon, prestations, horaires, creneaux, reservations et statistiques.
+- Parcours admin : liste des comptes, modification, restriction et suppression.
 - Pages mentions legales et confidentialite.
 - Documentation API, support technique, questions jury, scenario de demonstration et dossier projet.
 

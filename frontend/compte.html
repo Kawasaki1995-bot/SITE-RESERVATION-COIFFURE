@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mon compte - Cut&Go</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Navigation principale">
+      <a class="brand" href="index.html"><span class="brand-mark">C</span><span>Cut&Go</span></a>
+      <div class="nav__links">
+        <a href="index.html">Recherche</a>
+        <a href="mes-rdv.html" data-role="client">Mes RDV</a>
+        <a href="dashboard.html" data-role="salon">Dashboard</a>
+        <a href="admin.html" data-role="admin">Admin</a>
+        <a href="compte.html" data-authenticated>Mon compte</a>
+        <a href="auth.html" data-auth-link>Connexion</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="page-title">
+        <p class="eyebrow">Parametres</p>
+        <h1>Mon compte</h1>
+        <p>Mettez a jour vos informations personnelles utilisees par Cut&Go.</p>
+      </div>
+    </section>
+
+    <section class="section auth-grid">
+      <form class="form-panel" data-account-form>
+        <h2>Informations personnelles</h2>
+        <div class="field">
+          <label for="account-name">Nom</label>
+          <input id="account-name" name="nom" required>
+        </div>
+        <div class="field">
+          <label for="account-email">Email</label>
+          <input id="account-email" name="email" type="email" required>
+        </div>
+        <div class="field">
+          <label for="account-address">Adresse personnelle</label>
+          <input id="account-address" name="adresse" autocomplete="street-address">
+        </div>
+        <button class="button button--gold" type="submit">Enregistrer</button>
+        <p class="form-message" data-account-message aria-live="polite"></p>
+      </form>
+
+      <div class="tool-panel">
+        <h2>Profil</h2>
+        <div class="account-summary">
+          <p class="eyebrow">Role</p>
+          <strong data-account-role>-</strong>
+          <p class="eyebrow">Statut</p>
+          <strong data-account-status>-</strong>
+        </div>
+        <p class="muted-text">L'adresse du compte reste separee de l'adresse publique d'un salon. Un professionnel modifie l'adresse visible par les clients depuis le dashboard salon.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/compte.js"></script>
+</body>
+</html>

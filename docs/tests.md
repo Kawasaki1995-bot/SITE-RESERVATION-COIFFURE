@@ -34,7 +34,19 @@ Compte conseille : `alice.client@cutandgo.test` avec le mot de passe `Password12
 
 Resultat attendu : le client peut rechercher, filtrer, consulter une fiche salon, reserver, consulter ses rendez-vous et annuler quand la regle metier l'autorise.
 
-## 3. Parcours salon complet
+## 3. Parametres du compte
+
+1. Se connecter avec un compte client, salon ou admin.
+2. Ouvrir `frontend/compte.html`.
+3. Modifier le nom du compte.
+4. Modifier l'adresse personnelle.
+5. Enregistrer.
+6. Verifier que le message de confirmation apparait.
+7. Actualiser la page et verifier que les donnees modifiees sont conservees.
+
+Resultat attendu : un utilisateur connecte peut mettre a jour son nom, son email et son adresse personnelle. Pour un salon, cette adresse reste separee de l'adresse publique du salon.
+
+## 4. Parcours salon complet
 
 Compte conseille : `contact@salon-elegance.test` avec le mot de passe `Password123!`.
 
@@ -56,23 +68,44 @@ Compte conseille : `contact@salon-elegance.test` avec le mot de passe `Password1
 
 Resultat attendu : le salon peut gerer ses informations, ses prestations, ses horaires, ses creneaux, ses reservations et ses statistiques.
 
-## 4. Tests de securite et roles
+## 5. Parcours admin complet
+
+Compte conseille : `admin@cutandgo.test` avec le mot de passe `Password123!`.
+
+1. Ouvrir `frontend/auth.html`.
+2. Se connecter avec le compte admin.
+3. Verifier la redirection vers `frontend/admin.html`.
+4. Verifier l'affichage de la liste des comptes.
+5. Modifier le nom ou l'email d'un compte de test non critique, puis enregistrer.
+6. Passer un compte client en statut `restreint`.
+7. Tenter de se connecter avec ce compte et verifier que la connexion est refusee.
+8. Reconnecter l'admin et remettre le compte en statut `actif`.
+9. Verifier qu'un admin ne peut pas restreindre, retrograder ou supprimer son propre compte.
+10. Tester la suppression uniquement sur un compte cree pour le test.
+
+Resultat attendu : l'administrateur peut consulter, modifier, restreindre, reactiver et supprimer des comptes, tandis que son propre compte reste protege contre les actions dangereuses.
+
+## 6. Tests de securite et roles
 
 | Situation | Resultat attendu |
 | --- | --- |
 | Client sans token sur `mes-rdv.html` | Redirection ou message demandant de se connecter |
 | Salon sur une action client de reservation | Refus cote frontend et cote backend |
 | Client sur `dashboard.html` | Message indiquant que la page est reservee aux salons |
+| Client ou salon sur `admin.html` | Message indiquant que la page est reservee aux administrateurs |
 | Route protegee sans JWT | Reponse `401` |
 | Role incorrect sur route protegee | Reponse `403` |
+| Compte restreint | Connexion refusee avec reponse `403` |
 | Reservation d'un creneau deja pris | Reponse `409` |
 | Annulation moins de 24 heures avant | Reponse `403` |
 
-## 5. Points a annoncer au jury
+## 7. Points a annoncer au jury
 
 - Les tests syntaxiques backend et frontend sont automatisables avec les commandes du README.
 - L'audit des dependances backend ne signale aucune vulnerabilite.
 - L'audit Lighthouse de la page d'accueil donne 86 en performance, 100 en accessibilite, 96 en bonnes pratiques et 100 en SEO.
-- Les parcours client et salon ont ete prevus comme scenarios de demonstration.
+- Les parcours client, salon et admin ont ete prevus comme scenarios de demonstration.
+- La page `Mon compte` permet de modifier les informations personnelles d'un utilisateur connecte.
 - Les routes sensibles sont protegees par JWT et verification de role.
-- Les limites restantes sont normales pour le MVP : pas de paiement, pas d'emails, pas d'upload reel et pas d'interface admin complete. Le projet est deploye sur Alwaysdata, mais il reste une application pedagogique a presenter comme MVP.
+- L'admin peut restreindre un compte, ce qui bloque sa connexion.
+- Les limites restantes sont normales pour le MVP : pas de paiement, pas d'emails, pas d'upload reel et pas de workflow avance de verification professionnelle. Le projet est deploye sur Alwaysdata, mais il reste une application pedagogique a presenter comme MVP.

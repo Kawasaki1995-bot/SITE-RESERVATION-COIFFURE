@@ -305,8 +305,9 @@ Dans `frontend/assets/js/dashboard.js`, plusieurs fonctions utilisent le mot
 - `renderCreneauxAdmin` ;
 - `renderHorairesAdmin`.
 
-Le projet n'a pas de vraie interface administrateur. Il s'agit plutot de gestion
-cote salon.
+Le projet contient maintenant une interface administrateur de plateforme dans
+`frontend/admin.html`. Les noms historiques ci-dessus concernent encore la
+gestion cote salon et peuvent preter a confusion.
 
 Action possible :
 
@@ -354,7 +355,7 @@ Je deconseille d'ajouter maintenant :
 - un paiement en ligne ;
 - des emails automatiques ;
 - un upload de fichiers ;
-- une interface admin complete ;
+- un workflow avance de validation professionnelle ;
 - une gestion multi-employes ;
 - une generation automatique complexe de planning.
 

@@ -59,7 +59,7 @@ Inscrit un utilisateur client ou salon.
 }
 ```
 
-Pour un compte salon, le role vaut `salon`. Les informations detaillees du salon pourront ensuite etre completees depuis le dashboard.
+Pour un compte salon, le role vaut `salon`. Les informations detaillees du salon pourront ensuite etre completees depuis le dashboard. Le role `admin` n'est pas disponible depuis l'inscription publique : le compte administrateur est cree via les donnees de demonstration ou directement en base.
 
 **Reponse 201**
 
@@ -70,14 +70,15 @@ Pour un compte salon, le role vaut `salon`. Les informations detaillees du salon
     "id": 1,
     "nom": "Alice Martin",
     "email": "alice@example.com",
-    "role": "client"
+    "role": "client",
+    "statut": "actif"
   }
 }
 ```
 
 ### POST /auth/login
 
-Connecte un utilisateur et renvoie un JWT.
+Connecte un utilisateur et renvoie un JWT. Si le compte est `restreint`, la connexion est refusee.
 
 **Acces** : public
 
@@ -101,7 +102,8 @@ Connecte un utilisateur et renvoie un JWT.
       "id": 1,
       "nom": "Alice Martin",
       "email": "alice@example.com",
-      "role": "client"
+      "role": "client",
+      "statut": "actif"
     }
   }
 }
@@ -122,7 +124,43 @@ Retourne l'utilisateur connecte.
     "id": 1,
     "nom": "Alice Martin",
     "email": "alice@example.com",
-    "role": "client"
+    "role": "client",
+    "statut": "actif"
+  }
+}
+```
+
+### PUT /auth/me
+
+Met a jour les informations personnelles du compte connecte.
+
+**Acces** : utilisateur connecte
+
+**Body**
+
+```json
+{
+  "nom": "Alice Martin",
+  "email": "alice.client@cutandgo.test",
+  "adresse": "12 rue de la Demo, 1000 Bruxelles"
+}
+```
+
+**Reponse 200**
+
+```json
+{
+  "success": true,
+  "data": {
+    "token": "jwt",
+    "user": {
+      "id": 1,
+      "nom": "Alice Martin",
+      "email": "alice.client@cutandgo.test",
+      "adresse": "12 rue de la Demo, 1000 Bruxelles",
+      "role": "client",
+      "statut": "actif"
+    }
   }
 }
 ```
@@ -641,7 +679,91 @@ Retourne un chiffre d'affaires simple pour le salon connecte.
 
 Les reservations annulees ne sont pas prises en compte.
 
-## 9. Codes HTTP principaux
+## 9. Administration
+
+Les routes d'administration sont protegees par JWT et par le role `admin`.
+
+### GET /admin/users
+
+Liste les comptes utilisateurs.
+
+**Acces** : administrateur connecte
+
+**Reponse 200**
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": 1,
+      "nom": "Admin Cut&Go",
+      "email": "admin@cutandgo.test",
+      "adresse": null,
+      "role": "admin",
+      "statut": "actif",
+      "salon_id": null,
+      "salon_nom": null,
+      "reservations_count": 0
+    }
+  ]
+}
+```
+
+### PUT /admin/users/:id
+
+Modifie un compte utilisateur.
+
+**Acces** : administrateur connecte
+
+**Body**
+
+```json
+{
+  "nom": "Alice Martin",
+  "email": "alice.client@cutandgo.test",
+  "adresse": "12 rue de la Demo, 1000 Bruxelles",
+  "role": "client",
+  "statut": "actif"
+}
+```
+
+**Regles**
+
+- Le role doit etre `client`, `salon` ou `admin`.
+- Le statut doit etre `actif` ou `restreint`.
+- Un administrateur ne peut pas retirer ses propres droits admin ni restreindre son propre compte.
+
+**Reponse 200**
+
+```json
+{
+  "success": true,
+  "message": "Utilisateur mis a jour"
+}
+```
+
+### DELETE /admin/users/:id
+
+Supprime un compte utilisateur et ses donnees liees.
+
+**Acces** : administrateur connecte
+
+**Regles**
+
+- Un administrateur ne peut pas supprimer son propre compte.
+- Les reservations liees au compte sont supprimees avant la suppression de l'utilisateur afin d'eviter les conflits de cles etrangeres.
+
+**Reponse 200**
+
+```json
+{
+  "success": true,
+  "message": "Utilisateur supprime"
+}
+```
+
+## 10. Codes HTTP principaux
 
 | Code | Usage |
 | --- | --- |

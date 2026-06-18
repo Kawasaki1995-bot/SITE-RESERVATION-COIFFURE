@@ -185,6 +185,10 @@ textarea {
   margin-bottom: 1.4rem;
 }
 
+.section-heading--compact {
+  margin-bottom: 0;
+}
+
 .section-heading h2,
 .page-title h1 {
   margin: 0;
@@ -295,6 +299,12 @@ textarea {
   border-color: var(--color-line);
 }
 
+.button--danger {
+  color: var(--color-panel);
+  background: var(--color-red);
+  border-color: var(--color-red);
+}
+
 .results-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -343,6 +353,11 @@ textarea {
 .list-row p,
 .legal-block p {
   margin: 0;
+  color: var(--color-muted);
+}
+
+.muted-text {
+  margin: 0.3rem 0 0;
   color: var(--color-muted);
 }
 
@@ -447,6 +462,47 @@ textarea {
 .choice-row input {
   width: 18px;
   height: 18px;
+}
+
+.admin-list {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.admin-user {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.7fr) minmax(0, 1.4fr) auto;
+  gap: 0.8rem;
+  align-items: end;
+  border: 1px solid var(--color-line);
+  border-radius: 6px;
+  padding: 0.85rem;
+  background: var(--color-panel);
+}
+
+.admin-user__identity {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.admin-user__identity h3,
+.admin-user__identity p {
+  margin: 0;
+}
+
+.admin-user__identity p {
+  color: var(--color-muted);
+}
+
+.admin-user__fields {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.admin-user__actions {
+  display: flex;
+  gap: 0.5rem;
 }
 
 .schedule-row {
@@ -560,7 +616,9 @@ textarea {
   .two-column,
   .auth-grid,
   .dashboard-grid,
-  .stat-grid {
+  .stat-grid,
+  .admin-user,
+  .admin-user__fields {
     grid-template-columns: 1fr;
   }
 
@@ -596,9 +654,21 @@ textarea {
   .section-heading,
   .footer__inner,
   .list-row,
+  .admin-user,
+  .admin-user__actions,
   .schedule-row {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .admin-user {
+    display: flex;
+    width: 100%;
+  }
+
+  .admin-user__fields {
+    grid-template-columns: 1fr;
+    width: 100%;
   }
 
   .schedule-row {

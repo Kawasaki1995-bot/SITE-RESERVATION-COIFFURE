@@ -17,7 +17,7 @@ Le projet s'inspire de plateformes comme Planity, mais avec un perimetre volonta
 - pas de paiement en ligne ;
 - pas de notifications email ou SMS ;
 - pas de vraie geolocalisation ;
-- pas d'interface admin complete ;
+- pas d'interface admin avancee avec workflow de validation documentaire ;
 - pas d'upload reel de photos.
 
 ## 3. Utilisateurs
@@ -29,6 +29,12 @@ Le client cherche un salon par ville, filtre les resultats, consulte une fiche s
 ### Salon
 
 Le salon gere ses informations, ses prestations, ses horaires, ses creneaux et ses reservations depuis un dashboard.
+
+### Administrateur
+
+L'administrateur gere les comptes utilisateurs depuis une page dediee. Il peut consulter les comptes, modifier le nom, l'email, le role et le statut, restreindre ou reactiver un compte, et supprimer un compte.
+
+Chaque utilisateur connecte peut aussi modifier les informations personnelles de son compte : nom, email et adresse personnelle.
 
 ## 4. Stack technique
 
@@ -56,7 +62,8 @@ route -> middleware -> controller -> requete SQL -> reponse JSON
 ## 6. Fonctionnalites livrees
 
 - inscription et connexion ;
-- roles client et salon ;
+- modification du compte utilisateur ;
+- roles client, salon et admin ;
 - recherche salon avec filtres ;
 - fiche salon ;
 - reservation d'un creneau ;
@@ -68,6 +75,7 @@ route -> middleware -> controller -> requete SQL -> reponse JSON
 - gestion des horaires ;
 - gestion des creneaux ;
 - statistiques simples ;
+- administration des comptes ;
 - pages mentions legales et confidentialite ;
 - deploiement sur Alwaysdata ;
 - documentation API et support oral.
@@ -80,12 +88,17 @@ route -> middleware -> controller -> requete SQL -> reponse JSON
 - L'annulation est autorisee uniquement plus de 24 heures avant le rendez-vous.
 - Un salon ne peut gerer que ses propres donnees.
 - Les reservations annulees ne comptent pas dans le chiffre d'affaires.
+- Un compte restreint ne peut plus se connecter.
+- Un utilisateur connecte peut modifier son nom, son email et son adresse personnelle.
+- Un administrateur ne peut pas supprimer son propre compte ni retirer ses propres droits admin.
 
 ## 8. Securite
 
 - Les mots de passe sont hashes avec `bcrypt`.
 - Les routes privees utilisent un token JWT.
 - Les roles sont verifies cote backend.
+- Les routes admin sont reservees au role `admin`.
+- Les comptes peuvent etre restreints par un administrateur.
 - Les requetes SQL sont preparees.
 - Les informations sensibles sont placees dans `.env`.
 

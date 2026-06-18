@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mes rendez-vous - Cut&Go</title>
+  <title>Administration - Cut&Go</title>
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -12,6 +12,7 @@
       <a class="brand" href="index.html"><span class="brand-mark">C</span><span>Cut&Go</span></a>
       <div class="nav__links">
         <a href="index.html">Recherche</a>
+        <a href="mes-rdv.html" data-role="client">Mes RDV</a>
         <a href="dashboard.html" data-role="salon">Dashboard</a>
         <a href="admin.html" data-role="admin">Admin</a>
         <a href="compte.html" data-authenticated>Mon compte</a>
@@ -23,27 +24,28 @@
   <main>
     <section class="page-hero">
       <div class="page-title">
-        <p class="eyebrow">Espace client</p>
-        <h1>Mes rendez-vous</h1>
-        <p>Retrouvez vos reservations confirmees et les actions disponibles.</p>
+        <p class="eyebrow">Administration</p>
+        <h1>Gestion des comptes</h1>
+        <p>Consultez, modifiez, restreignez ou supprimez les comptes utilisateurs du MVP.</p>
       </div>
     </section>
 
-    <section class="section section--tight">
+    <section class="section">
       <div class="tool-panel">
-        <div class="section-heading">
+        <div class="section-heading section-heading--compact">
           <div>
-            <p class="eyebrow">Connecte en tant que</p>
-            <h2 data-user-name>Invite</h2>
+            <h2>Comptes utilisateurs</h2>
+            <p class="muted-text" data-admin-summary>Chargement des comptes...</p>
           </div>
-          <a class="button button--gold" href="index.html">Nouvelle recherche</a>
+          <button class="button button--ghost" type="button" data-refresh-users>Actualiser</button>
         </div>
-        <div data-reservations></div>
+        <p class="form-message" data-admin-message aria-live="polite"></p>
+        <div class="admin-list" data-users-admin></div>
       </div>
     </section>
   </main>
 
   <script src="assets/js/api.js"></script>
-  <script src="assets/js/reservations.js"></script>
+  <script src="assets/js/admin.js"></script>
 </body>
 </html>

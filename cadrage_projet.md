@@ -43,6 +43,7 @@ Frameworks front-end non prioritaires : React, Vue, Angular, Tailwind, Bootstrap
 
 - Creer un compte client.
 - Se connecter.
+- Modifier ses informations de compte.
 - Rechercher un salon par ville.
 - Filtrer les resultats par note, prix et prestation.
 - Consulter la fiche d'un salon.
@@ -56,6 +57,7 @@ Frameworks front-end non prioritaires : React, Vue, Angular, Tailwind, Bootstrap
 
 - Creer un compte professionnel.
 - Se connecter.
+- Modifier ses informations de compte.
 - Completer les informations du salon : nom, ville, adresse, description, telephone.
 - Gerer les prestations proposees avec prix.
 - Definir les horaires d'ouverture jour par jour.
@@ -64,20 +66,32 @@ Frameworks front-end non prioritaires : React, Vue, Angular, Tailwind, Bootstrap
 - Voir les reservations du jour.
 - Suivre un chiffre d'affaires simple : jour, semaine et mois.
 
+### Parcours administrateur
+
+- Se connecter avec un compte administrateur.
+- Modifier ses informations de compte.
+- Consulter la liste des comptes.
+- Modifier le nom, l'email, le role et le statut d'un compte.
+- Restreindre ou reactiver un compte.
+- Supprimer un compte si necessaire.
+
 ### Hors MVP ou bonus
 
 - Paiement en ligne.
 - Notifications email ou SMS.
 - Upload reel de photos.
 - Geolocalisation avancee.
-- Interface administrateur complete.
+- Workflow avance de validation des justificatifs professionnels.
 - Avis clients avances.
 - Gestion multi-employes dans un salon.
 - Upload reel d'images.
 
 ## 5. Regles metier
 
-- Un compte utilisateur possede un role : client ou salon.
+- Un compte utilisateur possede un role : client, salon ou admin.
+- Un compte utilisateur possede un statut : actif ou restreint.
+- Un compte restreint ne peut pas se connecter.
+- Un administrateur ne peut pas supprimer son propre compte ni retirer ses propres droits admin.
 - Un salon correspond a un compte professionnel.
 - Un client peut reserver uniquement un creneau disponible.
 - Si le creneau n'est plus disponible, l'application affiche un message de refus.
@@ -100,11 +114,13 @@ Frameworks front-end non prioritaires : React, Vue, Angular, Tailwind, Bootstrap
 - Resultats de recherche avec filtres.
 - Fiche salon.
 - Connexion / inscription avec choix du role.
+- Parametres du compte utilisateur.
 - Mes rendez-vous client.
 - Dashboard salon.
 - Gestion des prestations.
 - Gestion des horaires et creneaux.
 - Liste des reservations salon.
+- Administration simple des comptes.
 - Mentions legales.
 - Politique de confidentialite.
 
@@ -114,6 +130,7 @@ Frameworks front-end non prioritaires : React, Vue, Angular, Tailwind, Bootstrap
 
 - En tant que client, je veux creer un compte afin de reserver un rendez-vous.
 - En tant que client, je veux me connecter afin d'acceder a mon espace personnel.
+- En tant qu'utilisateur, je veux modifier mon nom, mon email et mon adresse afin de tenir mon compte a jour.
 - En tant que client, je veux rechercher un salon par ville afin de trouver un salon proche de mon besoin.
 - En tant que client, je veux filtrer les salons par note, prix et prestation afin de comparer les offres.
 - En tant que client, je veux consulter la fiche d'un salon afin de voir ses informations et prestations.
@@ -131,6 +148,12 @@ Frameworks front-end non prioritaires : React, Vue, Angular, Tailwind, Bootstrap
 - En tant que salon, je veux consulter mes reservations afin d'organiser mes journees.
 - En tant que salon, je veux voir les reservations du jour afin d'avoir une vue rapide de mon activite.
 
+### Admin
+
+- En tant qu'administrateur, je veux consulter les comptes afin de controler les utilisateurs inscrits.
+- En tant qu'administrateur, je veux restreindre un compte afin de bloquer un acces abusif.
+- En tant qu'administrateur, je veux supprimer un compte afin de retirer un utilisateur du service.
+
 ## 8. Choix retenus pour le MVP
 
 - Nom du projet : Cut&Go.
@@ -144,6 +167,7 @@ Frameworks front-end non prioritaires : React, Vue, Angular, Tailwind, Bootstrap
 - Horaires : configurables jour par jour.
 - Annulation : autorisee uniquement plus de 24 heures avant le rendez-vous.
 - Dashboard : reservations du jour, gestion des prestations, gestion des creneaux, chiffre d'affaires jour/semaine/mois.
+- Administration : gestion simple des comptes avec modification, restriction et suppression.
 - Images : image par defaut ou URL simple, pas d'upload reel dans le MVP.
 - Conformite : mentions legales et confidentialite prevues.
 
@@ -156,6 +180,7 @@ Les elements du MVP sont maintenant couverts :
 - frontend HTML, CSS et JavaScript Vanilla ;
 - parcours client complet ;
 - parcours salon complet ;
+- parcours administrateur simple ;
 - pages legales ;
 - documentation technique et support de presentation.
 

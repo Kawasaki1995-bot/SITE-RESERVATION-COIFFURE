@@ -235,9 +235,29 @@ En tant qu'administrateur, je veux gerer les utilisateurs et les salons afin de 
 
 **Criteres d'acceptation**
 
-- Cette fonctionnalite est identifiee comme bonus hors MVP.
-- Elle ne bloque pas la livraison du parcours client et du parcours salon.
-- Les tables peuvent prevoir un role admin pour evolution future.
+- L'administrateur peut consulter la liste des comptes.
+- L'administrateur peut modifier le nom, l'email, le role et le statut d'un compte.
+- L'administrateur peut restreindre ou reactiver un compte.
+- Un compte restreint ne peut pas se connecter.
+- L'administrateur peut supprimer un compte.
+- L'administrateur ne peut pas supprimer son propre compte ni retirer ses propres droits admin.
+
+## Parametres du compte
+
+### US18 - Modification du compte utilisateur
+
+**Priorite** : Should
+
+En tant qu'utilisateur connecte, je veux modifier mon nom, mon email et mon adresse personnelle afin de garder mon compte a jour.
+
+**Criteres d'acceptation**
+
+- L'utilisateur connecte peut ouvrir une page `Mon compte`.
+- Le formulaire affiche le nom, l'email et l'adresse personnelle existants.
+- L'utilisateur peut modifier ces informations.
+- L'email reste unique.
+- Apres modification, la session frontend est mise a jour.
+- Pour un salon, l'adresse personnelle reste separee de l'adresse publique du salon.
 
 ## Synthese MVP
 
@@ -259,4 +279,5 @@ En tant qu'administrateur, je veux gerer les utilisateurs et les salons afin de 
 | US14 | Gestion des creneaux | Must |
 | US15 | Consultation des reservations salon | Must |
 | US16 | Chiffre d'affaires simple | Should |
-| US17 | Administration de la plateforme | Could |
+| US17 | Administration de la plateforme | Should |
+| US18 | Modification du compte utilisateur | Should |

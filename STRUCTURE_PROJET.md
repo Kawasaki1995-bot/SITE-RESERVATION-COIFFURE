@@ -34,12 +34,14 @@ cut-and-go/
 |   |   |-- prestations.routes.js
 |   |   |-- creneaux.routes.js
 |   |   |-- reservations.routes.js
+|   |   |-- admin.routes.js
 |   |-- controllers/
 |   |   |-- auth.controller.js
 |   |   |-- salons.controller.js
 |   |   |-- prestations.controller.js
 |   |   |-- creneaux.controller.js
 |   |   |-- reservations.controller.js
+|   |   |-- admin.controller.js
 |   |-- middlewares/
 |   |   |-- auth.middleware.js
 |   |   |-- role.middleware.js
@@ -52,6 +54,8 @@ cut-and-go/
 |   |-- salon.html
 |   |-- mes-rdv.html
 |   |-- dashboard.html
+|   |-- admin.html
+|   |-- compte.html
 |   |-- mentions-legales.html
 |   |-- confidentialite.html
 |   |-- assets/
@@ -64,6 +68,8 @@ cut-and-go/
 |   |   |   |-- salon.js
 |   |   |   |-- reservations.js
 |   |   |   |-- dashboard.js
+|   |   |   |-- admin.js
+|   |   |   |-- compte.js
 |   |   |-- images/
 ```
 
@@ -140,4 +146,3 @@ Le fichier `api.js` doit centraliser les appels `fetch` afin d'eviter de repeter
 6. Front dynamique avec mock data si besoin.
 7. Connexion front/back.
 8. Tests et documentation.
-

@@ -15,6 +15,7 @@ ALTER TABLE salons AUTO_INCREMENT = 1;
 ALTER TABLE users AUTO_INCREMENT = 1;
 
 INSERT INTO users (nom, email, password_hash, role) VALUES
+('Admin Cut&Go', 'admin@cutandgo.test', '$2b$10$MiqN8Jil85ZiNpTwrIs/bODdVo/5YnCPYh5DwDfjGdG7BYIc0rBIW', 'admin'),
 ('Alice Martin', 'alice.client@cutandgo.test', '$2b$10$MiqN8Jil85ZiNpTwrIs/bODdVo/5YnCPYh5DwDfjGdG7BYIc0rBIW', 'client'),
 ('Nadia Benali', 'nadia.client@cutandgo.test', '$2b$10$MiqN8Jil85ZiNpTwrIs/bODdVo/5YnCPYh5DwDfjGdG7BYIc0rBIW', 'client'),
 ('Salon Elegance', 'contact@salon-elegance.test', '$2b$10$MiqN8Jil85ZiNpTwrIs/bODdVo/5YnCPYh5DwDfjGdG7BYIc0rBIW', 'salon'),
@@ -24,11 +25,11 @@ INSERT INTO users (nom, email, password_hash, role) VALUES
 ('Barbier du Vieux Lille', 'contact@barbier-vieux-lille.test', '$2b$10$MiqN8Jil85ZiNpTwrIs/bODdVo/5YnCPYh5DwDfjGdG7BYIc0rBIW', 'salon');
 
 INSERT INTO salons (user_id, nom, ville, adresse, description, telephone, image_url, note) VALUES
-(3, 'Salon Elegance', 'Bruxelles', '18 Rue Royale, 1000 Bruxelles', 'Salon moderne specialise dans les coupes classiques et les brushings soignes.', '+32 2 100 20 30', 'https://images.unsplash.com/photo-1560066984-138dadb4c035', 4.8),
-(4, 'Studio Barber', 'Bruxelles', '42 Avenue Louise, 1050 Bruxelles', 'Barbier urbain pour coupe homme, barbe et entretien rapide.', '+32 2 200 30 40', 'https://images.unsplash.com/photo-1621605815971-fbc98d665033', 4.6),
-(5, 'Maison Boucles', 'Namur', '7 Rue de Fer, 5000 Namur', 'Salon chaleureux pour coupes femme, soins et coiffures naturelles.', '+32 81 300 40 50', 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e', 4.7),
-(6, 'Lille Coiffure Studio', 'Lille', '12 Rue Nationale, 59000 Lille', 'Coiffeur mixte a Lille pour coupes rapides, brushings et soins cheveux.', '+33 3 20 10 20 30', 'https://images.unsplash.com/photo-1562322140-8baeececf3df', 4.8),
-(7, 'Barbier du Vieux Lille', 'Lille', '5 Rue de la Monnaie, 59800 Lille', 'Barbier et coiffeur homme dans le Vieux Lille, specialise coupe et barbe.', '+33 3 20 40 50 60', 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1', 4.6);
+(4, 'Salon Elegance', 'Bruxelles', '18 Rue Royale, 1000 Bruxelles', 'Salon moderne specialise dans les coupes classiques et les brushings soignes.', '+32 2 100 20 30', 'https://images.unsplash.com/photo-1560066984-138dadb4c035', 4.8),
+(5, 'Studio Barber', 'Bruxelles', '42 Avenue Louise, 1050 Bruxelles', 'Barbier urbain pour coupe homme, barbe et entretien rapide.', '+32 2 200 30 40', 'https://images.unsplash.com/photo-1621605815971-fbc98d665033', 4.6),
+(6, 'Maison Boucles', 'Namur', '7 Rue de Fer, 5000 Namur', 'Salon chaleureux pour coupes femme, soins et coiffures naturelles.', '+32 81 300 40 50', 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e', 4.7),
+(7, 'Lille Coiffure Studio', 'Lille', '12 Rue Nationale, 59000 Lille', 'Coiffeur mixte a Lille pour coupes rapides, brushings et soins cheveux.', '+33 3 20 10 20 30', 'https://images.unsplash.com/photo-1562322140-8baeececf3df', 4.8),
+(8, 'Barbier du Vieux Lille', 'Lille', '5 Rue de la Monnaie, 59800 Lille', 'Barbier et coiffeur homme dans le Vieux Lille, specialise coupe et barbe.', '+33 3 20 40 50 60', 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1', 4.6);
 
 INSERT INTO prestations (salon_id, nom, prix, active) VALUES
 (1, 'Coupe homme', 25.00, TRUE),
@@ -112,6 +113,6 @@ INSERT INTO creneaux (salon_id, date_creneau, heure_debut, disponible) VALUES
 (5, '2026-06-04', '16:30:00', TRUE);
 
 INSERT INTO reservations (client_id, salon_id, prestation_id, creneau_id, statut, created_at, cancelled_at) VALUES
-(1, 1, 1, 2, 'confirmee', '2026-05-28 10:00:00', NULL),
-(2, 2, 5, 9, 'confirmee', '2026-05-28 11:00:00', NULL),
-(1, 3, 8, 15, 'annulee', '2026-05-27 09:30:00', '2026-05-28 09:00:00');
+(2, 1, 1, 2, 'confirmee', '2026-05-28 10:00:00', NULL),
+(3, 2, 5, 9, 'confirmee', '2026-05-28 11:00:00', NULL),
+(2, 3, 8, 15, 'annulee', '2026-05-27 09:30:00', '2026-05-28 09:00:00');

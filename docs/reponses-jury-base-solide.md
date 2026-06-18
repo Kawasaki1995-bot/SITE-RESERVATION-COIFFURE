@@ -200,7 +200,8 @@ Phrase simple : bcrypt protege les mots de passe.
 
 Un JWT est un token signe par le serveur. Il permet au backend de reconnaitre un
 utilisateur connecte sans redemander son email et son mot de passe a chaque
-requete. Dans mon projet, il contient l'id, le nom, l'email et le role.
+requete. Dans mon projet, il contient l'id, le nom, l'email, le role et le
+statut du compte.
 
 Phrase simple : le JWT sert de preuve de connexion.
 
@@ -240,6 +241,38 @@ que le role de cet utilisateur fait partie des roles autorises pour la route.
 
 Phrase simple : je verifie d'abord que l'utilisateur est connecte, puis qu'il a
 le bon role.
+
+### Comment fonctionne le compte administrateur ?
+
+Le projet contient un role `admin` cree dans les donnees de demonstration. Un
+administrateur peut acceder a `admin.html`, qui appelle les routes
+`/api/admin/users`. Ces routes sont protegees par JWT et par
+`roleMiddleware('admin')`. L'admin peut consulter les comptes, modifier le nom,
+l'email, le role et le statut, restreindre ou reactiver un compte, et supprimer
+un compte. Pour eviter une erreur dangereuse, il ne peut pas supprimer son
+propre compte ni retirer ses propres droits admin.
+
+Phrase simple : l'admin gere les comptes, mais ses actions sont protegees cote
+backend.
+
+### Que signifie restreindre un compte ?
+
+Restreindre un compte passe son statut de `actif` a `restreint`. Lors de la
+connexion, le backend verifie ce statut avant de comparer le mot de passe. Si le
+compte est restreint, l'API renvoie une erreur `403` et ne fournit pas de JWT.
+
+Phrase simple : un compte restreint ne peut plus se connecter.
+
+### Comment un utilisateur modifie-t-il ses informations ?
+
+Un utilisateur connecte peut aller sur `compte.html`. La page appelle d'abord
+`GET /api/auth/me` pour recuperer les informations du compte, puis envoie
+`PUT /api/auth/me` avec le nom, l'email et l'adresse personnelle. Le backend
+verifie que le nom et l'email sont presents, que l'email est valide et qu'il
+n'est pas deja utilise par un autre compte. Apres la mise a jour, le frontend
+actualise la session pour afficher les nouvelles informations.
+
+Phrase simple : l'utilisateur modifie son compte via une route protegee par JWT.
 
 ### Que se passe-t-il si le token est absent ?
 

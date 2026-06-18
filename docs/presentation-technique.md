@@ -1014,7 +1014,7 @@ Les tests avec MariaDB et Thunder Client ont valide `/api/health`, la recherche 
 
 ### Quelles sont les limites actuelles du MVP ?
 
-Le paiement, les emails, les SMS, les vrais avis clients, l'upload reel d'images, la geolocalisation avancee et une interface admin complete sont hors MVP.
+Le paiement, les emails, les SMS, les vrais avis clients, l'upload reel d'images, la geolocalisation avancee et un workflow avance de validation professionnelle sont hors MVP.
 
 ### Quelle amelioration serait prioritaire ensuite ?
 

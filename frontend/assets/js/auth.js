@@ -27,6 +27,11 @@ document.addEventListener("DOMContentLoaded", () => {
           saveSession(token, user);
           setMessage(form, "Connexion reussie.");
           window.setTimeout(() => {
+            if (user.role === "admin") {
+              window.location.href = "admin.html";
+              return;
+            }
+
             window.location.href =
               user.role === "salon" ? "dashboard.html" : "index.html";
           }, 500);

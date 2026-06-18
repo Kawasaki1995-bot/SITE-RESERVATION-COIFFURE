@@ -93,11 +93,11 @@ function hydrateNavigation() {
       window.location.href = 'index.html';
     });
   });
-  document.querySelectorAll('[data-role="client"]').forEach((element) => {
-    element.hidden = !user || user.role !== 'client';
+  document.querySelectorAll('[data-role]').forEach((element) => {
+    element.hidden = !user || user.role !== element.dataset.role;
   });
-  document.querySelectorAll('[data-role="salon"]').forEach((element) => {
-    element.hidden = !user || user.role !== 'salon';
+  document.querySelectorAll('[data-authenticated]').forEach((element) => {
+    element.hidden = !user;
   });
 }
 

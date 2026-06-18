@@ -71,6 +71,7 @@ Mot de passe commun : `Password123!`
 
 | Role | Email |
 | --- | --- |
+| Admin | `admin@cutandgo.test` |
 | Client | `alice.client@cutandgo.test` |
 | Client | `nadia.client@cutandgo.test` |
 | Salon | `contact@salon-elegance.test` |
@@ -88,6 +89,17 @@ Mot de passe commun : `Password123!`
 5. Aller dans `Mes RDV` et tester l'annulation si le rendez-vous respecte la regle des 24 heures.
 6. Se connecter avec `contact@salon-elegance.test`.
 7. Ouvrir le dashboard salon, consulter les reservations, ajouter une prestation, creer un creneau et modifier les horaires.
+8. Se connecter avec `admin@cutandgo.test`.
+9. Ouvrir `admin.html`, verifier la liste des comptes, modifier un statut puis le retablir.
+10. Ouvrir `compte.html` et modifier le nom ou l'adresse du compte connecte.
+
+## Mise a jour de la base existante
+
+Si une base existe deja, appliquer la migration avant de tester l'admin et la page compte :
+
+```bash
+mysql -u root -p cut_and_go < database/migrations/2026-06-18-admin-account-settings.sql
+```
 
 ## Verification
 

@@ -8,6 +8,7 @@ const prestationsRoutes = require("./routes/prestations.routes");
 const horairesRoutes = require("./routes/horaires.routes");
 const creneauxRoutes = require("./routes/creneaux.routes");
 const reservationsRoutes = require("./routes/reservations.routes");
+const adminRoutes = require("./routes/admin.routes");
 const errorMiddleware = require("./middlewares/error.middleware");
 
 const app = express();
@@ -39,6 +40,7 @@ app.use("/api/prestations", prestationsRoutes);
 app.use("/api/horaires", horairesRoutes);
 app.use("/api/creneaux", creneauxRoutes);
 app.use("/api/reservations", reservationsRoutes);
+app.use("/api/admin", adminRoutes);
 
 app.use((req, res) => {
   res.status(404).json({

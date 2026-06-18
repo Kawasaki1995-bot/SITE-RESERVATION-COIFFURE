@@ -8,7 +8,9 @@ function createToken(user) {
       id: user.id,
       nom: user.nom,
       email: user.email,
-      role: user.role
+      adresse: user.adresse,
+      role: user.role,
+      statut: user.statut
     },
     process.env.JWT_SECRET,
     { expiresIn: process.env.JWT_EXPIRES_IN || '1d' }
@@ -58,7 +60,8 @@ async function register(req, res, next) {
         id: result.insertId,
         nom,
         email,
-        role
+        role,
+        statut: 'actif'
       }
     });
   } catch (error) {
@@ -78,7 +81,7 @@ async function login(req, res, next) {
     }
 
     const [users] = await pool.execute(
-      'SELECT id, nom, email, password_hash, role FROM users WHERE email = ?',
+      'SELECT id, nom, email, adresse, password_hash, role, statut FROM users WHERE email = ?',
       [email]
     );
 
@@ -90,6 +93,14 @@ async function login(req, res, next) {
     }
 
     const user = users[0];
+
+    if (user.statut === 'restreint') {
+      return res.status(403).json({
+        success: false,
+        message: 'Compte restreint. Contactez un administrateur.'
+      });
+    }
+
     const isPasswordValid = await bcrypt.compare(password, user.password_hash);
 
     if (!isPasswordValid) {
@@ -103,7 +114,9 @@ async function login(req, res, next) {
       id: user.id,
       nom: user.nom,
       email: user.email,
-      role: user.role
+      adresse: user.adresse,
+      role: user.role,
+      statut: user.statut
     };
 
     res.json({
@@ -125,8 +138,68 @@ async function me(req, res) {
   });
 }
 
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+async function updateMe(req, res, next) {
+  try {
+    const { nom, email, adresse } = req.body;
+
+    if (!nom || !email) {
+      return res.status(400).json({
+        success: false,
+        message: 'Nom et email obligatoires'
+      });
+    }
+
+    if (!isValidEmail(email)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Email invalide'
+      });
+    }
+
+    const [existingUsers] = await pool.execute(
+      'SELECT id FROM users WHERE email = ? AND id <> ?',
+      [email, req.user.id]
+    );
+
+    if (existingUsers.length > 0) {
+      return res.status(409).json({
+        success: false,
+        message: 'Email deja utilise'
+      });
+    }
+
+    await pool.execute(
+      `UPDATE users
+       SET nom = ?, email = ?, adresse = ?
+       WHERE id = ?`,
+      [nom, email, adresse || null, req.user.id]
+    );
+
+    const [users] = await pool.execute(
+      'SELECT id, nom, email, adresse, role, statut FROM users WHERE id = ?',
+      [req.user.id]
+    );
+    const user = users[0];
+
+    res.json({
+      success: true,
+      data: {
+        token: createToken(user),
+        user
+      }
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 module.exports = {
   register,
   login,
-  me
+  me,
+  updateMe
 };

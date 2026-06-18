@@ -90,6 +90,14 @@ Scripts utilises :
 1. `database/schema.sql`
 2. `database/seed.sql`
 
+Pour une base deja existante, ne pas reimporter `schema.sql` sans sauvegarde car il supprime et recree les tables. Utiliser plutot les migrations :
+
+```bash
+mysql -u utilisateur_mysql -p nom_base_mysql < database/migrations/2026-06-18-admin-account-settings.sql
+```
+
+Cette migration ajoute les champs `adresse` et `statut` dans `users`, ajoute l'index du statut si besoin, et cree le compte `admin@cutandgo.test` s'il n'existe pas.
+
 Le fichier `schema.sql` cree les tables principales :
 
 - `users` ;
@@ -156,6 +164,9 @@ bloquer les appels API.
 - Reservation verifiee.
 - Annulation verifiee si la regle des 24 heures le permet.
 - Dashboard salon verifie.
+- Page admin verifiee avec `admin@cutandgo.test`.
+- Restriction/reactivation d'un compte verifiee.
+- Page `Mon compte` verifiee avec modification du nom et de l'adresse.
 - Console navigateur controlee.
 - Audit Lighthouse a refaire sur l'URL publique si possible.
 
@@ -173,9 +184,25 @@ Tests a realiser ou a confirmer depuis l'URL publique :
 - affichage du dashboard salon ;
 - creation ou modification d'une prestation ;
 - creation ou blocage d'un creneau ;
+- connexion avec un compte admin ;
+- affichage de la liste des comptes ;
+- restriction puis reactivation d'un compte de test ;
+- modification du nom ou de l'adresse depuis `compte.html` ;
 - controle des erreurs dans la console navigateur.
 
-## 8. Phrase pour l'oral
+## 9. Pourquoi une modification locale n'apparait pas en ligne
+
+Le site de production Alwaysdata utilise ses propres fichiers et sa propre base MySQL. Une modification faite en local ne se voit en ligne que si :
+
+- les fichiers frontend sont redeployes dans le dossier public ;
+- les fichiers backend sont redeployes dans le dossier Node.js ;
+- les dependances sont installees si `package.json` a change ;
+- l'application Node.js est redemarree ;
+- les migrations SQL sont appliquees sur la base de production.
+
+Pour les ajouts admin et compte, il faut donc deployer le code et executer `database/migrations/2026-06-18-admin-account-settings.sql` sur la base Alwaysdata.
+
+## 10. Phrase pour l'oral
 
 ```text
 J'ai deploye Cut&Go sur Alwaysdata afin d'avoir le frontend, l'API Node.js et la

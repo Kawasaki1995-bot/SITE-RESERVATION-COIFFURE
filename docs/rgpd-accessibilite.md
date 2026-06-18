@@ -8,7 +8,9 @@ Le MVP collecte uniquement les donnees utiles au fonctionnement de la reservatio
 
 - nom de l'utilisateur ;
 - email ;
-- role : client ou salon ;
+- adresse personnelle si l'utilisateur la renseigne ;
+- role : client, salon ou admin ;
+- statut du compte : actif ou restreint ;
 - informations du salon : nom, ville, adresse, description, telephone, image ;
 - prestations ;
 - creneaux ;
@@ -22,11 +24,13 @@ Les donnees sont utilisees pour :
 
 - creer un compte ;
 - connecter l'utilisateur ;
+- permettre a l'utilisateur de gerer son compte ;
 - rechercher un salon ;
 - afficher une fiche salon ;
 - reserver un creneau ;
 - consulter ou annuler un rendez-vous ;
 - permettre au salon de gerer son activite.
+- permettre a l'administrateur de gerer les comptes et de restreindre un acces abusif.
 
 ## 3. Securite
 
@@ -35,6 +39,7 @@ Mesures integrees dans le MVP :
 - mots de passe hashes avec `bcrypt` ;
 - routes sensibles protegees par JWT ;
 - verification des roles cote backend ;
+- restriction possible d'un compte par un administrateur ;
 - requetes SQL preparees avec `mysql2` ;
 - configuration sensible separee dans `.env` ;
 - messages d'erreur controles.
@@ -78,5 +83,5 @@ Mesures presentes dans le projet :
 ## 7. Phrase simple pour l'oral
 
 ```text
-Pour le MVP, j'ai limite les donnees collectees au strict necessaire, protege les mots de passe avec bcrypt, protege les routes avec JWT, et ajoute des pages mentions legales et confidentialite pour montrer la prise en compte du RGPD.
+Pour le MVP, j'ai limite les donnees collectees au strict necessaire, protege les mots de passe avec bcrypt, protege les routes avec JWT, ajoute une restriction de compte cote admin, et ajoute des pages mentions legales et confidentialite pour montrer la prise en compte du RGPD.
 ```
