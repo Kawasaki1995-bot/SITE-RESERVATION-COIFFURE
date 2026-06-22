@@ -1,6 +1,6 @@
-# Dossier professionnel (DP) - Cut&Go
+# Dossier professionnel - Cut&Go
 
-## Page de garde
+## Informations candidat
 
 Nom de naissance : A completer
 
@@ -12,111 +12,121 @@ Adresse : A completer
 
 Titre professionnel vise : Developpeur web et web mobile
 
-Modalite d'acces :
+Modalite d'acces : Parcours de formation
 
-- [x] Parcours de formation
-- [ ] Validation des Acquis de l'Experience (VAE)
-
-Projet support : Cut&Go, application web de reservation de rendez-vous pour salons de coiffure
-
-Organisme / centre de formation : Molengeek
+Organisme de formation : Molengeek
 
 Periode d'exercice : Du A completer au A completer
 
----
-
-## Presentation du dossier
-
-Le dossier professionnel constitue un element du systeme de validation du titre professionnel. Il presente des exemples de pratique professionnelle en lien avec les activites-types du titre vise.
-
-Ce dossier presente les pratiques mises en oeuvre pendant la realisation du projet Cut&Go. Le projet consiste a developper un MVP de reservation de rendez-vous pour salons de coiffure, avec un parcours client, un parcours salon et une interface d'administration simple.
-
-Le client peut creer un compte, se connecter, rechercher un salon par ville, filtrer les resultats, consulter une fiche salon, choisir une prestation, reserver un creneau disponible, consulter ses rendez-vous et annuler un rendez-vous si la regle des 24 heures est respectee.
-
-Le salon peut creer un compte professionnel, se connecter, gerer ses informations, ses prestations, ses horaires d'ouverture, ses creneaux disponibles ou indisponibles, consulter ses reservations et suivre un chiffre d'affaires simple.
-
-L'administrateur peut se connecter a une interface dediee pour consulter les comptes, modifier leurs informations principales, restreindre ou reactiver un compte, et supprimer un compte si necessaire.
-
-Chaque utilisateur connecte peut egalement modifier ses informations personnelles depuis une page de parametrage du compte : nom, email et adresse personnelle.
-
-La stack technique utilisee est alignee avec le programme DWWM et le referentiel REAC TP-01280 millesime 04 : HTML5, CSS3, JavaScript Vanilla, Node.js, Express.js, MySQL, mysql2, bcrypt, JWT, dotenv, Git, GitHub et Alwaysdata.
+Projet support : Cut&Go, application web de reservation de rendez-vous pour salons de coiffure
 
 ---
 
-## Sommaire
+# Presentation du projet support
 
-### Exemples de pratique professionnelle
+Cut&Go est une application web de reservation de rendez-vous pour salons de coiffure. Le projet a ete construit comme projet fil rouge DWWM, en suivant la progression du programme de formation sur 24 semaines et les 8 competences REAC du titre professionnel Developpeur web et web mobile.
 
-#### Activite-type 1 - Developper la partie front-end d'une application web ou web mobile securisee
+L'application comporte trois parcours principaux :
 
-- Exemple numero 1 : Installer et configurer son environnement de travail en fonction du projet web ou web mobile.
-- Exemple numero 2 : Maquetter et realiser des interfaces utilisateur web ou web mobile.
-- Exemple numero 3 : Developper la partie dynamique des interfaces utilisateur web ou web mobile.
+- un parcours client : inscription, connexion, recherche de salons, filtres, consultation d'une fiche salon, choix d'une prestation, reservation d'un creneau, consultation et annulation de rendez-vous ;
+- un parcours salon : inscription professionnelle, connexion, gestion du salon, prestations, horaires, creneaux, reservations et statistiques simples ;
+- un parcours administrateur : connexion dediee, consultation des comptes, modification, restriction, reactivation et suppression de comptes.
 
-#### Activite-type 2 - Developper la partie back-end d'une application web ou web mobile securisee
+La stack technique utilisee est volontairement alignee avec le programme DWWM :
 
-- Exemple numero 1 : Mettre en place une base de donnees relationnelle et developper des composants d'acces aux donnees SQL.
-- Exemple numero 2 : Developper des composants metier cote serveur.
-- Exemple numero 3 : Documenter le deploiement d'une application dynamique web ou web mobile.
+- HTML5, CSS3 et JavaScript Vanilla pour le front-end ;
+- Node.js et Express.js pour le back-end ;
+- MySQL / MariaDB et mysql2 pour la base de donnees ;
+- bcrypt et JWT pour l'authentification ;
+- dotenv pour les variables d'environnement ;
+- Git, GitHub, README et documentation projet pour le suivi ;
+- Alwaysdata pour le deploiement.
 
-### Rubriques complementaires
+Ce dossier est structure selon les 8 competences du programme DWWM. Pour chaque competence, j'indique le lien avec le programme, les taches effectuees sur Cut&Go, les moyens utilises, le contexte de travail, les preuves disponibles et les elements que je pourrai completer plus tard.
 
-- Titres, diplomes, CQP, attestations de formation.
+---
+
+# Sommaire
+
+## Activite-type 1 - Developper la partie front-end d'une application web ou web mobile securisee
+
+- CP1 - Installer et configurer son environnement de travail.
+- CP2 - Maquetter des interfaces utilisateur.
+- CP3 - Realiser des interfaces utilisateur statiques.
+- CP4 - Developper la partie dynamique des interfaces utilisateur.
+
+## Activite-type 2 - Developper la partie back-end d'une application web ou web mobile securisee
+
+- CP5 - Mettre en place une base de donnees relationnelle.
+- CP6 - Developper des composants d'acces aux donnees SQL et NoSQL.
+- CP7 - Developper des composants metier cote serveur.
+- CP8 - Documenter le deploiement d'une application dynamique.
+
+## Rubriques complementaires
+
+- Titres, diplomes, CQP et attestations de formation.
 - Declaration sur l'honneur.
 - Documents illustrant la pratique professionnelle.
 - Annexes.
 
 ---
 
-# Exemples de pratique professionnelle
+# Activite-type 1 - Developper la partie front-end d'une application web ou web mobile securisee
 
-## Activite-type 1 - Developper la partie front-end d'une application web ou web mobile securisee
+## CP1 - Installer et configurer son environnement de travail
 
-## Exemple numero 1
+### Reference programme DWWM
 
-### Competence visee
+Cette competence correspond notamment a la semaine 2 du programme : outils de base, terminal, Git, GitHub, Visual Studio Code, Chrome DevTools et Markdown.
 
-Installer et configurer son environnement de travail en fonction du projet web ou web mobile.
+Elle est egalement mobilisee tout au long du projet, car l'environnement doit rester exploitable pendant le developpement front-end, back-end, base de donnees, tests et deploiement.
 
-### Exemple issu du projet
+### Mise en oeuvre dans Cut&Go
 
-Mise en place du depot Cut&Go, de l'arborescence du projet, de l'environnement Node.js, de la configuration MySQL locale et des documents de suivi.
+Pour demarrer Cut&Go, j'ai mis en place un environnement de travail complet pour un projet fullstack. J'ai organise le depot avec une separation claire entre le front-end, le back-end, la base de donnees et la documentation.
 
-### 1. Decrivez les taches ou operations que vous avez effectuees, et dans quelles conditions
+L'arborescence principale est la suivante :
 
-Pour demarrer le projet Cut&Go, j'ai analyse le brief, le cadrage projet et le programme de formation afin d'identifier les attentes techniques du titre DWWM. L'objectif etait de mettre en place un environnement simple, reproductible et compatible avec un projet fullstack : frontend HTML/CSS/JavaScript, API Express, base MySQL et documentation.
+```text
+Cut&Go
+|-- frontend/
+|-- backend/
+|-- database/
+|-- docs/
+|-- README.md
+|-- STRUCTURE_PROJET.md
+|-- TODO_PROJET.md
+```
 
-J'ai organise le depot avec une separation claire des responsabilites :
+J'ai prepare le back-end avec Node.js et npm. Le fichier `backend/package.json` declare les dependances principales du projet : `express`, `cors`, `dotenv`, `mysql2`, `bcrypt` et `jsonwebtoken`.
 
-- `frontend/` pour les pages HTML, le CSS, les scripts navigateur et les images ;
-- `backend/` pour l'API Express, les routes, les controllers, les middlewares et la configuration MySQL ;
-- `database/` pour le schema SQL, les donnees de demonstration et les migrations ;
-- `docs/` pour les documents de conception, de tests, de deploiement et de preparation jury.
+J'ai separe la configuration sensible avec des variables d'environnement et un fichier modele `backend/.env.example`. Le fichier `.gitignore` evite de versionner les fichiers sensibles comme `.env`.
 
-J'ai initialise l'environnement backend avec Node.js et npm. Le fichier `backend/package.json` declare les dependances necessaires : `express`, `cors`, `dotenv`, `mysql2`, `bcrypt` et `jsonwebtoken`. J'ai ajoute un script de verification syntaxique avec `npm run check`, afin de controler les principaux fichiers JavaScript backend avant la presentation.
+J'ai egalement centralise la configuration front-end des appels API dans `frontend/assets/js/api.js`, afin d'eviter de modifier toutes les pages lorsque l'URL de l'API change entre local et production.
 
-J'ai separe les informations sensibles du code source avec un fichier `.env` local et un modele `backend/.env.example`. Les variables permettent de configurer le port, l'origine frontend autorisee, les identifiants MySQL, le secret JWT et la duree de validite du token. Le fichier `.gitignore` evite de versionner les fichiers locaux sensibles.
+### Taches effectuees
 
-Cote frontend, j'ai centralise la configuration des appels API dans `frontend/assets/js/api.js`. Le script peut fonctionner en local, en ouverture directe de fichier ou en production, sans modifier les appels `fetch` dans toutes les pages.
+- Creation et organisation de l'arborescence du projet.
+- Configuration du projet Node.js avec npm.
+- Installation des dependances back-end.
+- Mise en place des variables d'environnement.
+- Creation d'un modele `.env.example`.
+- Ajout ou verification du `.gitignore`.
+- Mise en place de scripts de verification syntaxique.
+- Redaction du README et de documents de suivi.
+- Utilisation de Git et GitHub pour conserver l'historique du projet.
 
-J'ai enfin documente les commandes et les controles dans `README.md`, `STRUCTURE_PROJET.md`, `TODO_PROJET.md`, `docs/tests.md` et `docs/deploiement.md`.
+### Moyens utilises
 
-### 2. Precisez les moyens utilises
+- Visual Studio Code.
+- Terminal PowerShell.
+- Git et GitHub.
+- Node.js et npm.
+- Chrome DevTools.
+- Markdown pour la documentation.
+- Fichiers `README.md`, `STRUCTURE_PROJET.md`, `TODO_PROJET.md`.
 
-- Visual Studio Code pour le developpement.
-- Terminal PowerShell pour les commandes.
-- Node.js et npm pour le backend.
-- Express.js pour l'API.
-- MySQL / MariaDB et mysql2 pour la base de donnees.
-- dotenv pour les variables d'environnement.
-- Git et GitHub pour le versionnement.
-- Fichiers `README.md`, `STRUCTURE_PROJET.md`, `TODO_PROJET.md` et `docs/deploiement.md`.
-
-### 3. Avec qui avez-vous travaille ?
-
-J'ai travaille dans un cadre de formation, avec les consignes du projet, le programme DWWM et les attentes d'une soutenance jury. J'ai organise mon travail comme un projet professionnel : cadrage, priorisation du MVP, implementation, tests, documentation et preparation de demonstration.
-
-### 4. Contexte
+### Contexte
 
 Nom de l'entreprise, organisme ou association : Molengeek
 
@@ -124,104 +134,186 @@ Chantier, atelier, service : Projet de fin de formation - Developpement web
 
 Periode d'exercice : Du A completer au A completer
 
-### 5. Informations complementaires
+### Preuves et documents associes
 
-Cette phase m'a permis d'avoir un environnement de travail coherent entre le local et la production. Les commandes utiles sont documentees, les secrets ne sont pas dans le code source et l'arborescence du projet facilite la presentation devant le jury.
+- `README.md`
+- `STRUCTURE_PROJET.md`
+- `TODO_PROJET.md`
+- `backend/package.json`
+- `backend/.env.example`
+- `.gitignore`
+
+### Informations complementaires
+
+Cette competence m'a permis de travailler dans un environnement reproductible, lisible et presentable. Elle sert de base a toutes les autres competences du dossier.
 
 ---
 
-## Exemple numero 2
+## CP2 - Maquetter des interfaces utilisateur web ou web mobile
 
-### Competences visees
+### Reference programme DWWM
 
-Maquetter des interfaces utilisateur web ou web mobile.
+Cette competence correspond aux semaines 1 et 17 du programme : analyse du brief, user stories, wireframes, maquette haute fidelite et preparation des ecrans du projet fil rouge.
 
-Realiser des interfaces utilisateur statiques web ou web mobile.
+### Mise en oeuvre dans Cut&Go
 
-### Exemple issu du projet
+Avant de coder, j'ai defini le perimetre fonctionnel du MVP a partir du brief, du cadrage projet et des user stories. L'objectif etait de creer une application de reservation de rendez-vous proche dans son intention d'un service comme Planity, mais limitee aux fonctions essentielles pour un projet DWWM.
 
-Conception et integration responsive des interfaces Cut&Go : accueil, authentification, fiche salon, espace client, dashboard salon, compte, administration et pages legales.
+J'ai identifie trois profils :
 
-### 1. Decrivez les taches ou operations que vous avez effectuees, et dans quelles conditions
-
-Avant de coder, j'ai defini le perimetre fonctionnel du MVP a partir de `brief.md`, `cadrage_projet.md` et `docs/user-stories.md`. L'objectif etait de produire une application proche d'un clone simplifie de Planity, mais limitee a des fonctions essentielles et realistes pour un projet DWWM.
-
-J'ai identifie les utilisateurs principaux :
-
-- le client, qui recherche un salon, consulte une fiche et reserve un rendez-vous ;
-- le salon, qui gere ses prestations, ses horaires, ses creneaux et ses reservations ;
-- l'administrateur, qui consulte et gere les comptes utilisateurs.
+- le client ;
+- le salon ;
+- l'administrateur.
 
 J'ai ensuite defini les ecrans necessaires :
 
-- `index.html` : accueil, recherche par ville et resultats ;
-- `auth.html` : connexion et inscription ;
-- `compte.html` : parametrage du compte ;
-- `salon.html` : fiche salon, prestations et creneaux ;
-- `mes-rdv.html` : rendez-vous du client ;
-- `dashboard.html` : espace professionnel du salon ;
-- `admin.html` : administration des comptes ;
-- `mentions-legales.html` et `confidentialite.html` : pages legales.
+- accueil et recherche de salons ;
+- connexion et inscription ;
+- fiche salon ;
+- espace client et liste des rendez-vous ;
+- dashboard salon ;
+- page de compte ;
+- interface administrateur ;
+- pages legales.
 
-Les maquettes ont ete pensees autour des actions prioritaires. Pour le client, le chemin principal est : rechercher, comparer, choisir une prestation, selectionner un creneau et confirmer la reservation. Pour le salon, le chemin principal est : consulter les reservations, mettre a jour ses informations, gerer les prestations, gerer les horaires et ouvrir ou fermer des creneaux.
+Les parcours ont ete penses autour des actions principales. Le client doit pouvoir chercher, comparer, choisir une prestation, selectionner un creneau et reserver. Le salon doit pouvoir gerer son activite. L'administrateur doit pouvoir gerer les comptes.
 
-J'ai choisi une identite visuelle sobre et premium : noir profond, blanc casse, touches dorees, composants lisibles et formulaires simples. L'objectif etait d'evoquer l'univers des salons de coiffure tout en gardant une interface efficace.
+J'ai choisi une identite visuelle sobre : fond clair, contrastes lisibles, touches premium, formulaires simples et boutons explicites. Les interfaces ont ete pensees en mobile-first pour rester utilisables sur petit ecran.
 
-J'ai ensuite integre les interfaces statiques du projet dans le dossier `frontend/` avec HTML5 et CSS3. Le fichier `frontend/assets/css/style.css` contient la mise en forme generale : navigation, formulaires, boutons, cartes de resultats, fiche salon, dashboard, tableaux, messages, pages legales et adaptations responsive.
+### Taches effectuees
 
-J'ai travaille en mobile-first, puis j'ai ajoute des adaptations pour tablette et desktop. Les composants ont ete penses pour rester lisibles : formulaires avec labels, boutons visibles, zones de messages, cartes salon, tableaux simplifies et sections organisees.
+- Analyse du brief et reformulation du besoin.
+- Identification des profils utilisateurs.
+- Redaction et exploitation des user stories.
+- Definition des ecrans principaux.
+- Organisation des parcours client, salon et administrateur.
+- Conception d'une hierarchie visuelle simple.
+- Prise en compte du responsive, de l'accessibilite et des obligations legales.
+- Limitation volontaire du perimetre MVP.
 
-J'ai utilise une structure HTML semantique avec `header`, `nav`, `main`, `section`, `form`, `label` et `button`. Les images dynamiques disposent d'un texte alternatif ou d'un contexte de lecture. Les pages legales ont ete integrees afin de couvrir les premiers besoins RGPD.
+### Moyens utilises
 
-J'ai verifie le rendu avec le navigateur, les DevTools et un audit Lighthouse sur la page d'accueil. L'audit documente dans `docs/lighthouse.md` indique une accessibilite a 100 et un SEO a 100 sur la page auditee.
+- Figma pour organiser les ecrans.
+- Papier/crayon pour les premiers enchainements.
+- `brief.md`.
+- `cadrage_projet.md`.
+- `docs/user-stories.md`.
+- `docs/rgpd-accessibilite.md`.
 
-### 2. Precisez les moyens utilises
-
-- Figma pour organiser les ecrans et les parcours.
-- Papier/crayon pour les premiers enchainements d'ecrans.
-- `brief.md`, `cadrage_projet.md` et `docs/user-stories.md` pour cadrer le besoin.
-- HTML5 pour la structure des pages.
-- CSS3 pour la mise en forme.
-- Media queries pour le responsive.
-- Chrome DevTools pour tester les largeurs d'ecran.
-- Lighthouse pour controler performance, accessibilite, bonnes pratiques et SEO.
-- `docs/rgpd-accessibilite.md` et `docs/lighthouse.md`.
-
-### 3. Avec qui avez-vous travaille ?
-
-J'ai travaille en autonomie dans le cadre de la formation. Les interfaces ont ete construites a partir des user stories et du cadrage, puis ajustees selon les parcours de demonstration prevus.
-
-### 4. Contexte
+### Contexte
 
 Nom de l'entreprise, organisme ou association : Molengeek
 
-Chantier, atelier, service : Projet Cut&Go - Conception et integration front-end
+Chantier, atelier, service : Projet Cut&Go - Conception des interfaces
 
 Periode d'exercice : Du A completer au A completer
 
-### 5. Informations complementaires
+### Preuves et documents associes
 
-Certaines fonctions ont volontairement ete sorties du perimetre : paiement en ligne, notifications email/SMS, vraie geolocalisation, upload reel de photos, workflow avance de validation professionnelle et gestion multi-employes. Ce choix m'a permis de concentrer les interfaces sur les parcours indispensables.
+- `brief.md`
+- `cadrage_projet.md`
+- `docs/user-stories.md`
+- `docs/rgpd-accessibilite.md`
+- `frontend/index.html`
+- `frontend/salon.html`
+- `frontend/dashboard.html`
+- `frontend/admin.html`
 
-Le choix de rester en HTML/CSS sans framework CSS m'a permis de montrer les bases attendues du titre : structure semantique, formulaires, responsive, navigation, accessibilite et cohesion visuelle.
+### Informations complementaires
+
+Certaines fonctions ont ete sorties du perimetre pour rester realiste : paiement en ligne, notifications email/SMS, geolocalisation avancee, upload reel de photos, gestion multi-employes et workflow avance de validation professionnelle.
 
 ---
 
-## Exemple numero 3
+## CP3 - Realiser des interfaces utilisateur statiques web ou web mobile
 
-### Competence visee
+### Reference programme DWWM
 
-Developper la partie dynamique des interfaces utilisateur web ou web mobile.
+Cette competence correspond aux semaines 3, 4, 18 et 22 du programme : responsive design, formulaires, Flexbox, integration HTML/CSS, accessibilite, RGPD et bonnes pratiques front-end.
 
-### Exemple issu du projet
+### Mise en oeuvre dans Cut&Go
 
-Connexion du frontend Cut&Go a l'API : authentification, recherche de salons, affichage de la fiche salon, reservation, annulation, dashboard salon, compte utilisateur et administration.
+J'ai integre les interfaces statiques dans le dossier `frontend/`. Les pages ont ete construites en HTML5 et CSS3, sans framework CSS, afin de montrer les bases attendues du titre.
 
-### 1. Decrivez les taches ou operations que vous avez effectuees, et dans quelles conditions
+Les principales pages integrees sont :
 
-Apres l'integration statique, j'ai developpe la partie dynamique avec JavaScript Vanilla. L'objectif etait de remplacer les contenus fixes par des donnees issues de l'API Express et de rendre les parcours client, salon et admin fonctionnels.
+- `index.html` pour la recherche de salons ;
+- `auth.html` pour l'inscription et la connexion ;
+- `compte.html` pour les parametres du compte ;
+- `salon.html` pour la fiche d'un salon ;
+- `mes-rdv.html` pour les rendez-vous client ;
+- `dashboard.html` pour l'espace salon ;
+- `admin.html` pour l'administration ;
+- `mentions-legales.html` et `confidentialite.html` pour les pages legales.
 
-J'ai separe les scripts par domaine :
+Le fichier `frontend/assets/css/style.css` regroupe les styles principaux : navigation, formulaires, cartes, boutons, tableaux, dashboard, messages, responsive et pages legales.
+
+J'ai utilise une structure HTML semantique avec `header`, `nav`, `main`, `section`, `form`, `label` et `button`. Les formulaires ont des labels et les messages d'erreur ou de succes disposent de zones visibles.
+
+J'ai travaille en mobile-first, puis j'ai adapte l'affichage aux tablettes et ordinateurs avec des media queries. J'ai egalement documente les points RGPD et accessibilite.
+
+### Taches effectuees
+
+- Creation des pages HTML principales.
+- Integration des formulaires d'inscription, connexion et modification de compte.
+- Mise en place d'une navigation coherente.
+- Creation des cartes salons et des sections de contenu.
+- Integration du dashboard salon.
+- Integration de l'interface administrateur.
+- Integration des pages legales.
+- Mise en place du responsive.
+- Verification de l'affichage avec Chrome DevTools.
+- Audit Lighthouse de la page d'accueil.
+
+### Moyens utilises
+
+- HTML5.
+- CSS3.
+- Media queries.
+- Chrome DevTools.
+- Lighthouse.
+- `frontend/assets/css/style.css`.
+- `docs/lighthouse.md`.
+- `docs/lighthouse-index.json`.
+
+### Contexte
+
+Nom de l'entreprise, organisme ou association : Molengeek
+
+Chantier, atelier, service : Projet Cut&Go - Integration HTML/CSS
+
+Periode d'exercice : Du A completer au A completer
+
+### Preuves et documents associes
+
+- `frontend/index.html`
+- `frontend/auth.html`
+- `frontend/compte.html`
+- `frontend/salon.html`
+- `frontend/mes-rdv.html`
+- `frontend/dashboard.html`
+- `frontend/admin.html`
+- `frontend/assets/css/style.css`
+- `docs/lighthouse.md`
+- `docs/rgpd-accessibilite.md`
+
+### Informations complementaires
+
+L'audit Lighthouse documente indique une accessibilite et un SEO solides sur la page auditee. La mise en page reste simple afin de privilegier la lisibilite, le responsive et la demonstration fonctionnelle.
+
+---
+
+## CP4 - Developper la partie dynamique des interfaces utilisateur web ou web mobile
+
+### Reference programme DWWM
+
+Cette competence correspond aux semaines 5 a 9, 16, 18 et 20 du programme : JavaScript, DOM, evenements, fetch, promesses, async/await, modules, validation de formulaires, sessionStorage et connexion front/back.
+
+### Mise en oeuvre dans Cut&Go
+
+Apres l'integration statique, j'ai developpe la partie dynamique avec JavaScript Vanilla. L'objectif etait de connecter les pages HTML a l'API Express et de rendre les parcours utilisateur fonctionnels.
+
+Les scripts sont separes par domaine :
 
 - `api.js` centralise l'URL API, les appels `fetch`, le token JWT, la session et les helpers communs ;
 - `auth.js` gere l'inscription, la connexion et le choix du role ;
@@ -232,246 +324,343 @@ J'ai separe les scripts par domaine :
 - `dashboard.js` gere l'espace salon ;
 - `admin.js` gere la liste et la modification des comptes.
 
-J'ai implemente les appels asynchrones avec `fetch`, `async/await` et une gestion des erreurs HTTP. Les pages affichent des messages de chargement, de succes ou d'erreur selon le resultat de l'API.
+J'ai utilise `fetch`, `async/await` et la DOM API pour afficher les donnees de l'API. Les pages gerent les etats de chargement, de succes et d'erreur. Le token JWT est stocke en `sessionStorage` et ajoute automatiquement aux requetes protegees avec le header `Authorization: Bearer`.
 
-Le token JWT est stocke en `sessionStorage` pendant la session. Lorsqu'une route protegee est appelee, `api.js` ajoute automatiquement le header `Authorization: Bearer`. Les liens de navigation sont adaptes selon l'etat connecte/deconnecte et selon le role de l'utilisateur.
+J'ai egalement ajoute des protections cote affichage, notamment avec `escapeHtml` pour echapper les donnees inserees dans le DOM et `safeImageUrl` pour limiter les URLs d'images.
 
-Pour limiter les risques d'injection dans l'affichage, j'ai utilise des helpers comme `escapeHtml` pour echapper les donnees inserees dans le DOM. J'ai aussi ajoute une fonction `safeImageUrl` afin de limiter les URLs d'images aux protocoles attendus.
+### Taches effectuees
 
-J'ai teste les parcours principaux : inscription et connexion, recherche d'un salon par ville, filtrage par prestation, reservation d'un creneau, disparition du creneau reserve, consultation et annulation d'un rendez-vous, gestion des prestations et creneaux par le salon, administration simple des comptes.
+- Connexion du front-end a l'API Express.
+- Gestion de l'inscription et de la connexion.
+- Stockage temporaire du token JWT.
+- Adaptation de la navigation selon l'etat connecte/deconnecte.
+- Recherche de salons et filtres.
+- Affichage dynamique des fiches salons.
+- Affichage des prestations et creneaux.
+- Reservation d'un creneau.
+- Consultation et annulation des rendez-vous.
+- Gestion dynamique du dashboard salon.
+- Gestion dynamique de l'administration.
+- Gestion des erreurs HTTP cote interface.
 
-### 2. Precisez les moyens utilises
+### Moyens utilises
 
 - JavaScript Vanilla.
-- API Fetch, promesses et `async/await`.
-- `sessionStorage` pour la session utilisateur.
-- DOM API pour l'affichage dynamique.
-- Chrome DevTools, onglets Console et Network.
-- `node --check` pour verifier la syntaxe des scripts JavaScript.
-- `docs/tests.md` pour les scenarios de validation.
+- DOM API.
+- API Fetch.
+- Promesses et `async/await`.
+- `sessionStorage`.
+- Chrome DevTools : Console, Network, Application.
+- `docs/tests.md`.
 
-### 3. Avec qui avez-vous travaille ?
-
-J'ai travaille en autonomie, avec une validation progressive : chaque page frontend a ete reliee a une ou plusieurs routes API, puis testee dans un scenario utilisateur complet.
-
-### 4. Contexte
+### Contexte
 
 Nom de l'entreprise, organisme ou association : Molengeek
 
-Chantier, atelier, service : Projet Cut&Go - JavaScript frontend
+Chantier, atelier, service : Projet Cut&Go - JavaScript front-end
 
 Periode d'exercice : Du A completer au A completer
 
-### 5. Informations complementaires
+### Preuves et documents associes
 
-Le choix de JavaScript Vanilla permet de montrer la comprehension des bases : evenements, DOM, modules de fichiers, appels HTTP, gestion des erreurs, stockage temporaire et adaptation de l'interface selon l'utilisateur connecte.
+- `frontend/assets/js/api.js`
+- `frontend/assets/js/auth.js`
+- `frontend/assets/js/search.js`
+- `frontend/assets/js/salon.js`
+- `frontend/assets/js/reservations.js`
+- `frontend/assets/js/dashboard.js`
+- `frontend/assets/js/admin.js`
+- `frontend/assets/js/compte.js`
+- `docs/tests.md`
+
+### Informations complementaires
+
+Cette competence montre la liaison entre le front-end et le back-end : appels HTTP, gestion du JWT, affichage conditionnel, messages utilisateur et parcours complet de reservation.
 
 ---
 
-## Activite-type 2 - Developper la partie back-end d'une application web ou web mobile securisee
+# Activite-type 2 - Developper la partie back-end d'une application web ou web mobile securisee
 
-## Exemple numero 1
+## CP5 - Mettre en place une base de donnees relationnelle
 
-### Competences visees
+### Reference programme DWWM
 
-Mettre en place une base de donnees relationnelle.
+Cette competence correspond aux semaines 12 et 19 du programme : modelisation, base de donnees MySQL, MCD/MLD, script SQL, contraintes et donnees de test.
 
-Developper des composants d'acces aux donnees SQL.
+### Mise en oeuvre dans Cut&Go
 
-### Exemple issu du projet
+J'ai concu une base de donnees relationnelle MySQL adaptee aux besoins de Cut&Go. Les donnees sont structurees autour des utilisateurs, salons, prestations, horaires, creneaux et reservations.
 
-Conception de la base MySQL Cut&Go et creation des requetes SQL dans les controllers Express pour rechercher les salons, gerer les prestations, les creneaux, les reservations et les comptes.
-
-### 1. Decrivez les taches ou operations que vous avez effectuees, et dans quelles conditions
-
-Pour Cut&Go, j'ai concu une base de donnees relationnelle MySQL adaptee aux besoins du MVP. Les donnees du projet sont fortement liees : un salon appartient a un utilisateur, un salon possede des prestations et des creneaux, et une reservation relie un client, un salon, une prestation et un creneau.
-
-J'ai cree le fichier `database/schema.sql`, qui contient la creation de la base `cut_and_go` et des tables principales :
+Le fichier `database/schema.sql` contient la creation de la base et des tables principales :
 
 - `users` pour les comptes clients, salons et administrateurs ;
 - `salons` pour les informations publiques des salons ;
-- `prestations` pour les services proposes et leurs prix ;
-- `horaires_ouverture` pour les horaires jour par jour ;
+- `prestations` pour les services proposes ;
+- `horaires_ouverture` pour les horaires ;
 - `creneaux` pour les disponibilites ;
-- `reservations` pour les rendez-vous confirmes ou annules.
+- `reservations` pour les rendez-vous.
 
-J'ai defini les cles primaires, les cles etrangeres et les contraintes utiles pour garantir la coherence. Par exemple, l'email utilisateur est unique, un compte salon ne peut etre lie qu'a un seul salon, une prestation appartient a un salon, un creneau appartient a un salon et une reservation ne peut pas exister sans client, salon, prestation et creneau.
+J'ai defini les cles primaires, les cles etrangeres et les contraintes utiles. Par exemple, une prestation appartient a un salon, un creneau appartient a un salon, une reservation relie un client, un salon, une prestation et un creneau.
 
-J'ai ajoute des contraintes de coherence : prix positif, jour de semaine compris entre 1 et 7, heures d'ouverture coherentes, unicite d'un creneau pour un salon a une date et une heure donnees.
+J'ai ajoute des contraintes de coherence comme l'unicite des emails, des prix positifs, des jours de semaine valides et l'unicite d'un creneau pour un salon a une date et une heure donnees.
 
-J'ai aussi ajoute des index pour optimiser les recherches frequentes : role utilisateur, ville du salon, nom de prestation, creneaux par salon et date, reservations par client, salon et creneau.
+J'ai egalement cree un fichier `database/seed.sql` pour disposer de donnees de demonstration pendant les tests et la soutenance.
 
-Enfin, j'ai cree `database/seed.sql` pour disposer de donnees de demonstration : comptes de test, salons, prestations, horaires, creneaux et reservations. Ces donnees servent aux tests, a la demonstration et a la presentation jury.
+### Taches effectuees
 
-Dans le backend, la connexion est centralisee dans `backend/config/db.js` avec `mysql2`, ce qui permet aux controllers d'utiliser le meme pool de connexions. Les routes suivent l'organisation suivante :
+- Analyse des entites du projet.
+- Definition des relations entre utilisateurs, salons, prestations, creneaux et reservations.
+- Creation du schema SQL.
+- Creation des cles primaires et cles etrangeres.
+- Ajout de contraintes SQL.
+- Ajout d'index pour les recherches frequentes.
+- Creation de donnees de demonstration.
+- Ajout d'une migration pour faire evoluer une base existante.
+
+### Moyens utilises
+
+- MySQL / MariaDB.
+- SQL.
+- `database/schema.sql`.
+- `database/seed.sql`.
+- `database/migrations/2026-06-18-admin-account-settings.sql`.
+- Documentation projet.
+
+### Contexte
+
+Nom de l'entreprise, organisme ou association : Molengeek
+
+Chantier, atelier, service : Projet Cut&Go - Base de donnees
+
+Periode d'exercice : Du A completer au A completer
+
+### Preuves et documents associes
+
+- `database/schema.sql`
+- `database/seed.sql`
+- `database/migrations/2026-06-18-admin-account-settings.sql`
+- `docs/dossier-projet.md`
+- `docs/routes-api.md`
+
+### Informations complementaires
+
+Une base relationnelle etait adaptee au projet car les donnees sont fortement liees et doivent rester coherentes. Une solution NoSQL n'etait pas necessaire pour ce MVP.
+
+---
+
+## CP6 - Developper des composants d'acces aux donnees SQL et NoSQL
+
+### Reference programme DWWM
+
+Cette competence correspond aux semaines 13, 14, 19 et 20 du programme : SQL CRUD, jointures, acces aux donnees avec Node.js et MySQL, routes qui exploitent la base et integration fullstack.
+
+### Mise en oeuvre dans Cut&Go
+
+Dans le back-end, j'ai developpe les composants qui communiquent avec MySQL. La connexion est centralisee dans `backend/config/db.js` avec `mysql2`, ce qui permet aux controllers d'utiliser le meme pool de connexions.
+
+L'organisation generale suit ce schema :
 
 ```text
 route -> middleware -> controller -> requete SQL -> reponse JSON
 ```
 
-J'ai utilise des requetes preparees avec des parametres `?` pour eviter de concatener directement les entrees utilisateur dans le SQL. Cette pratique reduit le risque d'injection SQL.
+Les requetes SQL sont placees dans les controllers et executent les operations necessaires : recherche, lecture, creation, modification, suppression logique ou annulation selon les cas.
 
-Pour les operations sensibles, j'ai utilise des transactions. Lors de la creation d'une reservation, le backend verrouille le creneau avec `FOR UPDATE`, verifie qu'il est disponible, verifie que la prestation appartient bien au salon, cree la reservation, puis rend le creneau indisponible. Si une etape echoue, la transaction est annulee avec `rollback`.
+J'ai utilise des requetes preparees avec des parametres `?` pour eviter de concatener directement les entrees utilisateur dans les requetes. Cela reduit le risque d'injection SQL.
 
-J'ai applique le meme principe pour l'annulation : verification de la reservation, controle de la regle des 24 heures, changement de statut en `annulee`, puis remise a disposition du creneau.
+J'ai aussi utilise des transactions pour les operations sensibles. Par exemple, lors d'une reservation, le serveur verifie le creneau, verrouille la ligne avec `FOR UPDATE`, cree la reservation et rend le creneau indisponible. Si une etape echoue, la transaction est annulee.
 
-### 2. Precisez les moyens utilises
+Le projet n'utilise pas de base NoSQL. J'ai donc concentre cette competence sur SQL, les jointures, les transactions, les requetes preparees et l'acces aux donnees depuis Node.js.
 
-- MySQL / MariaDB.
-- Script `database/schema.sql`.
-- Script `database/seed.sql`.
-- Contraintes SQL : cles primaires, cles etrangeres, `UNIQUE`, `CHECK`.
-- Index SQL.
-- Node.js et Express.js.
-- mysql2 avec pool de connexions.
+### Taches effectuees
+
+- Configuration de la connexion MySQL.
+- Creation de requetes SQL preparees.
+- Recherche de salons avec filtres.
+- Lecture des prestations, creneaux et horaires.
+- Creation et modification de prestations.
+- Creation, blocage et reouverture de creneaux.
+- Creation de reservations.
+- Annulation de reservations.
+- Lecture des reservations client et salon.
+- Calcul de statistiques simples pour le salon.
+- Gestion des comptes dans l'interface administrateur.
+
+### Moyens utilises
+
+- Node.js.
+- Express.js.
+- mysql2.
+- Pool de connexions.
 - Requetes SQL preparees.
-- Transactions SQL avec `beginTransaction`, `commit` et `rollback`.
-- Documentation API dans `docs/routes-api.md`.
-- Tests manuels avec `docs/tests.md`.
+- Transactions SQL.
+- Documentation API.
+- Tests manuels.
 
-### 3. Avec qui avez-vous travaille ?
-
-J'ai travaille a partir des besoins fonctionnels definis dans le brief, le cadrage et les user stories. Les choix de base de donnees et les requetes SQL ont ete faits en fonction des parcours client, salon et admin.
-
-### 4. Contexte
+### Contexte
 
 Nom de l'entreprise, organisme ou association : Molengeek
 
-Chantier, atelier, service : Projet Cut&Go - Base de donnees et acces aux donnees
+Chantier, atelier, service : Projet Cut&Go - Acces aux donnees
 
 Periode d'exercice : Du A completer au A completer
 
-### 5. Informations complementaires
+### Preuves et documents associes
 
-Une base relationnelle etait adaptee au projet car elle permet de garantir les liens entre les entites. Une solution NoSQL n'etait pas necessaire pour ce MVP, car les donnees principales sont structurees et fortement relationnelles.
+- `backend/config/db.js`
+- `backend/controllers/`
+- `backend/routes/`
+- `docs/routes-api.md`
+- `docs/tests.md`
 
-Les contraintes SQL, les requetes preparees et les transactions se completent. La base protege la coherence des donnees, tandis que les controllers appliquent les regles metier et renvoient des messages exploitables par le frontend.
+### Informations complementaires
+
+Les composants d'acces aux donnees font le lien entre la base MySQL et les besoins fonctionnels du front-end. Les transactions sont importantes pour eviter qu'un meme creneau soit reserve plusieurs fois.
 
 ---
 
-## Exemple numero 2
+## CP7 - Developper des composants metier cote serveur
 
-### Competence visee
+### Reference programme DWWM
 
-Developper des composants metier cote serveur.
+Cette competence correspond aux semaines 10, 11, 15, 16, 19, 20 et 22 du programme : Node.js, Express, API REST, middlewares, authentification, securite, roles, validation et integration fullstack.
 
-### Exemple issu du projet
+### Mise en oeuvre dans Cut&Go
 
-Developpement de l'API Express securisee : authentification JWT, roles client/salon/admin, reservation, annulation, dashboard salon et administration des comptes.
+J'ai developpe une API REST avec Node.js et Express. Le fichier `backend/server.js` configure l'application, active CORS, lit les variables d'environnement, parse le JSON, expose une route de sante `/api/health`, branche les routes fonctionnelles et gere les erreurs.
 
-### 1. Decrivez les taches ou operations que vous avez effectuees, et dans quelles conditions
+Les composants metier principaux sont organises dans les controllers :
 
-J'ai developpe l'API backend Cut&Go avec Node.js et Express. Le fichier `backend/server.js` configure l'application, active CORS, lit les variables d'environnement avec `dotenv`, parse le JSON, expose la route de sante `/api/health`, branche les routes fonctionnelles et gere les erreurs.
+- `auth.controller.js` pour l'inscription, la connexion et le compte courant ;
+- `salons.controller.js` pour la recherche et la gestion du salon connecte ;
+- `prestations.controller.js` pour la gestion des prestations ;
+- `horaires.controller.js` pour la gestion des horaires ;
+- `creneaux.controller.js` pour la gestion des disponibilites ;
+- `reservations.controller.js` pour la reservation, l'annulation et les statistiques ;
+- `admin.controller.js` pour la gestion des comptes.
 
-J'ai implemente plusieurs composants metier :
+J'ai implemente l'authentification avec `bcrypt` et JWT. Les mots de passe sont hashes avant stockage. Lors de la connexion, le mot de passe est compare au hash. Si les identifiants sont corrects, l'API genere un token JWT contenant les informations utiles de l'utilisateur.
 
-- authentification et inscription dans `auth.controller.js` ;
-- recherche et modification des salons dans `salons.controller.js` ;
-- gestion des prestations dans `prestations.controller.js` ;
-- gestion des horaires dans `horaires.controller.js` ;
-- gestion des creneaux dans `creneaux.controller.js` ;
-- reservation, annulation et statistiques dans `reservations.controller.js` ;
-- administration des comptes dans `admin.controller.js`.
+Les routes sensibles sont protegees par `auth.middleware.js`, qui verifie le token JWT. Les droits sont controles avec `role.middleware.js`, afin de limiter certaines actions aux clients, salons ou administrateurs.
 
-Pour l'authentification, les mots de passe sont hashes avec `bcrypt` avant stockage. Lors de la connexion, le mot de passe fourni est compare au hash stocke. Si les identifiants sont corrects, l'API genere un token JWT contenant l'identite publique de l'utilisateur et son role.
-
-J'ai protege les routes sensibles avec `auth.middleware.js`, qui verifie la presence et la validite du token JWT. J'ai utilise `role.middleware.js` pour limiter certaines actions aux roles attendus. Par exemple, un client peut reserver un creneau et consulter ses rendez-vous, tandis qu'un salon peut gerer ses propres prestations, horaires, creneaux et reservations.
-
-J'ai implemente les regles metier principales :
+J'ai implemente plusieurs regles metier :
 
 - un utilisateur possede un role ;
 - un compte restreint ne peut plus se connecter ;
 - un client reserve uniquement un creneau disponible ;
 - une reservation rend le creneau indisponible ;
-- un creneau deja pris provoque une erreur `409` ;
+- un creneau deja reserve renvoie une erreur ;
 - une annulation est impossible moins de 24 heures avant le rendez-vous ;
 - une reservation annulee rend le creneau disponible ;
 - un salon ne peut gerer que ses propres donnees ;
-- les reservations annulees ne sont pas prises en compte dans le chiffre d'affaires ;
-- un administrateur ne peut pas supprimer son propre compte ni retirer ses propres droits admin.
+- les reservations annulees ne sont pas comptees dans le chiffre d'affaires ;
+- un administrateur ne peut pas supprimer son propre compte ni retirer ses propres droits.
 
-La gestion des erreurs est centralisee avec `error.middleware.js`. Les routes inconnues renvoient une reponse JSON `404`, et les erreurs applicatives gardent un format coherent pour faciliter le traitement cote frontend.
+### Taches effectuees
 
-### 2. Precisez les moyens utilises
+- Creation du serveur Express.
+- Organisation routes/controllers/middlewares.
+- Creation des routes d'authentification.
+- Hashage des mots de passe.
+- Generation et verification des JWT.
+- Protection des routes.
+- Controle des roles.
+- Gestion des reservations.
+- Gestion des annulations.
+- Gestion du dashboard salon.
+- Gestion de l'administration.
+- Gestion centralisee des erreurs.
+- Documentation des endpoints.
 
-- Node.js et Express.js.
-- bcrypt pour le hashage des mots de passe.
-- JWT pour l'authentification.
-- Middlewares Express pour l'authentification, les roles et les erreurs.
+### Moyens utilises
+
+- Node.js.
+- Express.js.
+- bcrypt.
+- jsonwebtoken.
+- dotenv.
+- CORS.
+- Middlewares Express.
 - MySQL et mysql2.
-- `npm run check` et `node --check` pour les controles syntaxiques.
-- `npm audit --omit=dev` pour le controle des dependances.
-- Thunder Client ou Postman possible pour tester les endpoints.
+- `node --check`.
+- `npm audit --omit=dev`.
 
-### 3. Avec qui avez-vous travaille ?
-
-J'ai travaille en autonomie sur le projet, en suivant une organisation proche d'un contexte professionnel : analyse du besoin, developpement, verification, documentation et deploiement.
-
-### 4. Contexte
+### Contexte
 
 Nom de l'entreprise, organisme ou association : Molengeek
 
-Chantier, atelier, service : Projet Cut&Go - Developpement backend
+Chantier, atelier, service : Projet Cut&Go - Developpement back-end
 
 Periode d'exercice : Du A completer au A completer
 
-### 5. Informations complementaires
+### Preuves et documents associes
 
-Le backend a ete concu pour rester lisible devant un jury : les routes definissent les endpoints, les middlewares securisent les acces, les controllers portent la logique, et la base MySQL stocke les donnees persistantes.
+- `backend/server.js`
+- `backend/controllers/`
+- `backend/routes/`
+- `backend/middlewares/auth.middleware.js`
+- `backend/middlewares/role.middleware.js`
+- `backend/middlewares/error.middleware.js`
+- `docs/routes-api.md`
+- `docs/tests.md`
+
+### Informations complementaires
+
+Cette competence concentre la logique metier du projet. Le back-end applique les regles qui ne doivent pas dependre uniquement du front-end : authentification, roles, disponibilites, annulation et droits d'administration.
 
 ---
 
-## Exemple numero 3
+## CP8 - Documenter le deploiement d'une application dynamique web ou web mobile
 
-### Competence visee
+### Reference programme DWWM
 
-Documenter le deploiement d'une application dynamique web ou web mobile.
+Cette competence correspond a la semaine 21 du programme : deploiement de l'application, configuration de la base de donnees en production, variables d'environnement, URL publique et procedure reproductible.
 
-### Exemple issu du projet
+### Mise en oeuvre dans Cut&Go
 
-Deploiement de Cut&Go sur Alwaysdata et redaction de la procedure de production pour le frontend, l'API Node.js et la base MySQL.
+J'ai prepare le deploiement de Cut&Go sur Alwaysdata. L'objectif etait de rendre l'application accessible en ligne avec un front-end public, une API Node.js/Express et une base MySQL distante.
 
-### 1. Decrivez les taches ou operations que vous avez effectuees, et dans quelles conditions
+La documentation `docs/deploiement.md` decrit :
 
-Pour finaliser le projet, j'ai deploye Cut&Go sur Alwaysdata afin de rendre l'application accessible en ligne. L'objectif etait d'heberger les trois parties du projet : le frontend statique, l'API Node.js/Express et la base MySQL.
+- l'architecture de production ;
+- la configuration du front-end ;
+- la configuration de l'API Node.js ;
+- la creation et l'import de la base MySQL ;
+- les variables d'environnement ;
+- la configuration CORS ;
+- les commandes utiles ;
+- les tests a effectuer apres deploiement.
 
-J'ai documente l'architecture de production dans `docs/deploiement.md` :
+Les variables sensibles sont configurees cote hebergeur et ne sont pas versionnees dans le depot. Le fichier `.env.example` sert seulement de modele.
 
-- un site public pour le dossier `frontend/` ;
-- une application Node.js pour le dossier `backend/` ;
-- une base MySQL creee depuis l'administration Alwaysdata ;
-- une configuration CORS entre le frontend public et l'API ;
-- des variables d'environnement pour la base, le JWT et l'origine autorisee.
+J'ai egalement prevu une migration SQL pour faire evoluer une base existante sans supprimer toutes les donnees.
 
-J'ai prepare le backend pour la production avec la commande de demarrage `npm start`, qui lance `node server.js`. Les variables sensibles sont configurees cote hebergeur et ne sont pas versionnees dans Git : `DB_HOST`, `DB_USER`, `DB_PASSWORD`, `DB_NAME`, `JWT_SECRET`, `JWT_EXPIRES_IN`, `PORT` et `FRONTEND_URL`.
+### Taches effectuees
 
-J'ai importe la structure de base avec `database/schema.sql`, puis les donnees de demonstration avec `database/seed.sql`. Pour les evolutions d'une base deja existante, j'ai prevu une migration `database/migrations/2026-06-18-admin-account-settings.sql`, afin d'eviter de supprimer les donnees de production.
+- Redaction de la procedure de deploiement.
+- Preparation du front-end pour la production.
+- Preparation du back-end avec `npm start`.
+- Configuration des variables d'environnement.
+- Import du schema SQL.
+- Import des donnees de demonstration.
+- Documentation des URLs de production.
+- Ajout d'une checklist de verification apres deploiement.
+- Documentation des differences entre local et production.
 
-Cote frontend, j'ai adapte `frontend/assets/js/api.js` pour que l'URL de l'API puisse fonctionner en local et en production. En production, le frontend appelle `/api` sur la meme origine, ce qui simplifie la configuration et limite les erreurs de domaine.
+### Moyens utilises
 
-J'ai ajoute une checklist de verification production : route `/api/health`, connexion client, recherche de salon, reservation, annulation, dashboard salon, interface admin, page compte, console navigateur et audit Lighthouse a refaire en ligne si possible.
+- Alwaysdata.
+- Node.js / Express.
+- MySQL Alwaysdata.
+- Variables d'environnement.
+- GitHub.
+- `docs/deploiement.md`.
+- `README.md`.
+- `database/schema.sql`.
+- `database/seed.sql`.
+- Migration SQL.
 
-Les URLs documentees pour le projet sont :
-
-- frontend : `https://cutandgo.alwaysdata.net` ;
-- API backend : `https://cutandgo.alwaysdata.net/api` ;
-- health check : `https://cutandgo.alwaysdata.net/api/health`.
-
-### 2. Precisez les moyens utilises
-
-- Alwaysdata pour l'hebergement.
-- Node.js / Express pour l'API.
-- MySQL Alwaysdata pour la base de donnees.
-- Variables d'environnement pour les secrets et la configuration.
-- `database/schema.sql`, `database/seed.sql` et migrations SQL.
-- `docs/deploiement.md` pour la procedure.
-- `README.md` pour l'installation, les comptes de test et la verification.
-
-### 3. Avec qui avez-vous travaille ?
-
-J'ai travaille dans le cadre du projet de formation, avec l'objectif de livrer une application demonstrable en ligne et une procedure de deploiement suffisamment claire pour etre relue ou reproduite.
-
-### 4. Contexte
+### Contexte
 
 Nom de l'entreprise, organisme ou association : Molengeek
 
@@ -479,15 +668,39 @@ Chantier, atelier, service : Projet Cut&Go - Deploiement et documentation
 
 Periode d'exercice : Du A completer au A completer
 
-### 5. Informations complementaires
+### Preuves et documents associes
 
-Le deploiement m'a permis de verifier les differences entre local et production : variables d'environnement, CORS, URL API, base MySQL distante, donnees de demonstration et redemarrage du serveur Node.js apres modification du backend.
+- `docs/deploiement.md`
+- `README.md`
+- `backend/.env.example`
+- `database/schema.sql`
+- `database/seed.sql`
+- `database/migrations/2026-06-18-admin-account-settings.sql`
+
+### Informations complementaires
+
+Cette competence sert a montrer que l'application n'est pas seulement developpee en local. Elle doit pouvoir etre installee, configuree, deployee et verifiee par une autre personne.
+
+---
+
+# Synthese des liens entre programme DWWM et projet Cut&Go
+
+| Competence | Programme DWWM | Implementation dans Cut&Go |
+| --- | --- | --- |
+| CP1 | Outils de base, terminal, Git, GitHub, VS Code, Markdown | Depot structure, README, configuration Node.js, `.env.example`, scripts de controle |
+| CP2 | Brief, user stories, wireframes, maquette haute fidelite | Parcours client/salon/admin, ecrans principaux, cadrage MVP |
+| CP3 | Responsive design, formulaires, integration HTML/CSS, accessibilite | Pages HTML/CSS, responsive, pages legales, audit Lighthouse |
+| CP4 | JavaScript, DOM, fetch, modules, validation, sessionStorage | Scripts front-end, appels API, JWT cote client, affichage dynamique |
+| CP5 | Modelisation et base MySQL | Schema SQL, contraintes, relations, seed |
+| CP6 | SQL CRUD, jointures, acces Node.js + MySQL | Controllers, requetes preparees, transactions, statistiques |
+| CP7 | Node.js, Express, API REST, auth, securite, roles | API Express, bcrypt, JWT, middlewares, regles metier |
+| CP8 | Deploiement, variables d'environnement, procedure | Documentation Alwaysdata, URLs, migration, checklist |
 
 ---
 
 # Titres, diplomes, CQP, attestations de formation
 
-Rubrique facultative. A completer si vous souhaitez porter ces elements a la connaissance du jury.
+Rubrique facultative.
 
 | Intitule | Autorite ou organisme | Date |
 | --- | --- | --- |
@@ -510,65 +723,40 @@ Signature :
 
 # Documents illustrant la pratique professionnelle
 
-Rubrique facultative. Les documents ci-dessous peuvent etre presentes au jury pour illustrer la pratique professionnelle.
-
-| Intitule | Emplacement dans le projet |
+| Document | Emplacement |
 | --- | --- |
-| Brief projet Cut&Go | `brief.md` |
+| Brief projet | `brief.md` |
 | Cadrage projet | `cadrage_projet.md` |
-| Programme DWWM 24 semaines | `programme_DWWM_24_semaines.md` |
-| Structure du projet | `STRUCTURE_PROJET.md` |
+| Programme DWWM | `programme_DWWM_24_semaines.md` |
+| Structure projet | `STRUCTURE_PROJET.md` |
+| README | `README.md` |
 | User stories | `docs/user-stories.md` |
 | Documentation API | `docs/routes-api.md` |
-| Schema SQL | `database/schema.sql` |
-| Donnees de demonstration | `database/seed.sql` |
-| Migration admin et compte | `database/migrations/2026-06-18-admin-account-settings.sql` |
 | Documentation RGPD et accessibilite | `docs/rgpd-accessibilite.md` |
 | Checklist de tests | `docs/tests.md` |
-| Deploiement Alwaysdata | `docs/deploiement.md` |
+| Documentation de deploiement | `docs/deploiement.md` |
 | Audit Lighthouse | `docs/lighthouse.md` et `docs/lighthouse-index.json` |
-| Frontend HTML/CSS/JS | `frontend/` |
-| Backend Express | `backend/` |
-| Interface admin | `frontend/admin.html` et `frontend/assets/js/admin.js` |
-| Parametres du compte | `frontend/compte.html` et `frontend/assets/js/compte.js` |
+| Schema SQL | `database/schema.sql` |
+| Donnees de demonstration | `database/seed.sql` |
+| Migration SQL | `database/migrations/2026-06-18-admin-account-settings.sql` |
+| Front-end | `frontend/` |
+| Back-end | `backend/` |
 
 ---
 
 # Annexes
 
-## Annexe 1 - Architecture du projet
+## Annexe 1 - Architecture simplifiee
 
 ```text
-frontend HTML/CSS/JS -> API Express -> controllers -> MySQL
+Navigateur
+  -> Front-end HTML/CSS/JavaScript
+  -> API Express
+  -> Controllers
+  -> MySQL
 ```
 
-Structure principale :
-
-```text
-Cut&Go
-|-- backend/
-|   |-- config/
-|   |-- controllers/
-|   |-- middlewares/
-|   |-- routes/
-|   |-- server.js
-|-- database/
-|   |-- schema.sql
-|   |-- seed.sql
-|   |-- migrations/
-|-- docs/
-|-- frontend/
-|   |-- assets/
-|   |-- index.html
-|   |-- auth.html
-|   |-- compte.html
-|   |-- salon.html
-|   |-- mes-rdv.html
-|   |-- dashboard.html
-|   |-- admin.html
-```
-
-## Annexe 2 - Routes principales de l'API
+## Annexe 2 - Routes principales
 
 - `GET /api/health` : verification de l'API.
 - `POST /api/auth/register` : inscription.
@@ -594,57 +782,35 @@ Cut&Go
 - `PUT /api/admin/users/:id` : modification d'un compte.
 - `DELETE /api/admin/users/:id` : suppression d'un compte.
 
-## Annexe 3 - Securite et qualite
-
-Mesures implementees :
-
-- hashage des mots de passe avec `bcrypt` ;
-- authentification par JWT ;
-- verification des roles cote backend ;
-- requetes SQL preparees ;
-- transactions SQL pour reservation et annulation ;
-- configuration sensible dans `.env` ;
-- CORS configure par variable d'environnement ;
-- pages mentions legales et confidentialite ;
-- controle syntaxique avec `node --check` ;
-- audit de dependances avec `npm audit --omit=dev` ;
-- audit Lighthouse documente.
-
-## Annexe 4 - URLs de deploiement
-
-- Frontend : `https://cutandgo.alwaysdata.net`
-- API backend : `https://cutandgo.alwaysdata.net/api`
-- Health check : `https://cutandgo.alwaysdata.net/api/health`
-
-## Annexe 5 - Scenarios de demonstration
+## Annexe 3 - Scenarios de demonstration
 
 ### Parcours client
 
-1. Se connecter avec `alice.client@cutandgo.test`.
-2. Rechercher un salon a Lille ou Bruxelles.
-3. Filtrer les resultats par note, prix ou prestation.
+1. Se connecter avec un compte client de test.
+2. Rechercher un salon par ville.
+3. Filtrer les resultats.
 4. Ouvrir une fiche salon.
-5. Choisir une prestation et un creneau.
-6. Confirmer la reservation.
-7. Verifier que le creneau n'est plus disponible.
-8. Ouvrir `Mes RDV`.
-9. Annuler le rendez-vous si la regle des 24 heures le permet.
+5. Choisir une prestation.
+6. Choisir un creneau.
+7. Confirmer la reservation.
+8. Consulter mes rendez-vous.
+9. Annuler si la regle des 24 heures le permet.
 
 ### Parcours salon
 
-1. Se connecter avec `contact@salon-elegance.test`.
-2. Ouvrir le dashboard salon.
-3. Consulter les reservations et les statistiques.
+1. Se connecter avec un compte salon.
+2. Ouvrir le dashboard.
+3. Consulter les reservations.
 4. Modifier les informations du salon.
 5. Ajouter ou desactiver une prestation.
 6. Creer, bloquer ou rouvrir un creneau.
-7. Modifier les horaires d'ouverture.
+7. Modifier les horaires.
 
 ### Parcours administrateur
 
-1. Se connecter avec `admin@cutandgo.test`.
-2. Ouvrir `admin.html`.
+1. Se connecter avec un compte administrateur.
+2. Ouvrir l'interface admin.
 3. Consulter la liste des comptes.
-4. Modifier le statut d'un compte de test.
-5. Reactiver le compte.
-6. Verifier que l'administrateur ne peut pas supprimer son propre compte.
+4. Modifier un compte.
+5. Restreindre puis reactiver un compte.
+6. Verifier les protections sur le compte administrateur courant.
