@@ -60,17 +60,25 @@ async function loadSalonPage(salonId) {
   renderLoading();
 
   try {
-    const [salon, prestations, creneaux] = await Promise.all([
-      apiRequest(`/salons/${salonId}`),
-      apiRequest(`/salons/${salonId}/prestations`),
-      apiRequest(`/salons/${salonId}/creneaux`)
-    ]);
-
+    const salon = await apiRequest(`/salons/${salonId}`);
     renderSalonDetails(salon);
-    renderPrestations(prestations);
-    renderCreneaux(creneaux);
   } catch (error) {
     renderError(error.message);
+    return;
+  }
+
+  try {
+    const prestations = await apiRequest(`/salons/${salonId}/prestations`);
+    renderPrestations(prestations);
+  } catch (error) {
+    document.querySelector('[data-prestations]').innerHTML = `<p class="empty-state">${escapeHtml(error.message)}</p>`;
+  }
+
+  try {
+    const creneaux = await apiRequest(`/salons/${salonId}/creneaux`);
+    renderCreneaux(creneaux);
+  } catch (error) {
+    document.querySelector('[data-creneaux]').innerHTML = `<p class="empty-state">${escapeHtml(error.message)}</p>`;
   }
 }
 

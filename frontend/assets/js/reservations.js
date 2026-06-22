@@ -2,15 +2,17 @@ function renderReservations(reservations) {
   const container = document.querySelector('[data-reservations]');
   if (!container) return;
 
-  container.innerHTML = reservations.length ? reservations.map((reservation) => `
+  const activeReservations = reservations.filter((reservation) => reservation.statut !== 'annulee');
+
+  container.innerHTML = activeReservations.length ? activeReservations.map((reservation) => `
     <article class="list-row">
       <div>
         <p class="eyebrow">${formatDate(reservation.date_creneau)} a ${formatTime(reservation.heure_debut)}</p>
         <h3>${escapeHtml(reservation.salon)}</h3>
         <p>${escapeHtml(reservation.prestation)} - ${formatPrice(reservation.prix)}</p>
       </div>
-      <button class="button button--ghost" type="button" data-cancel-id="${reservation.id}" ${reservation.statut === 'annulee' ? 'disabled' : ''}>
-        ${reservation.statut === 'annulee' ? 'Annulee' : 'Annuler'}
+      <button class="button button--ghost" type="button" data-cancel-id="${reservation.id}">
+        Annuler
       </button>
     </article>
   `).join('') : '<p class="empty-state">Aucune reservation pour le moment.</p>';
@@ -25,8 +27,14 @@ function renderReservations(reservations) {
         await apiRequest(`/reservations/${button.dataset.cancelId}/cancel`, {
           method: 'PATCH'
         });
+        button.closest('.list-row')?.remove();
         await loadReservations();
       } catch (error) {
+        if (/deja annulee|introuvable/i.test(error.message)) {
+          button.closest('.list-row')?.remove();
+          return;
+        }
+
         button.disabled = false;
         button.textContent = originalText;
         renderMessage(error.message, 'error');

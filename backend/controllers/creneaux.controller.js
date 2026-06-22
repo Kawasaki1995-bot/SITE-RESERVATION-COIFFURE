@@ -20,6 +20,86 @@ function isValidHalfHour(value) {
   return /^([01]\d|2[0-3]):(00|30)(:00)?$/.test(value);
 }
 
+function formatDateForSql(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
+}
+
+function formatTimeForSql(minutes) {
+  const hours = String(Math.floor(minutes / 60)).padStart(2, '0');
+  const mins = String(minutes % 60).padStart(2, '0');
+
+  return `${hours}:${mins}:00`;
+}
+
+function timeToMinutes(value) {
+  const [hours, minutes] = String(value).split(':').map(Number);
+
+  return hours * 60 + minutes;
+}
+
+async function ensureUpcomingCreneaux(salonId) {
+  const [salons] = await pool.execute(
+    `SELECT id
+     FROM salons
+     WHERE id = ?
+     LIMIT 1`,
+    [salonId]
+  );
+
+  if (salons.length === 0) {
+    return;
+  }
+
+  const [horaires] = await pool.execute(
+    `SELECT jour_semaine, heure_ouverture, heure_fermeture
+     FROM horaires_ouverture
+     WHERE salon_id = ? AND ferme = FALSE
+     ORDER BY jour_semaine ASC`,
+    [salonId]
+  );
+
+  if (horaires.length === 0) {
+    return;
+  }
+
+  const horairesByDay = new Map(horaires.map((horaire) => [Number(horaire.jour_semaine), horaire]));
+  const values = [];
+  const today = new Date();
+
+  for (let offset = 1; offset <= 14; offset += 1) {
+    const date = new Date(today);
+    date.setDate(today.getDate() + offset);
+
+    const jourSemaine = date.getDay() === 0 ? 7 : date.getDay();
+    const horaire = horairesByDay.get(jourSemaine);
+
+    if (!horaire) {
+      continue;
+    }
+
+    const opening = timeToMinutes(horaire.heure_ouverture);
+    const closing = timeToMinutes(horaire.heure_fermeture);
+
+    for (let minutes = opening; minutes < closing; minutes += 30) {
+      values.push([salonId, formatDateForSql(date), formatTimeForSql(minutes), true]);
+    }
+  }
+
+  if (values.length === 0) {
+    return;
+  }
+
+  await pool.query(
+    `INSERT IGNORE INTO creneaux (salon_id, date_creneau, heure_debut, disponible)
+     VALUES ?`,
+    [values]
+  );
+}
+
 async function getSalonIdForUser(userId) {
   const [salons] = await pool.execute(
     'SELECT id FROM salons WHERE user_id = ?',
@@ -31,11 +111,13 @@ async function getSalonIdForUser(userId) {
 
 async function listBySalon(req, res, next) {
   try {
+    await ensureUpcomingCreneaux(req.params.id);
+
     const params = [req.params.id];
     let sql = `
-      SELECT id, date_creneau, heure_debut, disponible
+      SELECT id, DATE_FORMAT(date_creneau, '%Y-%m-%d') AS date_creneau, heure_debut, disponible
       FROM creneaux
-      WHERE salon_id = ? AND disponible = TRUE
+      WHERE salon_id = ? AND disponible = TRUE AND date_creneau >= CURDATE()
     `;
 
     if (req.query.date) {
@@ -76,7 +158,7 @@ async function listMine(req, res, next) {
 
     const params = [salonId];
     let sql = `
-      SELECT id, date_creneau, heure_debut, disponible
+      SELECT id, DATE_FORMAT(date_creneau, '%Y-%m-%d') AS date_creneau, heure_debut, disponible
       FROM creneaux
       WHERE salon_id = ?
     `;

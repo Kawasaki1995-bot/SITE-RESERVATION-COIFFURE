@@ -26,11 +26,11 @@ function resolveApiBaseUrl() {
 }
 
 function getToken() {
-  return sessionStorage.getItem(TOKEN_KEY);
+  return localStorage.getItem(TOKEN_KEY) || sessionStorage.getItem(TOKEN_KEY);
 }
 
 function getCurrentUser() {
-  const rawUser = sessionStorage.getItem(USER_KEY);
+  const rawUser = localStorage.getItem(USER_KEY) || sessionStorage.getItem(USER_KEY);
 
   if (!rawUser) {
     return null;
@@ -45,11 +45,15 @@ function getCurrentUser() {
 }
 
 function saveSession(token, user) {
+  localStorage.setItem(TOKEN_KEY, token);
+  localStorage.setItem(USER_KEY, JSON.stringify(user));
   sessionStorage.setItem(TOKEN_KEY, token);
   sessionStorage.setItem(USER_KEY, JSON.stringify(user));
 }
 
 function clearSession() {
+  localStorage.removeItem(TOKEN_KEY);
+  localStorage.removeItem(USER_KEY);
   sessionStorage.removeItem(TOKEN_KEY);
   sessionStorage.removeItem(USER_KEY);
 }
@@ -130,13 +134,24 @@ function formatTime(value) {
 }
 
 function formatDate(value) {
-  const datePart = String(value || '').split('T')[0];
+  const rawValue = String(value || '').trim();
+  const datePart = rawValue.match(/^\d{4}-\d{2}-\d{2}/)?.[0];
+
+  if (!datePart) {
+    return rawValue || 'Date indisponible';
+  }
+
+  const date = new Date(`${datePart}T00:00:00`);
+
+  if (Number.isNaN(date.getTime())) {
+    return datePart;
+  }
 
   return new Intl.DateTimeFormat('fr-BE', {
     day: '2-digit',
     month: 'short',
     year: 'numeric'
-  }).format(new Date(`${datePart}T00:00:00`));
+  }).format(date);
 }
 
 document.addEventListener('DOMContentLoaded', hydrateNavigation);

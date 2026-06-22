@@ -112,14 +112,14 @@ async function listMyReservations(req, res, next) {
         s.nom AS salon,
         p.nom AS prestation,
         p.prix,
-        c.date_creneau,
+        DATE_FORMAT(c.date_creneau, '%Y-%m-%d') AS date_creneau,
         c.heure_debut,
         r.statut
        FROM reservations r
        INNER JOIN salons s ON s.id = r.salon_id
        INNER JOIN prestations p ON p.id = r.prestation_id
        INNER JOIN creneaux c ON c.id = r.creneau_id
-       WHERE r.client_id = ?
+       WHERE r.client_id = ? AND r.statut = 'confirmee'
        ORDER BY c.date_creneau DESC, c.heure_debut DESC`,
       [req.user.id]
     );
@@ -163,10 +163,16 @@ async function cancelReservation(req, res, next) {
     const reservation = reservations[0];
 
     if (reservation.statut === 'annulee') {
-      await connection.rollback();
-      return res.status(400).json({
-        success: false,
-        message: 'Reservation deja annulee'
+      await connection.execute(
+        'DELETE FROM reservations WHERE id = ?',
+        [reservation.id]
+      );
+
+      await connection.commit();
+
+      return res.json({
+        success: true,
+        message: 'Reservation supprimee'
       });
     }
 
@@ -182,22 +188,20 @@ async function cancelReservation(req, res, next) {
     }
 
     await connection.execute(
-      `UPDATE reservations
-       SET statut = 'annulee', cancelled_at = NOW()
-       WHERE id = ?`,
-      [reservation.id]
+      'UPDATE creneaux SET disponible = TRUE WHERE id = ?',
+      [reservation.creneau_id]
     );
 
     await connection.execute(
-      'UPDATE creneaux SET disponible = TRUE WHERE id = ?',
-      [reservation.creneau_id]
+      'DELETE FROM reservations WHERE id = ?',
+      [reservation.id]
     );
 
     await connection.commit();
 
     res.json({
       success: true,
-      message: 'Reservation annulee'
+      message: 'Reservation annulee et supprimee'
     });
   } catch (error) {
     await connection.rollback();
@@ -225,7 +229,7 @@ async function listSalonReservations(req, res, next) {
         u.nom AS client,
         p.nom AS prestation,
         p.prix,
-        c.date_creneau,
+        DATE_FORMAT(c.date_creneau, '%Y-%m-%d') AS date_creneau,
         c.heure_debut,
         r.statut
       FROM reservations r
