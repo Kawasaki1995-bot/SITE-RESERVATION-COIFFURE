@@ -130,11 +130,13 @@ function formatTime(value) {
 }
 
 function formatDate(value) {
+  const datePart = String(value || '').split('T')[0];
+
   return new Intl.DateTimeFormat('fr-BE', {
     day: '2-digit',
     month: 'short',
     year: 'numeric'
-  }).format(new Date(`${value}T00:00:00`));
+  }).format(new Date(`${datePart}T00:00:00`));
 }
 
 document.addEventListener('DOMContentLoaded', hydrateNavigation);

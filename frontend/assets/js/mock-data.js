@@ -15,9 +15,9 @@ const MOCK_SALONS = [
       { id: 3, nom: 'Brushing', prix: 35 }
     ],
     creneaux: [
-      { id: 1, date_creneau: '2026-06-02', heure_debut: '09:00:00', disponible: true },
-      { id: 3, date_creneau: '2026-06-02', heure_debut: '10:00:00', disponible: true },
-      { id: 5, date_creneau: '2026-06-03', heure_debut: '14:00:00', disponible: true }
+      { id: 1, date_creneau: '2026-06-24', heure_debut: '09:00:00', disponible: true },
+      { id: 3, date_creneau: '2026-06-24', heure_debut: '10:00:00', disponible: true },
+      { id: 5, date_creneau: '2026-06-25', heure_debut: '14:00:00', disponible: true }
     ]
   },
   {
@@ -36,9 +36,9 @@ const MOCK_SALONS = [
       { id: 6, nom: 'Coupe et barbe', prix: 38 }
     ],
     creneaux: [
-      { id: 7, date_creneau: '2026-06-02', heure_debut: '10:00:00', disponible: true },
-      { id: 8, date_creneau: '2026-06-02', heure_debut: '10:30:00', disponible: true },
-      { id: 10, date_creneau: '2026-06-04', heure_debut: '15:00:00', disponible: true }
+      { id: 7, date_creneau: '2026-06-24', heure_debut: '10:00:00', disponible: true },
+      { id: 8, date_creneau: '2026-06-24', heure_debut: '10:30:00', disponible: true },
+      { id: 10, date_creneau: '2026-06-26', heure_debut: '15:00:00', disponible: true }
     ]
   },
   {
@@ -57,9 +57,9 @@ const MOCK_SALONS = [
       { id: 9, nom: 'Coiffage naturel', prix: 36 }
     ],
     creneaux: [
-      { id: 12, date_creneau: '2026-06-03', heure_debut: '09:30:00', disponible: true },
-      { id: 13, date_creneau: '2026-06-03', heure_debut: '10:00:00', disponible: true },
-      { id: 14, date_creneau: '2026-06-05', heure_debut: '13:30:00', disponible: true }
+      { id: 12, date_creneau: '2026-06-25', heure_debut: '09:30:00', disponible: true },
+      { id: 13, date_creneau: '2026-06-25', heure_debut: '10:00:00', disponible: true },
+      { id: 14, date_creneau: '2026-06-27', heure_debut: '13:30:00', disponible: true }
     ]
   }
 ];
@@ -70,7 +70,7 @@ const MOCK_CLIENT_RESERVATIONS = [
     salon: 'Salon Elegance',
     prestation: 'Coupe homme',
     prix: 25,
-    date_creneau: '2026-06-02',
+    date_creneau: '2026-06-24',
     heure_debut: '09:30:00',
     statut: 'confirmee'
   },
@@ -79,7 +79,7 @@ const MOCK_CLIENT_RESERVATIONS = [
     salon: 'Maison Boucles',
     prestation: 'Soin cheveux',
     prix: 30,
-    date_creneau: '2026-06-05',
+    date_creneau: '2026-06-27',
     heure_debut: '13:30:00',
     statut: 'confirmee'
   }
@@ -91,7 +91,7 @@ const MOCK_SALON_RESERVATIONS = [
     client: 'Alice Martin',
     prestation: 'Coupe homme',
     prix: 25,
-    date_creneau: '2026-06-02',
+    date_creneau: '2026-06-24',
     heure_debut: '09:30:00',
     statut: 'confirmee'
   },
@@ -100,7 +100,7 @@ const MOCK_SALON_RESERVATIONS = [
     client: 'Nadia Benali',
     prestation: 'Brushing',
     prix: 35,
-    date_creneau: '2026-06-03',
+    date_creneau: '2026-06-25',
     heure_debut: '14:00:00',
     statut: 'confirmee'
   }

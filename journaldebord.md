@@ -873,4 +873,29 @@ Chaque entree doit expliquer :
 
 ---
 
+### 22/06/2026 - Correction des creneaux de demonstration en production
+
+#### Actions realisees
+
+- Mise a jour des creneaux de demonstration avec des dates futures.
+- Alignement des donnees mock du frontend avec les dates futures.
+- Correction du formatage des dates renvoyees par l'API en production.
+- Ajout d'un suffixe de version sur les scripts frontend pour eviter le cache navigateur apres deploiement.
+- Verification de l'affichage des prestations et creneaux sur Alwaysdata.
+
+#### Fichiers modifies
+
+- `database/seed.sql`
+- `frontend/assets/js/api.js`
+- `frontend/assets/js/mock-data.js`
+- `frontend/*.html`
+- `journaldebord.md`
+
+#### Etat
+
+- Les fiches salon affichent de nouveau les prestations et les creneaux disponibles.
+- Le parcours de reservation est pret pour la presentation projet.
+
+---
+
 _Ce journal de bord evoluera au fur et a mesure de l'avancement du projet._
