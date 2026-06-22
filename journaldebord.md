@@ -848,4 +848,29 @@ Chaque entree doit expliquer :
 
 ---
 
+### 22/06/2026 - Mise a jour du dossier professionnel
+
+#### Actions realisees
+
+- Relecture du dossier professionnel existant.
+- Verification du programme DWWM pour identifier les 8 competences REAC.
+- Restructuration de `docs/dossier-professionnel-cutandgo.md` autour des competences CP1 a CP8.
+- Ajout d'un exemple issu du projet Cut&Go pour chaque competence.
+- Conservation des rubriques demandees dans le dossier professionnel : taches effectuees, moyens utilises, collaboration, contexte et informations complementaires.
+- Ajout de la competence CP8 sur la documentation du deploiement Alwaysdata.
+- Mise a jour de `TODO_PROJET.md`.
+
+#### Fichiers modifies
+
+- `docs/dossier-professionnel-cutandgo.md`
+- `TODO_PROJET.md`
+- `journaldebord.md`
+
+#### Etat
+
+- Le dossier professionnel presente maintenant une partie pour chacune des 8 competences du referentiel.
+- Les exemples sont relies au projet Cut&Go et aux documents du projet.
+
+---
+
 _Ce journal de bord evoluera au fur et a mesure de l'avancement du projet._

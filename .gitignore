@@ -3,3 +3,5 @@ node_modules/
 backend/node_modules/
 backend/.env
 npm-debug.log*
+output/
+entrainement-oral-local/

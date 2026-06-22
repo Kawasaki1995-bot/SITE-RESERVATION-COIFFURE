@@ -106,6 +106,7 @@ Cette todo suit l'ordre de travail souhaite : conception, backend, frontend, pui
 - [x] Corriger les problemes d'accessibilite principaux.
 - [x] Verifier les mentions legales et la confidentialite.
 - [x] Preparer le dossier de projet.
+- [x] Mettre a jour le dossier professionnel avec une partie pour chacune des 8 competences REAC.
 - [x] Preparer le support de presentation.
 - [x] Preparer un scenario de demonstration.
 - [x] Preparer les reponses aux questions techniques du jury.
