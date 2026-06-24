@@ -202,7 +202,7 @@ Le MVP est maintenant construit pour une presentation jury.
 - Parcours salon : dashboard, informations salon, prestations, horaires, creneaux, reservations et statistiques.
 - Parcours admin : liste des comptes, modification, restriction et suppression.
 - Pages mentions legales et confidentialite.
-- Documentation API, support technique, questions jury, scenario de demonstration et dossier projet.
+- Documentation API, support technique, questions jury et scenario de demonstration.
 
 ### Restant hors MVP local
 

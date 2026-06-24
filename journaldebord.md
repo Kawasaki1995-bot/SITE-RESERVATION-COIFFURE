@@ -734,22 +734,20 @@ Chaque entree doit expliquer :
 
 ---
 
-### 08/06/2026 - Finalisation du dossier projet
+### 08/06/2026 - Finalisation de la documentation projet
 
 #### Actions realisees
 
 - Creation du document `docs/tests.md` avec les checklists du parcours client, du parcours salon et des controles de roles.
 - Creation du document `docs/rgpd-accessibilite.md` pour expliquer les donnees collectees, les mesures de securite et l'accessibilite de base.
-- Creation du document `docs/dossier-projet.md` comme synthese du projet pour le jury.
 - Creation du document `docs/deploiement.md` pour preparer les etapes de production.
 - Mise a jour de `brief.md` et `cadrage_projet.md` pour remplacer les anciennes prochaines etapes par l'etat reel du MVP.
-- Mise a jour de `TODO_PROJET.md` pour cocher les parcours finalises, la coherence projet, les tests de parcours, les pages legales et le dossier projet.
+- Mise a jour de `TODO_PROJET.md` pour cocher les parcours finalises, la coherence projet, les tests de parcours et les pages legales.
 
 #### Fichiers modifies
 
 - `docs/tests.md`
 - `docs/rgpd-accessibilite.md`
-- `docs/dossier-projet.md`
 - `docs/deploiement.md`
 - `brief.md`
 - `cadrage_projet.md`
@@ -774,7 +772,7 @@ Chaque entree doit expliquer :
 - Ajout d'une meta description dans `frontend/index.html`.
 - Relance de l'audit apres correction.
 - Creation du document `docs/lighthouse.md` avec les scores et l'explication pour l'oral.
-- Mise a jour de `TODO_PROJET.md`, `docs/tests.md` et `docs/dossier-projet.md`.
+- Mise a jour de `TODO_PROJET.md` et `docs/tests.md`.
 
 #### Resultats
 
@@ -832,7 +830,6 @@ Chaque entree doit expliquer :
 - `TODO_PROJET.md`
 - `cadrage_projet.md`
 - `docs/deploiement.md`
-- `docs/dossier-projet.md`
 - `docs/lighthouse.md`
 - `docs/presentation-technique.md`
 - `docs/questions-techniques-jury.md`

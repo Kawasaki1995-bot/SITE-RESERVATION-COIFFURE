@@ -439,7 +439,6 @@ Periode d'exercice : Du A completer au A completer
 - `database/schema.sql`
 - `database/seed.sql`
 - `database/migrations/2026-06-18-admin-account-settings.sql`
-- `docs/dossier-projet.md`
 - `docs/routes-api.md`
 
 ### Informations complementaires

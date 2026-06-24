@@ -550,7 +550,6 @@ sont les limites du MVP.
 - README.
 - Journal de bord.
 - Documentation API.
-- Dossier projet.
 - Cahier de cadrage.
 - User stories.
 - Scenario de demo.

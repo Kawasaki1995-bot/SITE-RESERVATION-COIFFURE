@@ -69,16 +69,16 @@ JWT_EXPIRES_IN=1d
 
 Mot de passe commun : `Password123!`
 
-| Role | Email |
-| --- | --- |
-| Admin | `admin@cutandgo.test` |
-| Client | `alice.client@cutandgo.test` |
-| Client | `nadia.client@cutandgo.test` |
-| Salon | `contact@salon-elegance.test` |
-| Salon | `contact@studio-barber.test` |
-| Salon | `contact@maison-boucles.test` |
-| Salon | `contact@lille-coiffure.test` |
-| Salon | `contact@barbier-vieux-lille.test` |
+| Role   | Email                              |
+| ------ | ---------------------------------- |
+| Admin  | `admin@cutandgo.test`              |
+| Client | `alice.client@cutandgo.test`       |
+| Client | `nadia.client@cutandgo.test`       |
+| Salon  | `contact@salon-elegance.test`      |
+| Salon  | `contact@studio-barber.test`       |
+| Salon  | `contact@maison-boucles.test`      |
+| Salon  | `contact@lille-coiffure.test`      |
+| Salon  | `contact@barbier-vieux-lille.test` |
 
 ## Scenario de demonstration
 
