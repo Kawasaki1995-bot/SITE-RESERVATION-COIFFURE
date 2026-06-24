@@ -188,11 +188,6 @@ Chaque entree doit expliquer :
 - Mise en place d'une todo globale pour suivre l'avancement du projet.
 - Ajout d'une regle de suivi quotidien dans `DIRECTIVES_IA.md`.
 
-#### Problemes rencontres
-
-- Le fichier `schema.sql` est ouvert dans l'IDE mais n'existe pas encore dans le dossier du projet.
-- Certains anciens fichiers contiennent des caracteres mal encodes.
-
 #### Prochaines actions conseillees
 
 - Completer les user stories avec des criteres d'acceptation.
@@ -224,7 +219,6 @@ Chaque entree doit expliquer :
 
 #### Problemes rencontres
 
-- Les anciens documents `brief.md` et `wwindex.md` contiennent encore des textes mal encodes.
 - Les donnees de test ne sont pas encore creees.
 - Le schema SQL n'a pas encore ete execute dans MySQL.
 
@@ -259,7 +253,6 @@ Chaque entree doit expliquer :
 
 #### Prochaines actions conseillees
 
-- Corriger ensuite `wwindex.md` si besoin pour supprimer les anciens encodages.
 - Continuer avec `database/seed.sql` puis `docs/routes-api.md`.
 
 ### 28/05/2026 - Correction des wireframes documentes
@@ -734,20 +727,22 @@ Chaque entree doit expliquer :
 
 ---
 
-### 08/06/2026 - Finalisation de la documentation projet
+### 08/06/2026 - Finalisation du dossier projet
 
 #### Actions realisees
 
 - Creation du document `docs/tests.md` avec les checklists du parcours client, du parcours salon et des controles de roles.
 - Creation du document `docs/rgpd-accessibilite.md` pour expliquer les donnees collectees, les mesures de securite et l'accessibilite de base.
+- Creation du document `docs/dossier-projet.md` comme synthese du projet pour le jury.
 - Creation du document `docs/deploiement.md` pour preparer les etapes de production.
 - Mise a jour de `brief.md` et `cadrage_projet.md` pour remplacer les anciennes prochaines etapes par l'etat reel du MVP.
-- Mise a jour de `TODO_PROJET.md` pour cocher les parcours finalises, la coherence projet, les tests de parcours et les pages legales.
+- Mise a jour de `TODO_PROJET.md` pour cocher les parcours finalises, la coherence projet, les tests de parcours, les pages legales et le dossier projet.
 
 #### Fichiers modifies
 
 - `docs/tests.md`
 - `docs/rgpd-accessibilite.md`
+- `docs/dossier-projet.md`
 - `docs/deploiement.md`
 - `brief.md`
 - `cadrage_projet.md`
@@ -772,7 +767,7 @@ Chaque entree doit expliquer :
 - Ajout d'une meta description dans `frontend/index.html`.
 - Relance de l'audit apres correction.
 - Creation du document `docs/lighthouse.md` avec les scores et l'explication pour l'oral.
-- Mise a jour de `TODO_PROJET.md` et `docs/tests.md`.
+- Mise a jour de `TODO_PROJET.md`, `docs/tests.md` et `docs/dossier-projet.md`.
 
 #### Resultats
 
@@ -830,6 +825,7 @@ Chaque entree doit expliquer :
 - `TODO_PROJET.md`
 - `cadrage_projet.md`
 - `docs/deploiement.md`
+- `docs/dossier-projet.md`
 - `docs/lighthouse.md`
 - `docs/presentation-technique.md`
 - `docs/questions-techniques-jury.md`
