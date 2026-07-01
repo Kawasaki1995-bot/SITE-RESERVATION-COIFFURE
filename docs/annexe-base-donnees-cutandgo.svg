@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Schema relationnel de la base de donnees Cut&amp;Go</title>
+  <desc id="desc">Schema relationnel compact avec les six tables principales, leurs champs essentiels, les cles primaires, les cles etrangeres et les relations.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f6f8fb; }
+      .title { font: 700 32px Arial, sans-serif; fill: #172033; }
+      .subtitle { font: 400 16px Arial, sans-serif; fill: #5d6878; }
+      .table { fill: #ffffff; stroke: #c8d2df; stroke-width: 2; rx: 10; }
+      .head-users { fill: #24507c; }
+      .head-salons { fill: #2e6d61; }
+      .head-data { fill: #986018; }
+      .head-res { fill: #7b3150; }
+      .head-text { font: 700 18px Arial, sans-serif; fill: #ffffff; }
+      .key { font: 700 14px Arial, sans-serif; fill: #101828; }
+      .field { font: 400 14px Arial, sans-serif; fill: #273244; }
+      .muted { font: 400 12px Arial, sans-serif; fill: #667085; }
+      .relation { stroke: #35445a; stroke-width: 2.7; fill: none; }
+      .relation-soft { stroke: #748197; stroke-width: 2.3; fill: none; stroke-dasharray: 7 6; }
+      .label { fill: #f6f8fb; stroke: #c6d0dd; stroke-width: 1.2; rx: 12; }
+      .label-text { font: 700 12px Arial, sans-serif; fill: #243044; }
+      .legend { fill: #eef3f8; stroke: #d1dbe8; stroke-width: 1.5; rx: 9; }
+      .legend-text { font: 400 14px Arial, sans-serif; fill: #465367; }
+      .legend-bold { font: 700 14px Arial, sans-serif; fill: #263241; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8.6" refY="5" orient="auto">
+      <path d="M1.5,1.5 L8.6,5 L1.5,8.5 Z" fill="#35445a"/>
+    </marker>
+    <filter id="shadow" x="-6%" y="-8%" width="112%" height="122%">
+      <feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#101828" flood-opacity="0.11"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" class="bg"/>
+  <text x="60" y="58" class="title">Base de donnees Cut&amp;Go - Schema relationnel</text>
+  <text x="60" y="88" class="subtitle">Annexe CP5 / CP6 : structure relationnelle, champs essentiels, cles etrangeres et cardinalites principales.</text>
+
+  <g filter="url(#shadow)">
+    <rect x="60" y="140" width="300" height="245" class="table"/>
+    <rect x="60" y="140" width="300" height="46" class="head-users"/>
+    <text x="82" y="169" class="head-text">users</text>
+    <text x="82" y="210" class="key">PK id</text>
+    <text x="82" y="236" class="field">nom</text>
+    <text x="82" y="262" class="field">email UNIQUE</text>
+    <text x="82" y="288" class="field">password_hash</text>
+    <text x="82" y="314" class="field">role: client | salon | admin</text>
+    <text x="82" y="340" class="field">statut: actif | restreint</text>
+    <text x="82" y="366" class="muted">Comptes et authentification</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="485" y="140" width="315" height="245" class="table"/>
+    <rect x="485" y="140" width="315" height="46" class="head-salons"/>
+    <text x="507" y="169" class="head-text">salons</text>
+    <text x="507" y="210" class="key">PK id</text>
+    <text x="507" y="236" class="key">FK user_id -> users.id UNIQUE</text>
+    <text x="507" y="262" class="field">nom</text>
+    <text x="507" y="288" class="field">ville, adresse</text>
+    <text x="507" y="314" class="field">description, telephone</text>
+    <text x="507" y="340" class="field">image_url, note</text>
+    <text x="507" y="366" class="muted">Fiche publique du salon</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="925" y="115" width="300" height="205" class="table"/>
+    <rect x="925" y="115" width="300" height="46" class="head-data"/>
+    <text x="947" y="144" class="head-text">prestations</text>
+    <text x="947" y="185" class="key">PK id</text>
+    <text x="947" y="211" class="key">FK salon_id -> salons.id</text>
+    <text x="947" y="237" class="field">nom</text>
+    <text x="947" y="263" class="field">prix CHECK prix >= 0</text>
+    <text x="947" y="289" class="field">active</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="925" y="365" width="300" height="225" class="table"/>
+    <rect x="925" y="365" width="300" height="46" class="head-data"/>
+    <text x="947" y="394" class="head-text">horaires_ouverture</text>
+    <text x="947" y="435" class="key">PK id</text>
+    <text x="947" y="461" class="key">FK salon_id -> salons.id</text>
+    <text x="947" y="487" class="field">jour_semaine CHECK 1..7</text>
+    <text x="947" y="513" class="field">heure_ouverture</text>
+    <text x="947" y="539" class="field">heure_fermeture, ferme</text>
+    <text x="947" y="565" class="muted">UNIQUE salon + jour</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="485" y="610" width="315" height="205" class="table"/>
+    <rect x="485" y="610" width="315" height="46" class="head-data"/>
+    <text x="507" y="639" class="head-text">creneaux</text>
+    <text x="507" y="680" class="key">PK id</text>
+    <text x="507" y="706" class="key">FK salon_id -> salons.id</text>
+    <text x="507" y="732" class="field">date_creneau</text>
+    <text x="507" y="758" class="field">heure_debut</text>
+    <text x="507" y="784" class="field">disponible</text>
+    <text x="507" y="802" class="muted">UNIQUE salon + date + heure</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="60" y="590" width="340" height="250" class="table"/>
+    <rect x="60" y="590" width="340" height="46" class="head-res"/>
+    <text x="82" y="619" class="head-text">reservations</text>
+    <text x="82" y="660" class="key">PK id</text>
+    <text x="82" y="686" class="key">FK client_id -> users.id</text>
+    <text x="82" y="712" class="key">FK salon_id -> salons.id</text>
+    <text x="82" y="738" class="key">FK prestation_id -> prestations.id</text>
+    <text x="82" y="764" class="key">FK creneau_id -> creneaux.id</text>
+    <text x="82" y="790" class="field">statut: confirmee | annulee</text>
+    <text x="82" y="816" class="muted">Rendez-vous client</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1320" y="180" width="220" height="440" class="legend"/>
+    <text x="1342" y="215" class="legend-bold">Lecture rapide</text>
+    <text x="1342" y="252" class="legend-text">PK = cle primaire</text>
+    <text x="1342" y="280" class="legend-text">FK = cle etrangere</text>
+    <text x="1342" y="318" class="legend-text">1 - N : un element</text>
+    <text x="1342" y="342" class="legend-text">parent possede</text>
+    <text x="1342" y="366" class="legend-text">plusieurs enfants.</text>
+    <text x="1342" y="412" class="legend-bold">Point central</text>
+    <text x="1342" y="449" class="legend-text">reservations relie</text>
+    <text x="1342" y="473" class="legend-text">un client, un salon,</text>
+    <text x="1342" y="497" class="legend-text">une prestation et</text>
+    <text x="1342" y="521" class="legend-text">un creneau.</text>
+    <text x="1342" y="570" class="legend-text">InnoDB garantit les</text>
+    <text x="1342" y="594" class="legend-text">relations par FK.</text>
+  </g>
+
+  <path d="M360 255 C405 255 435 255 485 255" class="relation" marker-end="url(#arrow)"/>
+  <rect x="394" y="226" width="70" height="25" class="label"/>
+  <text x="407" y="243" class="label-text">1 - 0..1</text>
+
+  <path d="M800 215 C845 200 875 195 925 200" class="relation" marker-end="url(#arrow)"/>
+  <rect x="836" y="169" width="54" height="25" class="label"/>
+  <text x="849" y="186" class="label-text">1 - N</text>
+
+  <path d="M800 320 C845 368 875 428 925 465" class="relation" marker-end="url(#arrow)"/>
+  <rect x="836" y="389" width="54" height="25" class="label"/>
+  <text x="849" y="406" class="label-text">1 - N</text>
+
+  <path d="M642 385 C642 458 642 535 642 610" class="relation" marker-end="url(#arrow)"/>
+  <rect x="662" y="486" width="54" height="25" class="label"/>
+  <text x="675" y="503" class="label-text">1 - N</text>
+
+  <path d="M230 385 C230 455 230 520 230 590" class="relation" marker-end="url(#arrow)"/>
+  <rect x="80" y="475" width="98" height="25" class="label"/>
+  <text x="94" y="492" class="label-text">client 1 - N</text>
+
+  <path d="M485 710 C455 710 430 708 400 708" class="relation" marker-end="url(#arrow)"/>
+  <rect x="417" y="676" width="74" height="25" class="label"/>
+  <text x="430" y="693" class="label-text">1 slot</text>
+
+  <path d="M485 335 C420 420 350 510 300 590" class="relation-soft" marker-end="url(#arrow)"/>
+  <rect x="353" y="455" width="72" height="25" class="label"/>
+  <text x="365" y="472" class="label-text">1 salon</text>
+
+  <path d="M925 265 C790 360 610 505 400 735" class="relation-soft" marker-end="url(#arrow)"/>
+  <rect x="634" y="480" width="96" height="25" class="label"/>
+  <text x="647" y="497" class="label-text">1 service</text>
+
+  <rect x="60" y="858" width="1480" height="28" class="legend"/>
+  <text x="82" y="877" class="legend-text">A utiliser avec la capture phpMyAdmin : la capture prouve l'existence des tables, ce schema explique les relations et la coherence de la base.</text>
+</svg>
